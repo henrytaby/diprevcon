@@ -25,7 +25,7 @@ switch($action) {
                     $url = 'Location: /distribuidor';
                     break;
                 default:
-                    $url = 'Location: /latinosan';
+                    $url = 'Location: /diprevcon';
                     break;
             }
 

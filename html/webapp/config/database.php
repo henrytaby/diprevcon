@@ -43,7 +43,7 @@ $db->setCharset('utf8');
 $res = $db->connect($dsn,$_ENV["DB_USERNAME"],$_ENV["DB_PASSWORD"]);
 if(!$res){
     echo "<span style='color:red;font-family: Arial;'><strong>[Error]</strong> Connection</span>";
-    print_struc($db->ErrorMsg());
+    print_r($db->ErrorMsg());
     exit;
 }
 $db->SetFetchMode(ADODB_FETCH_ASSOC);
