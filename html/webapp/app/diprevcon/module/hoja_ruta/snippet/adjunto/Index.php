@@ -1,11 +1,11 @@
 <?PHP
-namespace App\Icas\Module\Icas\Snippet\adjunto;
+namespace App\Diprevcon\Module\Hoja_ruta\Snippet\adjunto;
 use Core\CoreResources;
 class Index extends CoreResources
 {
-    var $objTable = "programa_archivo";
+    var $objTable = "hojaruta_archivo";
     var $folder = "adjunto";
-    var $fkey_field = "programa_id";
+    var $fkey_field = "hojaruta_id";
 
     function __construct(){
         /**

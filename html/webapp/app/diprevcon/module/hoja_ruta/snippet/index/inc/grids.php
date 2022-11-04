@@ -13,7 +13,7 @@ $grid_table[] = array(
     "table" => $appVars["table"] ["catalogo_tipo_correspondencia"] // Nombre de la tabla con la que hara la relación
 ,    "alias"=> "c" //Alias de la tabla para el join
 ,   "field_id"=>"id" //Id de la tabla que hara la relación
-,   "relationship_id"=>"id_tipo_correspondencia" //Campo de relación en la tabla principal
+,   "relationship_id"=>"tipo_correspondencia_id" //Campo de relación en la tabla principal
 );
 
 /**

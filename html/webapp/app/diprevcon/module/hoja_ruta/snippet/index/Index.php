@@ -3,7 +3,7 @@ namespace App\Diprevcon\Module\Hoja_ruta\Snippet\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {
-    var $objTable = "hoja_ruta";
+    var $objTable = "hojaruta";
     function __construct()
     {
         /**

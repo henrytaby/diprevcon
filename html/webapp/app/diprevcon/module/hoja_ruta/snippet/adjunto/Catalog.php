@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Icas\Module\Icas\Snippet\adjunto;
+namespace App\Diprevcon\Module\Hoja_ruta\Snippet\adjunto;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 
