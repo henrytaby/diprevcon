@@ -14,6 +14,7 @@ $db_table = array();
 $dbSchemaName = "public";
 $db_table[] = Core::getTableConfig("hoja_ruta");
 $db_table[] = Core::getTableConfig("catalogo_tipo_correspondencia");
+$db_table[] = Core::getTableConfig("catalogo_destinatario");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
