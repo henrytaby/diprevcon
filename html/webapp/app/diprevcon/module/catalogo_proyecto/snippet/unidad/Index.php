@@ -4,7 +4,7 @@ use Core\CoreResources;
 
 class Index extends CoreResources
 {
-    var $objTable = "catalogo_unidad";
+    var $objTable = "unidad";
     function __construct()
     {
         /**
@@ -22,7 +22,7 @@ class Index extends CoreResources
     public function getItemDatatableRows(){
         global $dbSetting;
         $table = $this->table[$this->objTable];
-        $primaryKey = '"itemId"';
+        $primaryKey = '"id"';
         $grid = "index";
         $db=$dbSetting[0];
         /**

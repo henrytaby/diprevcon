@@ -22,7 +22,7 @@ $grid_table_join = array();
  */
 
 $grid_item[]=array("field"=> "nombre", "label"=> $smarty->config_vars["table_nombre"]);
-$grid_item[]=array("field"=> "activo", "label"=> $smarty->config_vars["table_activo"]);
+$grid_item[]=array("field"=> "active", "label"=> $smarty->config_vars["table_activo"]);
 
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
 $grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);

@@ -11,9 +11,9 @@ $appVars["table"]  = array();
 
 $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
-$dbSchemaName = "public";
-$db_table[] = Core::getTableConfig("catalogo_unidad");
-$db_table[] = Core::getTableConfig("catalogo_cargo");
+$dbSchemaName = "catalogo";
+$db_table[] = Core::getTableConfig("unidad");
+$db_table[] = Core::getTableConfig("cargo");
 
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
