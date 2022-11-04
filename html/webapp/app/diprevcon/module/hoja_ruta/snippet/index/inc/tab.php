@@ -18,18 +18,17 @@ $item_tab[]=array(
 );
 
 //-------------------------------------------------------------
-
-$item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_destinatario"]
-,   "id_name"=>"destinatario"
-,   "icon" => "fas fa-clipboard m--font-success"
-,   "new" => 0
-);
-//-------------------------------------------------------------
 $item_tab[]=array(
     "label"=> $smarty->config_vars["tab_adjunto"]
 ,   "id_name"=>"adjunto"
 ,   "icon" => "fas fa-paperclip m--font-success"
+,   "new" => 0
+);
+//-------------------------------------------------------------
+$item_tab[]=array(
+    "label"=> $smarty->config_vars["tab_destinatario"]
+,   "id_name"=>"destinatario"
+,   "icon" => "fas fa-clipboard m--font-success"
 ,   "new" => 0
 );
 //-------------------------------------------------------------

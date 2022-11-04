@@ -18,6 +18,7 @@ $field_item["destinatario"]=array("type"=>"text");
 $field_item["asunto"]=array("type"=>"text");
 
 $field_item["fecha"]=array("type"=>"date");
+$field_item["hora"]=array("type"=>"date");
 $field_item["descripcion"]=array("type"=>"text");
 $field_item["fojas"]=array("type"=>"text");
 $field_item["tipo_correspondencia_id"]=array("type"=>"text");

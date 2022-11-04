@@ -77,6 +77,11 @@
          */
         var handle_components = function(){
             coreUyuni.setComponents();
+            $('#m_timepicker_1').timepicker({
+                defaultTime: '',
+                autoclose: true,
+                todayHighlight: true,
+            });
         };
 
         var handle_type_select = function(){
