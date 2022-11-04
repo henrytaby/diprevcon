@@ -65,11 +65,11 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{#field_date#}<span class="text-danger bold">*</span> :</label>
+                    <label>{#field_date#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control date_general" id="valid_until"
                                name="item[fecha]" value="{$item.fecha|date_format:'%d/%m/%Y'}"
-                               data-fv-not-empty___message="{#glFieldRequired#}"
+{*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
                         >
                         <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol"></i></span></div>
                     </div>
@@ -77,11 +77,11 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{#field_fojas#}<span class="text-danger bold">*</span> :</label>
+                    <label>{#field_fojas#}:</label>
                     <div class="input-group">
                         <input type="number" class="form-control number_integer p-5"
                                name="item[fojas]" value="{$item.fojas|escape:"html"}"
-                               data-fv-not-empty___message="{#glFieldRequired#}"
+{*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
                         >
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
                     </div>
@@ -89,16 +89,16 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{#field_tipo_correspondencia_id#} <span class="text-danger bold">*</span> : </label>
+                    <label>{#field_tipo_correspondencia_id#}: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[id_tipo_correspondencia]" id="type_select_estado"
+                                name="item[tipo_correspondencia_id]" id="type_select_estado"
                                 data-placeholder="{#field_holder_tipo_correspondencia_id#}" {$privFace.input}
-                                required
-                                data-fv-not-empty___message="{#glFieldRequired#}"
+{*                                required*}
+{*                                data-fv-not-empty___message="{#glFieldRequired#}"*}
                         >
                             <option></option>
-                            {html_options options=$cataobj.catalogo_tipo_correspondencia selected=$item.id_tipo_correspondencia}
+                            {html_options options=$cataobj.tipo_correspondencia selected=$item.tipo_correspondencia_id}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_tipo_correspondencia_id#}</span>

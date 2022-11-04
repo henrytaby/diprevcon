@@ -20,7 +20,7 @@ $field_item["asunto"]=array("type"=>"text");
 $field_item["fecha"]=array("type"=>"date");
 $field_item["descripcion"]=array("type"=>"text");
 $field_item["fojas"]=array("type"=>"text");
-$field_item["id_tipo_correspondencia"]=array("type"=>"text");
+$field_item["tipo_correspondencia_id"]=array("type"=>"text");
 
 $fields["module"]= $field_item;
 unset($field_item);

@@ -105,7 +105,7 @@
                         targets: [3],
                         className:"text-right",
                         render: function(data,type,full,meta){
-                            return '<span style="color: #27780f;">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(data) + ' </span>';
+                            return '<span style="color: #27780f;">' + data + ' </span>';
                         },
                     },
                     {
