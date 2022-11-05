@@ -1,10 +1,11 @@
 <?PHP
-namespace App\Diprevcon\Module\Hoja_ruta\Snippet\destinatario;
+namespace App\Diprevcon\Module\Catalogo_proyecto\Snippet\cargo;
 use Core\CoreResources;
 
 class Index extends CoreResources
 {
-    var $objTable = "catalogo_destinatario";
+    var $objTable = "cargo";
+    var $folder = "cargo";
     function __construct()
     {
         /**
@@ -13,35 +14,16 @@ class Index extends CoreResources
         $this->appInit();
 
     }
-    function getItem($idItem){
-
-        $info = '';
-
-        if($idItem!=''){
-            $sqlSelect = ' i.*
-                           , concat(u1.name,\' \',u1.last_name) AS user_creater
-                            , CONCAT(u2.name,\' \',u2.last_name) as user_updater';
-            $sqlFrom = ' '.$this->table[$this->objTable].' i
-                         LEFT JOIN '.$this->table_core["user"].' u1 on u1.id=i.user_create
-                         LEFT JOIN '.$this->table_core["user"].' u2 on u2.id=i.user_update';
-            $sqlWhere = ' i.id='.$idItem;
-            $sqlGroup = ' ';
-
-            $sql = 'SELECT '.$sqlSelect.'
-                  FROM '.$sqlFrom.'
-                  WHERE '.$sqlWhere.'
-                  '.$sqlGroup;
-            $info = $this->dbm->Execute($sql);
-            $info = $info->fields;
-
-
-        }
-        return $info;
+    function getItem($id,$item_id){
+        $sql = "select * from ".$this->table[$this->objTable]." as p where p.id = '".$id."'";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->fields;
+        return $item;
     }
-    public function getItemDatatableRows($item_id){
+    public function getItemDatatableRows(){
         global $dbSetting;
         $table = $this->table[$this->objTable];
-        $primaryKey = '"itemId"';
+        $primaryKey = '"id"';
         $grid = "index";
         $db=$dbSetting[0];
         /**
@@ -54,14 +36,60 @@ class Index extends CoreResources
          * Result of the query sent
          */
         $result = $this->getGridDatatableSimple($db,$grid,$table, $primaryKey, $extraWhere);
-        //print_r($item_id);exit;
 
-        /*foreach ($result['data'] as $itemId => $valor) {
+        foreach ($result['data'] as $itemId => $valor) {
             $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
             $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
-        }*/
+        }
         $result["recordsTotal"]=$result["recordsFiltered"];
         return $result;
+    }
+    function updateData($rec,$itemId,$form,$action,$item_id, $input_file){
+        //print_struc($_FILES);
+        $tabla = $this->table[$this->objTable];
+        $itemData  = $this->processData($form,$rec,$action,$item_id);
+        //print_r($rec);exit();
+        /**
+         * Save processed data
+         */
+        $field_id="id";
+        $res = $this->updateItem($itemId,$itemData ,$tabla,$action,$field_id);
+        $res["accion"] = $action;
+        /**
+         * Process attachment
+         */
+
+
+        if( $res["res"]==1){
+            $item = $this->getItem($res["id"],$item_id);
+            $item_id_name = $this->fkey_field;
+            $id_name = "id";
+            $adjunto = $this->saveAttachment($item,$tabla,$input_file,$item_id,$res["id"],$action,$this->folder,$item_id_name,$id_name);
+
+        }
+        return $res;
+    }
+    function processData($form,$rec,$action="new",$item_id){
+        $dataResult = array();
+        switch($form){
+            case 'index':
+                $dataResult = $this->processFields($rec,$this->campos[$form],$action);
+                /**
+                 * Additional processes when saving the data
+                 */
+                if ($action=="new"){
+                    $dataResult["activo"] = "true";
+                    $dataResult[$this->fkey_field]= $item_id;
+                }
+                break;
+
+        }
+        return $dataResult;
+    }
+    function deleteData($id,$item_id){
+        $field_id="id";
+        $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable]);
+        return $res;
     }
 
 }

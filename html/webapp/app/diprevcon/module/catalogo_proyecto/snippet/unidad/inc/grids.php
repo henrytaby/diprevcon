@@ -10,18 +10,12 @@ $grid_table_join = array();
  * Configuración de tablas relacionales, (JOIN)
  */
 
-//$grid_table[] = array(
-//    "table" => $appVars["table"] ["hoja_ruta_destinatario"] // Nombre de la tabla con la que hara la relación
-//,    "alias"=> "hrd" //Alias de la tabla para el join
-//,   "field_id"=>"itemId" //Id de la tabla que hara la relación
-//,   "relationship_id"=>"id_tipo_correspondencia" //Campo de relación en la tabla principal
-//);
-
 /**
  * Configuración de los campos que mostraremos en la grilla
  */
 
 $grid_item[]=array("field"=> "nombre", "label"=> $smarty->config_vars["table_nombre"]);
+$grid_item[]=array("field"=> "descripcion", "label"=> $smarty->config_vars["table_descripcion"]);
 $grid_item[]=array("field"=> "active", "label"=> $smarty->config_vars["table_activo"]);
 
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);

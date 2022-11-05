@@ -70,10 +70,6 @@
                     {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.responsive}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}{literal}
                 ],
-                /*rowGroup: {
-                    dataSrc: ['app','group']
-                },
-                autoWidth: false,*/
                 columnDefs: [
                     {
                         targets: -1,
@@ -93,7 +89,11 @@
                         },
                     },
                     {
-                        targets: [1],
+                        targets: [0],
+                        width: "400px",
+                    },
+                    {
+                        targets: [2],
                         width: '60px',
                         render: function(data, type, full, meta) {
                             var status = {
@@ -108,6 +108,8 @@
                     },
                     {
                         targets: [-2,-3],
+                        searchable: false,
+                        className: "none",
                         render: function(data,type,full,meta){
                             if (data == null){ data = "";}
                             return '<span class="text-primary font-size-xs">' + data+ '</span>';

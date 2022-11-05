@@ -5,6 +5,7 @@ use Core\CoreResources;
 class Index extends CoreResources
 {
     var $objTable = "unidad";
+    var $folder = "unidad";
     function __construct()
     {
         /**
@@ -14,7 +15,7 @@ class Index extends CoreResources
 
     }
     function getItem($id,$item_id){
-        $sql = "select * from ".$this->table[$this->objTable]." as p where p.id = '".$id."' and p.".$this->fkey_field." = '".$item_id."'";
+        $sql = "select * from ".$this->table[$this->objTable]." as p where p.id = '".$id."'";
         $item = $this->dbm->Execute($sql);
         $item = $item->fields;
         return $item;
@@ -35,12 +36,11 @@ class Index extends CoreResources
          * Result of the query sent
          */
         $result = $this->getGridDatatableSimple($db,$grid,$table, $primaryKey, $extraWhere);
-        //print_r($item_id);exit;
 
-        /*foreach ($result['data'] as $itemId => $valor) {
+        foreach ($result['data'] as $itemId => $valor) {
             $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
             $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
-        }*/
+        }
         $result["recordsTotal"]=$result["recordsFiltered"];
         return $result;
     }
@@ -48,6 +48,7 @@ class Index extends CoreResources
         //print_struc($_FILES);
         $tabla = $this->table[$this->objTable];
         $itemData  = $this->processData($form,$rec,$action,$item_id);
+        //print_r($rec);exit();
         /**
          * Save processed data
          */
@@ -86,19 +87,8 @@ class Index extends CoreResources
         return $dataResult;
     }
     function deleteData($id,$item_id){
-        $item = $this->getItem($id,$item_id);
-        /**
-         * Delete the record from the database
-         */
         $field_id="id";
-        $where = $this->fkey_field."='".$item_id."'";
-        $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable],$where);
-        if($res["res"]==1){
-            /**
-             * borramos el archivo primero
-             */
-            $this->deleteAttachmentFile($id,$item_id,$item["attached_extension"],$this->folder);
-        }
+        $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable]);
         return $res;
     }
 

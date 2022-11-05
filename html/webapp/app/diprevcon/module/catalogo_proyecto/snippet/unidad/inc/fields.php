@@ -13,10 +13,11 @@ $fields = array();
  */
 $field_item = array();
 $field_item["nombre"]=array("type"=>"text");
-$field_item["activo"]=array("type"=>"checkbox_02");
+$field_item["descripcion"]=array("type"=>"text");
+$field_item["active"]=array("type"=>"checkbox_02");
 
-
-$fields["module"]= $field_item;
+$group = "index";
+$fields[$group]= $field_item;
 unset($field_item);
 /**
  * Apartir de aca, puedes configurar otros campos

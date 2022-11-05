@@ -4,12 +4,12 @@
     <div class="card-header py-3">
         <div class="card-title">
 {*            <span class="card-icon"><i class="flaticon2-next text-dark-25"></i></span>*}
-            <h3 class="card-label text-dark-50">UNIDADES DE DIPREVCON</h3>
+            <h3 class="card-label text-dark-50">{#title#}</h3>
         </div>
         <div class="card-toolbar">
             {if $privFace.edit == 1 and $privFace.add == 1}
                 <a href="#" class="btn btn-success font-weight-bolder" id="btn_form_{$subcontrol}" rel="new">
-                    <span><i class="fa fa-plus"></i><span> NUEVA UNIDAD</a>
+                    <span><i class="fa fa-plus"></i><span> {#btnNew#}</a>
             {/if}
         </div>
     </div>

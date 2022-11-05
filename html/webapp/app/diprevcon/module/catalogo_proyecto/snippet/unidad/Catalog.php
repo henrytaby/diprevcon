@@ -21,10 +21,5 @@ class Catalog extends CoreResources{
         $dato["0"] = $smarty->config_vars["glOptInactive"];
         return $dato;
     }
-    public function confCatalog(){
-        $this->addCatalogList($this->table["catalogo_unidad"]
-            ,"catalogo_unidad","","nombre",""
-            ,"nombre","","","");
-    }
 
 }

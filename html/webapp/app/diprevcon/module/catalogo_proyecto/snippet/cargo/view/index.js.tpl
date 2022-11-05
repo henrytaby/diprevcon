@@ -70,10 +70,6 @@
                     {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.responsive}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}{literal}
                 ],
-                /*rowGroup: {
-                    dataSrc: ['app','group']
-                },
-                autoWidth: false,*/
                 columnDefs: [
                     {
                         targets: -1,
@@ -82,11 +78,41 @@
                         orderable: false,
                         searchable: false,
                         render: function(data, type, full, meta) {
-                            //alert(data);
                             var boton = '<div class="btn-group btn-group-sm " role="group" aria-label="Accion">';
-                            boton += '<a href="javascript:item_asignar_{/literal}{$subcontrol}{literal}(\''+data+'\');" class="btn btn-outline-info" title="asignar">asignar</a>';
+                            var lbEdit = {/literal}{if $privFace.edit == 1}lngUyuni.btnEdit{else}lngUyuni.btnViewData{/if}{literal};
+                            boton += '<a href="javascript:snippet_list.update(\''+data+'\');" class="btn btn-success btn-sm" title="'+lbEdit+'">'+lbEdit+'</a>';
+                            {/literal}{if $privFace.edit ==1 and $privFace.delete == 1}{literal}
+                            boton += '<a href="javascript:snippet_list.delete(\''+data+'\');" class="btn btn-icon btn-light-danger btn-sm" title="'+lngUyuni.btnDelete+'"><i class="flaticon-delete-1"></i></a>';
+                            {/literal}{/if}{literal}
                             boton += '<div>';
                             return boton;
+                        },
+                    },
+                    {
+                        targets: [0],
+                        width: "400px",
+                    },
+                    {
+                        targets: [2],
+                        width: '60px',
+                        render: function(data, type, full, meta) {
+                            var status = {
+                                'false': { 'state': 'metal'},
+                                'true': { 'state': 'success'}
+                            };
+                            if (typeof status[data] === 'undefined') {
+                                return data;
+                            }
+                            return '<div class="text-center"><i class="fa fa-check-double text-' + status[data].state + '"></i></div>';
+                        },
+                    },
+                    {
+                        targets: [-2,-3],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
                         },
                     },
 
@@ -95,11 +121,55 @@
             });
 
         };
+        /**
+         * New and Update
+         */
+            //var btn_update = $('#btn_update');
+        var btn_update = $('#btn_form_{/literal}{$subcontrol}{literal}');
+        var handle_button_update = function(){
+            btn_update.click(function(e){
+                e.preventDefault();
+                item_update("","new");
+            });
+        };
+
+        var item_update = function(id,type){
+            var subcontrol = "{/literal}{$subcontrol}{literal}";
+            coreUyuni.itemUpdateTabs(id,type,urlsys, subcontrol);
+        };
+        /**
+         * Delete
+         */
+        var  item_delete = function(id){
+            var url = urlsys+"/"+id+"/delete";
+            coreUyuni.itemDelete(id,url,table_list);
+        };
+        /**
+         * Inicializar componentes
+         */
+        var handle_components = function(){
+            coreUyuni.setComponents();
+        };
+        /**
+         * Filtros
+         */
+        var handle_filtro = function () {
+            coreUyuni.tableFilter();
+        };
         return {
             //main function to initiate the module
             init: function() {
+                handle_button_update();
                 initTable();
-            }
+                handle_components();
+                handle_filtro();
+            },
+            update: function(id,type){
+                item_update(id,"update");
+            },
+            delete: function(id){
+                item_delete(id);
+            },
         };
     }();
 

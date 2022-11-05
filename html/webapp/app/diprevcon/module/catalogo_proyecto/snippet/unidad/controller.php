@@ -21,18 +21,18 @@ switch($action){
          */
         \Core\Core::setLenguage("index");
 
+        $cataobj["activo"] = $objCatalog->get_activo_option();
+        $smarty->assign("cataobj", $cataobj);
         /**
          * Grid configuration
          */
         $gridItem = $objItem->getGridItem("index");
-//        print_r($gridItem);exit();
         $smarty->assign("gridItem", $gridItem);
         $smarty->assign("subpage",$webm["sc_index"]);
         break;
 
     case 'list':
         $res = $objItem->getItemDatatableRows();
-        //print_r($item);//exit;
         Core::printJson($res);
         break;
     case 'get.form':

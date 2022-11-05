@@ -1,17 +1,16 @@
 {include file="index.css.tpl"}
 <div class="card card-custom gutter-b example example-compact">
     <!--begin:Titulo-->
-    <div class="card-body pt-0 pb-0 pl-5 pr-5">
-        <div class="alert alert-custom fade show pt-1 pb-1 pl-5 pr-5 ayuda" role="alert">
-            <div class="alert-icon"><i class="flaticon-notes"></i></div>
-            <div class="alert-text text-justify text-dark-65" >Se podra realizar el registro los destinatarios de la Hoja de Ruta</div>
-        </div>
-    </div>
-
     <div class="card-header py-3">
         <div class="card-title">
-            <span class="card-icon"><i class="flaticon2-next text-dark-25"></i></span>
-            <h3 class="card-label text-dark-50">DESTINATARIOS DE LA HOJA DE RUTA</h3>
+{*            <span class="card-icon"><i class="flaticon2-next text-dark-25"></i></span>*}
+            <h3 class="card-label text-dark-50">{#title#}</h3>
+        </div>
+        <div class="card-toolbar">
+            {if $privFace.edit == 1 and $privFace.add == 1}
+                <a href="#" class="btn btn-success font-weight-bolder" id="btn_form_{$subcontrol}" rel="new">
+                    <span><i class="fa fa-plus"></i><span> {#btnNew#}</a>
+            {/if}
         </div>
     </div>
     <!--end:Titulo-->
