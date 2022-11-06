@@ -96,6 +96,7 @@
                     },
                     {
                         targets: [0],
+                        searchable: true,
                         className:"text-left",
                         render: function(data,type,full,meta){
                             return '<span style="color: #0357ae;">' + data + ' </span>';
@@ -103,13 +104,19 @@
                     },
                     {
                         targets: [1],
+                        searchable: true,
                         className:"text-center",
                         render: function(data,type,full,meta){
                             return '<span style="color: #27780f;">' + data + ' </span>';
                         },
                     },
                     {
+                        targets: [2],
+                        searchable: true,
+                    },
+                    {
                         targets: [3],
+                        searchable: false,
                         width: '60px',
                         render: function(data, type, full, meta) {
                             var status = {

@@ -96,13 +96,19 @@
                     },
                     {
                         targets: [0,1],
+                        searchable: true,
                         className:"text-left",
                         render: function(data,type,full,meta){
                             return '<span style="color: #0357ae;">' + data + ' </span>';
                         },
                     },
                     {
+                        targets: [2,5],
+                        searchable: true,
+                    },
+                    {
                         targets: [3],
+                        searchable: false,
                         className:"text-right",
                         render: function(data,type,full,meta){
                             return '<span style="color: #27780f;">' + data + ' </span>';

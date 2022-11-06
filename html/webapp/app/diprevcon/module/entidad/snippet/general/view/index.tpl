@@ -49,25 +49,19 @@
                     <span class="form-text text-black-50">{#field_msg_sigla#}</span>
                 </div>
 
-
-
-                <div class="col-lg-8 m-form__group-sub cuadro-padding-0">
-                    <label>{#field_direccion#}<span class="text-danger bold">*</span> :</label>
+                <div class="col-lg-8">
+                    <label>{#field_direccion#}:</label>
                     <div class="input-group">
-                        <textarea class="form-control m-input mayus"
-                                  name="item[direccion]" cols="4"
-                                  required data-msg="{#glFieldRequired#}"
-                                  minlength="3"
-                                  data-fv-string-length___message="{#field_length_direccion#}"
-                                  {$privFace.input}>{$item.direccion|escape:'html'}
-                        </textarea>
+                        <textarea rows="2" class="form-control m-input"
+                                  name="item[direccion]"
+                        >{$item.direccion|escape:'html'}</textarea>
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
                     </div>
-                    <span class="form-text text-black-50">{#field_msg_direccion#}</span>
+                    <span class="form-text text-muted">{#field_msg_direccion#}</span>
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{#field_active#} <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_active#}:</label>
                     <div class="input-group">
                     <span class="switch switch-icon">
                         <label><input type="checkbox" {if $item.active == 1}checked="checked"{/if} name="item[active]" value="1" ><span></span></label>

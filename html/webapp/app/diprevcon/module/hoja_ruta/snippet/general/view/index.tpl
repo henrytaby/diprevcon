@@ -72,26 +72,21 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_time#}</span>
                 </div>
-
-                <div class="col-lg-12 m-form__group-sub cuadro-padding-0">
+                <div class="col-lg-12">
                     <label>{#field_asunto#}<span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
-                        <textarea class="form-control m-input mayus"
-                                  name="item[asunto]" cols="4"
-                                  required data-msg="{#glFieldRequired#}"
-                                  minlength="3"
-                                  data-fv-string-length___message="{#field_length_asunto#}"
-                                  {$privFace.input}>{$item.asunto|escape:'html'}
-                        </textarea>
+                        <textarea rows="2" class="form-control m-input mayus"
+                                  name="item[asunto]"
+                        >{$item.asunto|escape:'html'}</textarea>
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
                     </div>
-                    <span class="form-text text-black-50">{#field_msg_asunto#}</span>
+                    <span class="form-text text-muted">{#field_msg_asunto#}</span>
                 </div>
 
                 <div class="col-lg-6">
                     <label>{#field_fojas#}:</label>
                     <div class="input-group">
-                        <input type="number" class="form-control number_integer p-5"
+                        <input type="text" class="form-control number_integer pr-5" id="number_integer"
                                name="item[fojas]" value="{$item.fojas|escape:"html"}"
 {*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
                         >
@@ -99,7 +94,6 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_fojas#}</span>
                 </div>
-
                 <div class="col-lg-6">
                     <label>{#field_tipo_correspondencia_id#}: </label>
                     <div class="input-group">
