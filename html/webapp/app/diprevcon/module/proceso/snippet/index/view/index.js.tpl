@@ -96,43 +96,28 @@
                     },
                     {
                         targets: [0],
+                        searchable: true,
                         className:"text-left",
                         render: function(data,type,full,meta){
                             return '<span style="color: #0357ae;">' + data + ' </span>';
                         },
                     },
-                    // {
-                    //     targets: 2,
-                    //     render: function(data, type, full, meta) {
-                    //         var status = {
-                    //             'Registro': {'title': 'Registro', 'class': ' label-light-primary'},
-                    //             'Ejecución': {'title': 'Ejecución', 'class': ' label-light-warning'},
-                    //             'Concluidos': {'title': 'Concluidos', 'class': ' label-light-info'},
-                    //         };
-                    //         if (typeof status[data] === 'undefined') {
-                    //             return data;
-                    //         }
-                    //         return '<span class="label label-lg font-weight-bold' + status[data].class + ' label-inline">' + status[data].title + '</span>';
-                    //     },
-                    // },
-                    // {
-                    //     targets: [8],
-                    //     className: "none",
-                    // },
-                    // {
-                    //     targets: [3,5],
-                    //     searchable: false,
-                    // },
                     {
                         targets: [2],
-                        className:"text-right",
+                        searchable: false,
+                        className:"text-center",
                         render: function(data,type,full,meta){
                             if (data == null){ data = "";}
-                            return '<span style="color: #27780f;">' + data+ '</span>';
+                            return '<span style="color: #27780f;">' + data + ' </span>';
                         },
                     },
                     {
-                        targets: [1,4],
+                        targets: [3],
+                        searchable: false,
+                    },
+                    {
+                        targets: [1, 4],
+                        searchable: false,
                         width: '60px',
                         render: function(data, type, full, meta) {
                             var status = {
@@ -151,7 +136,7 @@
                         className: "none",
                         render: function(data,type,full,meta){
                             if (data == null){ data = "";}
-                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                            return '<span class="text-primary font-size-xs">' + data + '</span>';
                         },
                     },
 
