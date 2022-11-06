@@ -1,8 +1,7 @@
 <?PHP
-use App\Diprevcon\Module\Hoja_ruta\Snippet\Index\Index;
-use App\Diprevcon\Module\Hoja_ruta\Snippet\Index\Catalog;
+use App\Miofi\Module\Bandeja_entrada\Snippet\Index\Index;
+use App\Miofi\Module\Bandeja_entrada\Snippet\Index\Catalog;
 use Core\Core;
-
 
 $objItem = new Index();
 $objCatalog = new Catalog();
@@ -25,7 +24,7 @@ switch($action) {
         $objCatalog->confCatalog();
         $cataobj= $objCatalog->getCatalogList();
         $cataobj["activo"] = $catalogo=$objCatalog->getActiveOption();
-        //print_struc($cataobj);exit;
+//        d($cataobj);exit;
         $smarty->assign("cataobj", $cataobj);
         /**
          * Grid configuration

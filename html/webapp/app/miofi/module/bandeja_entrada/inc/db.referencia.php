@@ -12,8 +12,11 @@ $appVars["table"]  = array();
 $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
 $dbSchemaName = "public";
+$db_table[] = Core::getTableConfig("hojaruta_seguimiento");
 $db_table[] = Core::getTableConfig("hojaruta");
-$db_table[] = Core::getTableConfig("hojaruta_archivo");
+$db_table[] = Core::getTableConfig("proceso");
+$db_table[] = Core::getTableConfig("oficina");
+$db_table[] = Core::getTableConfig("entidad");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
@@ -21,7 +24,8 @@ unset($db_prefix);
 
 $db_table = array();
 $dbSchemaName = "catalogo";
-$db_table[] = Core::getTableConfig("tipo_correspondencia");
+$db_table[] = Core::getTableConfig("estado");
+$db_table[] = Core::getTableConfig("instruccion");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);
 

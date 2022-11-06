@@ -109,7 +109,7 @@
                         },
                     },
                     {
-                        targets: [-2,-3,-4,-5,4],
+                        targets: [-2,-3,-4,-5, 6,7],
                         searchable: false,
                         className: "none",
                         render: function(data,type,full,meta){
