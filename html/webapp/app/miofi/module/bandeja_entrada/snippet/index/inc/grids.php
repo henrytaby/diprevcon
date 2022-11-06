@@ -15,17 +15,12 @@ $grid_table_join = array();
 //,   "field_id"=>"id" //Id de la tabla que hara la relación
 //,   "relationship_id"=>"hojaruta_id" //Campo de relación en la tabla principal
 //);
+
 $grid_table[] = array(
-    "table" => $appVars["table"] ["oficina"] // Nombre de la tabla con la que hara la relación
-,    "alias"=> "oe" //Alias de la tabla para el join
+    "table" => $appVars["table"] ["hojaruta"] // Nombre de la tabla con la que hara la relación
+,    "alias"=> "hr" //Alias de la tabla para el join
 ,   "field_id"=>"id" //Id de la tabla que hara la relación
-,   "relationship_id"=>"emisor_oficina_id" //Campo de relación en la tabla principal
-);
-$grid_table[] = array(
-    "table" => $appVars["table"] ["oficina"] // Nombre de la tabla con la que hara la relación
-,    "alias"=> "ore" //Alias de la tabla para el join
-,   "field_id"=>"id" //Id de la tabla que hara la relación
-,   "relationship_id"=>"receptor_oficina_id" //Campo de relación en la tabla principal
+,   "relationship_id"=>"hojaruta_id" //Campo de relación en la tabla principal
 );
 
 $grid_table[] = array(
@@ -61,20 +56,29 @@ $grid_table[] = array(
  */
 //$grid_item[]=array( "field" => "nur", "label"=> $smarty->config_vars["table_hojaruta"]
 //, "table_as"=> "hr", "as" => "hojaruta");
+
+$grid_item[]=array( "field" => "asunto", "label"=> $smarty->config_vars["table_asunto"]
+, "table_as"=> "hr", "as" => "asunto");
+
+
 $grid_item[]=array("field"=> "nur", "label"=> $smarty->config_vars["table_nur"]);
 
 //Emisor
 $grid_item[]=array("field"=> "emisor_nombre", "label"=> $smarty->config_vars["table_emisor_nombre"]);
 $grid_item[]=array("field"=> "emisor_cargo", "label"=> $smarty->config_vars["table_emisor_cargo"]);
 //
-$grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_emisor_oficina"]
-, "table_as"=> "oe", "as" => "emisor_oficina");
+
+$grid_item[]=array("field"=> "emisor_oficina", "label"=> $smarty->config_vars["table_emisor_oficina"]);
+
+
 ////Receptor
 $grid_item[]=array("field"=> "receptor_nombre", "label"=> $smarty->config_vars["table_receptor_nombre"]);
 $grid_item[]=array("field"=> "receptor_cargo", "label"=> $smarty->config_vars["table_receptor_cargo"]);
 
-$grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_receptor_oficina"]
-, "table_as"=> "ore", "as" => "oficina_receptor");
+
+$grid_item[]=array("field"=> "receptor_oficina", "label"=> $smarty->config_vars["table_receptor_oficina"]);
+
+
 
 $grid_item[]=array("field" => "fecha_emision","label"=> $smarty->config_vars["table_fecha_emision"]);
 $grid_item[]=array("field" => "fecha_recepcion","label"=> $smarty->config_vars["table_fecha_recepcion"]);

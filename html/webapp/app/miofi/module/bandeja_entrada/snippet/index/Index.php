@@ -46,7 +46,7 @@ class Index extends CoreResources {
         /**
          * Additional configuration
          */
-        $extraWhere = "";
+        $extraWhere = "i.estado_id=1 and i.derivado_a_user_id=".$this->userId;
         $groupBy = "";
         $having = "";
         /**
