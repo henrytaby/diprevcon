@@ -46,8 +46,8 @@
                         <!--begin::User-->
                         <!--begin::Actions-->
                         <div class="my-lg-0 my-1">
-                            <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>
-                            <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Recepcionar</a>
+                            <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Archivar</a>
+                            <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Derivar</a>
                         </div>
                         <!--end::Actions-->
                     </div>
@@ -100,12 +100,30 @@
                 <!--end: Item-->
                 <!--begin: Item-->
                 <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                    <span class="mr-4"><i class="fas fa-calendar-check icon-2x text-info"></i></span>
+                    <div class="d-flex flex-column text-primary">
+                        <span class="font-weight-bolder font-size-sm">Fecha Recepción</span>
+                        <span class="font-weight-bolder font-size-h5"> 18/10/2022 </span>
+                    </div>
+                </div>
+                <!--end: Item-->
+                <!--begin: Item-->
+                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
 												<span class="mr-4">
 													<i class="fas fa-sun icon-2x text-muted font-weight-bold"></i>
 												</span>
                     <div class="d-flex flex-column text-dark-75">
-                        <span class="font-weight-bolder font-size-sm">Días desde el Envio </span>
-                        <span class="font-weight-bolder font-size-h5">20</span>
+                        <span class="font-weight-bolder font-size-sm">Días hasta Recepción </span>
+                        <span class="font-weight-bolder font-size-h5">6</span>
+                    </div>
+                </div>
+                <!--end: Item-->
+                <!--begin: Item-->
+                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                    <span class="mr-4"><i class="fas fa-calendar-day icon-2x text-info"></i></span>
+                    <div class="d-flex flex-column text-danger">
+                        <span class="font-weight-bolder font-size-sm">Días Transcurridos </span>
+                        <span class="font-weight-bolder font-size-h5">20 / 14</span>
                     </div>
                 </div>
                 <!--end: Item-->
@@ -173,8 +191,8 @@
                         <!--begin::User-->
                         <!--begin::Actions-->
                         <div class="my-lg-0 my-1">
-                            <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>
-                            <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Recepcionar</a>
+                            <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Archivar</a>
+                            <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Derivar</a>
                         </div>
                         <!--end::Actions-->
                     </div>
@@ -227,12 +245,30 @@
                 <!--end: Item-->
                 <!--begin: Item-->
                 <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                    <span class="mr-4"><i class="fas fa-calendar-check icon-2x text-info"></i></span>
+                    <div class="d-flex flex-column text-primary">
+                        <span class="font-weight-bolder font-size-sm">Fecha Recepción</span>
+                        <span class="font-weight-bolder font-size-h5"> 18/10/2022 </span>
+                    </div>
+                </div>
+                <!--end: Item-->
+                <!--begin: Item-->
+                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
 												<span class="mr-4">
 													<i class="fas fa-sun icon-2x text-muted font-weight-bold"></i>
 												</span>
                     <div class="d-flex flex-column text-dark-75">
-                        <span class="font-weight-bolder font-size-sm">Días desde el Envio </span>
-                        <span class="font-weight-bolder font-size-h5">20</span>
+                        <span class="font-weight-bolder font-size-sm">Días hasta Recepción </span>
+                        <span class="font-weight-bolder font-size-h5">6</span>
+                    </div>
+                </div>
+                <!--end: Item-->
+                <!--begin: Item-->
+                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                    <span class="mr-4"><i class="fas fa-calendar-day icon-2x text-info"></i></span>
+                    <div class="d-flex flex-column text-danger">
+                        <span class="font-weight-bolder font-size-sm">Días Transcurridos </span>
+                        <span class="font-weight-bolder font-size-h5">20 / 14</span>
                     </div>
                 </div>
                 <!--end: Item-->
@@ -300,8 +336,8 @@
                         <!--begin::User-->
                         <!--begin::Actions-->
                         <div class="my-lg-0 my-1">
-                            <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>
-                            <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Recepcionar</a>
+                            <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Archivar</a>
+                            <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Derivar</a>
                         </div>
                         <!--end::Actions-->
                     </div>
@@ -354,12 +390,30 @@
                 <!--end: Item-->
                 <!--begin: Item-->
                 <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                    <span class="mr-4"><i class="fas fa-calendar-check icon-2x text-info"></i></span>
+                    <div class="d-flex flex-column text-primary">
+                        <span class="font-weight-bolder font-size-sm">Fecha Recepción</span>
+                        <span class="font-weight-bolder font-size-h5"> 18/10/2022 </span>
+                    </div>
+                </div>
+                <!--end: Item-->
+                <!--begin: Item-->
+                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
 												<span class="mr-4">
 													<i class="fas fa-sun icon-2x text-muted font-weight-bold"></i>
 												</span>
                     <div class="d-flex flex-column text-dark-75">
-                        <span class="font-weight-bolder font-size-sm">Días desde el Envio </span>
-                        <span class="font-weight-bolder font-size-h5">20</span>
+                        <span class="font-weight-bolder font-size-sm">Días hasta Recepción </span>
+                        <span class="font-weight-bolder font-size-h5">6</span>
+                    </div>
+                </div>
+                <!--end: Item-->
+                <!--begin: Item-->
+                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                    <span class="mr-4"><i class="fas fa-calendar-day icon-2x text-info"></i></span>
+                    <div class="d-flex flex-column text-danger">
+                        <span class="font-weight-bolder font-size-sm">Días Transcurridos </span>
+                        <span class="font-weight-bolder font-size-h5">20 / 14</span>
                     </div>
                 </div>
                 <!--end: Item-->
@@ -428,8 +482,8 @@
                         <!--begin::User-->
                         <!--begin::Actions-->
                         <div class="my-lg-0 my-1">
-                            <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>
-                            <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Recepcionar</a>
+                            <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Archivar</a>
+                            <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Derivar</a>
                         </div>
                         <!--end::Actions-->
                     </div>
@@ -482,12 +536,30 @@
                 <!--end: Item-->
                 <!--begin: Item-->
                 <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                    <span class="mr-4"><i class="fas fa-calendar-check icon-2x text-info"></i></span>
+                    <div class="d-flex flex-column text-primary">
+                        <span class="font-weight-bolder font-size-sm">Fecha Recepción</span>
+                        <span class="font-weight-bolder font-size-h5"> 18/10/2022 </span>
+                    </div>
+                </div>
+                <!--end: Item-->
+                <!--begin: Item-->
+                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
 												<span class="mr-4">
 													<i class="fas fa-sun icon-2x text-muted font-weight-bold"></i>
 												</span>
                     <div class="d-flex flex-column text-dark-75">
-                        <span class="font-weight-bolder font-size-sm">Días desde el Envio </span>
-                        <span class="font-weight-bolder font-size-h5">20</span>
+                        <span class="font-weight-bolder font-size-sm">Días hasta Recepción </span>
+                        <span class="font-weight-bolder font-size-h5">6</span>
+                    </div>
+                </div>
+                <!--end: Item-->
+                <!--begin: Item-->
+                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                    <span class="mr-4"><i class="fas fa-calendar-day icon-2x text-info"></i></span>
+                    <div class="d-flex flex-column text-danger">
+                        <span class="font-weight-bolder font-size-sm">Días Transcurridos </span>
+                        <span class="font-weight-bolder font-size-h5">20 / 14</span>
                     </div>
                 </div>
                 <!--end: Item-->

@@ -1,33 +1,32 @@
 {literal}
 <script>
-
     var table_list;
     var snippet_list = function() {
         "use strict";
-        var urlsys = '{/literal}{$path_url}{literal}';
+        var urlsys = '{/literal}{$path_url}/{$subcontrol}_/{$id}{literal}';
         var initTable = function() {
-            let table_list_var = $('#index_list');
+            let table_list_var = $('#tabla_{/literal}{$subcontrol}{literal}');
             let export_title = "{/literal}{#dataTableExportTitle#}{literal}";
             let noExport = tableSetting.noExport;
-            // begin first table
             table_list = table_list_var.DataTable({
                 initComplete: function(settings, json) {
-                    $('#index_list').removeClass('d-none');
+                    table_list_var.removeClass('d-none');
                 },
                 keys: {
                     columns: noExport,
                     clipboard: false,
                 },
-                dom: tableSetting.dom,
+                //dom: tableSetting.dom,
+                dom:
+                    `<'row'<'col-sm-12 col-md-12 dataTables_pager'lp>>
+                <'row'<'col-sm-12'tr>>
+                <'row'<'col-sm-12 col-md-5'i>>`,
                 buttons: [
-                    /*
                     {extend:'colvis',text:lngUyuni.dataTableWatch
                         ,columnText: function ( dt, idx, title ) {
                             return (idx+1)+': '+title;
                         }
                     },
-
-                     */
                     {extend:'excelHtml5'
                         ,exportOptions: {columns: noExport}
                         , title: export_title
@@ -50,12 +49,12 @@
                     }
 
                 ],
-                responsive: true,
                 colReorder: true,
+                responsive: true,
                 language: {"url": "/language/js/datatable."+lng+".json"},
                 lengthMenu: [[10, 25, 50,-1], [10, 25, 50, lngUyuni.dataTableAll]],
-                pageLength: 10,
-                //order: [[ 1, "asc" ]], // Por que campo ordenara al momento de desplegar
+                pageLength: 25,
+                order: [[ 0, "asc" ]], // Por que campo ordenara al momento de desplegar
                 InfoFiltered: false,
                 searchDelay: 500,
                 processing: true,
@@ -67,15 +66,9 @@
                 },
                 columns: [
                     {/literal}{foreach from=$gridItem item=row key=idx}
-                                           {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.responsive}, responsivePriority: -1{/if}{literal}}{/literal}
+                    {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.responsive}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}{literal}
                 ],
-                /*
-                rowGroup: {
-                    dataSrc: ['parentname','groupname']
-                },
-
-                 */
                 columnDefs: [
                     {
                         targets: -1,
@@ -94,39 +87,100 @@
                             return boton;
                         },
                     },
+
                     {
-                        targets: [0,1],
-                        className:"text-left",
+                        targets: [0],
                         render: function(data,type,full,meta){
-                            return '<span style="color: #0357ae;">' + data + ' </span>';
+                            return '<span class="text-primary">' + data+ '</span>';
                         },
                     },
+
+                    /*
                     {
-                        targets: [3],
-                        className:"text-right",
-                        render: function(data,type,full,meta){
-                            return '<span style="color: #27780f;">' + data + ' </span>';
-                        },
-                    },
-                    {
-                        targets: [-2,-3,-4,-5,4],
+                        targets: [0],
                         searchable: false,
-                        className: "none",
+                    },
+                    {
+                        targets: [2],
+                        render: function(data,type,full,meta){
+                            return '<span style="color: #7708bd;">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(data) + ' </span>';
+                        },
+                    },
+
+                    {
+                        targets: [1],
+                        render: function(data,type,full,meta){
+                            return '<span style="color: #27780f;">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(data) + ' </span>';
+                        },
+                    },
+
+                     */
+
+                    {
+                        targets: [2],
+                        className:"text-right",
+                    },
+
+                    {
+                        targets: [1],
+                        render: function(data,type,full,meta){
+                            var download = "";
+                            if(data) {
+                                download = ' <a href="javascript:snippet_list.download(\''+full.actions+'\');"  ' +
+                                    'class="btn btn-icon btn-circle btn-s btn-light-success">' +
+                                    '<i class="fas fa-cloud-download-alt"></i></a> <span class="font-size-s">' + data+'</span>';
+                            }
+                            return download;
+                        },
+                    },
+
+                    {
+                        targets: [2],
+                        render: function(data,type,full,meta){
+                            //return '<span style="color: #7708bd;">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(data) + ' </span>';
+                            var size_file = "";
+                            if(data) {
+                                var size = parseInt(data);
+                                size =  (size / (1024*1024)).toFixed(2);
+                                size_file = '<span style="color: #517e03;" class="font-size-xs">' + size+' Mb.</span>';
+                            }
+                            return size_file;
+                        },
+                    },
+
+                    {
+                        targets: [-2,-3],
+                        searchable: false,
+                    },
+                    {
+                        targets: [-2,-3],
+                        className: "none"
+                    },
+                    {
+                        targets: [-2,-3],
                         render: function(data,type,full,meta){
                             if (data == null){ data = "";}
                             return '<span class="text-primary font-size-xs">' + data+ '</span>';
                         },
                     },
 
+
                 ],
             });
+
         };
+        /**
+         * Download File
+         */
+        function download(id){
+            var url = urlsys+"/"+id+"/download";
+            window.open(url, '_blank');
+        }
 
         /**
          * New and Update
          */
-        //var btn_update = $('#btn_update');
-        var btn_update = $('#btn_new');
+        var btn_update = $('#btn_form_{/literal}{$subcontrol}{literal}');
         var handle_button_update = function(){
             btn_update.click(function(e){
                 e.preventDefault();
@@ -135,7 +189,8 @@
         };
 
         var item_update = function(id,type){
-            coreUyuni.itemUpdateIndex(id,type,urlsys);
+            var subcontrol = "{/literal}{$subcontrol}{literal}";
+            coreUyuni.itemUpdateTabs(id,type,urlsys,subcontrol);
         };
         /**
          * Delete
@@ -160,24 +215,26 @@
         return {
             //main function to initiate the module
             init: function() {
-                initTable();
                 handle_button_update();
+                initTable();
                 handle_components();
                 handle_filtro();
             },
             update: function(id,type){
-                item_update(id,type);
+                item_update(id,"update");
             },
             delete: function(id){
                 item_delete(id);
             },
+            download: function (id) {
+                download(id);
+            },
         };
-
     }();
 
     jQuery(document).ready(function() {
-        //$('#btn_new').removeClass('d-none');
         snippet_list.init();
     });
 </script>
+
 {/literal}

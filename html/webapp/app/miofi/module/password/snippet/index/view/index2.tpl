@@ -17,8 +17,6 @@
             </div>
         </div>
     </div>
-
-    
 {*
     <div class="flex-md-row-auto w-md-275px w-xl-325px ml-md-6 ml-lg-8">
 
