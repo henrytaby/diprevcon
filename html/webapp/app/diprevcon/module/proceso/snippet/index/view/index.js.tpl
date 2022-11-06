@@ -113,7 +113,7 @@
                     },
                     {
                         targets: [3],
-                        searchable: false,
+                        searchable: true,
                     },
                     {
                         targets: [1, 4],

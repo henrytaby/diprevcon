@@ -76,20 +76,6 @@
                     <span class="form-text text-muted">{#field_msg_descripcion#}</span>
                 </div>
 
-{*                <div class="col-lg-12 m-form__group-sub cuadro-padding-0">*}
-{*                    <label>{#field_descripcion#}:</label>*}
-{*                    <div class="input-group">*}
-{*                        <textarea class="form-control m-input mayus"*}
-{*                                  name="item[descripcion]" cols="4"*}
-{*                                  minlength="3"*}
-{*                                  data-fv-string-length___message="{#field_length_descripcion#}"*}
-{*                                  {$privFace.input}>{$item.descripcion|escape:'html'}*}
-{*                        </textarea>*}
-{*                        <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>*}
-{*                    </div>*}
-{*                    <span class="form-text text-black-50">{#field_msg_descripcion#}</span>*}
-{*                </div>*}
-
             </div>
         </div>
 
