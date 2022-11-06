@@ -47,7 +47,7 @@
                 <div class="col-lg-6">
                     <label>{#field_dias#}:</label>
                     <div class="input-group">
-                        <input type="number" class="form-control number_integer p-5"
+                        <input type="text" class="form-control number_integer p-5" id="number_integer"
                                name="item[dias]" value="{$item.dias|escape:"html"}"
 {*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
                         >
@@ -64,18 +64,16 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_active#}</span>
                 </div>
-                <div class="col-lg-12 m-form__group-sub cuadro-padding-0">
-                    <label>{#field_descripcion#}:</label>
+
+                <div class="col-lg-12">
+                    <label>{#field_descripcion#}<span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
-                        <textarea class="form-control m-input mayus"
-                                  name="item[descripcion]" cols="4"
-                                  minlength="3"
-                                  data-fv-string-length___message="{#field_length_descripcion#}"
-                                  {$privFace.input}>{$item.descripcion|escape:'html'}
-                        </textarea>
+                        <textarea rows="4" class="form-control m-input mayus"
+                                  name="item[descripcion]"
+                        >{$item.descripcion|escape:'html'}</textarea>
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
                     </div>
-                    <span class="form-text text-black-50">{#field_msg_descripcion#}</span>
+                    <span class="form-text text-muted">{#field_msg_descripcion#}</span>
                 </div>
 
             </div>
