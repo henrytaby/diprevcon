@@ -4,6 +4,70 @@
     var table_list;
     var snippet_list = function() {
         "use strict";
+        var show_data_template2 = function (datos) {
+            let html = "";
+            $("#mostrar_bandeja").html(html);
+            let img;
+            jQuery.each( datos, function( i, val ) {
+                html += '<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 p-2"><div class="card card-custom gutter-b card-stretch m-0 p-0"><div class="card-body pt-4 px-3">';
+                img = urlsys+"/"+val.actions+"/portada?r="+Math.floor(Math.random() * 101);;
+                html += '<div class="bgi-no-repeat bgi-size-cover rounded min-h-200px" style="background-image: url('+img+')"></div>';
+                html += '<a href="javascript:snippet_list.update(\''+val.actions+'\');" class="btn btn-block btn-sm btn-light-danger font-weight-bolder text-uppercase py-4 mt-2">Ver Proyecto</a>'
+                html += '<p class="mb-7">'+val.servicio+'</p>';
+                html += '<div class="mb-2">';
+                html += moreInfo("Sector",val.sector_id);
+                html += moreInfo("Fecha Inicio",val.fecha_inicio);
+                html += moreInfo("Fecha Fin",val.fecha_fin);
+                //html += moreInfo("Cliente",val.cliente);
+                html += '</div>';
+                html += '<p class="mb-7"><strong>Cliente: </strong>'+val.cliente+'</p>';
+                html += '</div></div></div>'
+            });
+            $("#mostrar_bandeja").html(html);
+        };
+        var moreInfo2 = function(label,valor){
+
+            let html = '<div class="d-flex justify-content-between align-items-center">' +
+                '<span class="text-dark-75 font-weight-bolder mr-2">'+label+'</span>' +
+                '<span class="text-muted font-weight-bold">'+valor+' </span>' +
+                '</div>';
+            return html;
+        };
+
+        var show_data_template = function (datos) {
+            let html = "";
+            $("#mostrar_bandeja").html(html);
+            let img;
+            jQuery.each( datos, function( i, val ) {
+                html += '<div class="card card-custom gutter-b"><div class="card-body">';
+                html += html_top(val);
+                html += '</div></div>'
+            });
+            $("#mostrar_bandeja").html(html);
+        };
+
+        var html_top = function (val){
+            let html = "";
+            html += '<div class="d-flex">';
+
+            html += '<div class="flex-shrink-0 mr-7">' +
+                    '<div class="symbol symbol-50 symbol-lg-120">'+
+                    '<img alt="Pic" src="/app/miofi/template/images/ico/oficial.png">'+'</div></div>';
+            html += "</div>";
+            return html;
+
+        };
+        var moreInfo = function(label,valor){
+
+            let html = '<div class="d-flex justify-content-between align-items-center">' +
+                '<span class="text-dark-75 font-weight-bolder mr-2">'+label+'</span>' +
+                '<span class="text-muted font-weight-bold">'+valor+' </span>' +
+                '</div>';
+            return html;
+        };
+
+
+
         var urlsys = '{/literal}{$path_url}{literal}';
         var initTable = function() {
             let table_list_var = $('#index_list');
@@ -12,44 +76,22 @@
             // begin first table
             table_list = table_list_var.DataTable({
                 initComplete: function(settings, json) {
-                    $('#index_list').removeClass('d-none');
+                    //$('#index_list').removeClass('d-none');
+                    $('#index_list').after('<div id="mostrar_bandeja" class="row">esto es una prueba</div>');
+                    show_data_template(settings.json.data);
                 },
+                drawCallback: function( settings ) {
+                    $("#mostrar_bandeja").html("ya funciona");
+                    show_data_template(settings.json.data);
+                    //$('html, body').animate({ scrollTop: 0 }, 'fast');
+                },
+
                 keys: {
                     columns: noExport,
                     clipboard: false,
                 },
                 dom: tableSetting.dom,
-                buttons: [
-                    /*
-                    {extend:'colvis',text:lngUyuni.dataTableWatch
-                        ,columnText: function ( dt, idx, title ) {
-                            return (idx+1)+': '+title;
-                        }
-                    },
-
-                     */
-                    {extend:'excelHtml5'
-                        ,exportOptions: {columns: noExport}
-                        , title: export_title
-                    },
-                    {extend:'pdfHtml5'
-                        ,exportOptions: {columns: noExport}
-                        , title: export_title
-                        , download: 'open'
-
-                        , pageSize: 'LETTER'
-                        ,customize: function(doc) {
-                            doc.styles.tableHeader.fontSize = 7;
-                            doc.defaultStyle.fontSize = 7;
-                            doc.pageMargins= [ 20, 20];
-                        }
-                    },
-                    {extend:'print'
-                        ,exportOptions: {columns: noExport}
-                        ,text: lngUyuni.dataTablePrint
-                    }
-
-                ],
+                buttons: [],
                 responsive: true,
                 colReorder: true,
                 language: {"url": "/language/js/datatable."+lng+".json"},
@@ -70,12 +112,6 @@
                                            {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.responsive}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}{literal}
                 ],
-                /*
-                rowGroup: {
-                    dataSrc: ['parentname','groupname']
-                },
-
-                 */
                 columnDefs: [
                     {
                         targets: -1,
@@ -94,22 +130,10 @@
                             return boton;
                         },
                     },
+
+
                     {
-                        targets: [0,1],
-                        className:"text-left",
-                        render: function(data,type,full,meta){
-                            return '<span style="color: #0357ae;">' + data + ' </span>';
-                        },
-                    },
-                    {
-                        targets: [3],
-                        className:"text-right",
-                        render: function(data,type,full,meta){
-                            return '<span style="color: #27780f;">' + data + ' </span>';
-                        },
-                    },
-                    {
-                        targets: [-2,-3,-4,-5, 6,7],
+                        targets: [-2,-3],
                         searchable: false,
                         className: "none",
                         render: function(data,type,full,meta){
