@@ -42,7 +42,7 @@
                                 <!--end::Symbol-->
                                 <!--begin::Text-->
                                 <div class="d-flex flex-column flex-grow-1">
-                                    <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Entrada</a>
+                                    <a href="/miofi/bandeja_entrada" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Entrada</a>
                                     <span class="text-muted font-weight-bold">Bandeja</span>
                                 </div>
                                 <!--end::Text-->
@@ -72,7 +72,7 @@
                                 <!--end::Symbol-->
                                 <!--begin::Text-->
                                 <div class="d-flex flex-column flex-grow-1">
-                                    <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Pendientes</a>
+                                    <a href="/miofi/bandeja_pendiente" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Pendientes</a>
                                     <span class="text-muted font-weight-bold">Bandeja</span>
                                 </div>
                                 <!--end::Text-->
@@ -102,7 +102,7 @@
                                 <!--end::Symbol-->
                                 <!--begin::Text-->
                                 <div class="d-flex flex-column flex-grow-1">
-                                    <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Archivados</a>
+                                    <a href="/miofi/bandeja_archivado" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Archivados</a>
                                     <span class="text-muted font-weight-bold">Bandeja</span>
                                 </div>
                                 <!--end::Text-->
