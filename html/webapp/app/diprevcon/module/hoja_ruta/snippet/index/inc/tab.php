@@ -25,12 +25,14 @@ $item_tab[]=array(
 ,   "new" => 0
 );
 //-------------------------------------------------------------
+/*
 $item_tab[]=array(
     "label"=> $smarty->config_vars["tab_destinatario"]
 ,   "id_name"=>"destinatario"
 ,   "icon" => "fas fa-clipboard m--font-success"
 ,   "new" => 0
 );
+*/
 //-------------------------------------------------------------
 /**
  * Se añade el arreglo de tabs configurada a $tabs
