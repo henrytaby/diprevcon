@@ -1,9 +1,9 @@
 <?PHP
-namespace App\Diprevcon\Module\Hoja_ruta\Snippet\Index;
+namespace App\Miofi\Module\Bandeja_archivado\Snippet\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {
-    var $objTable = "hojaruta";
+    var $objTable = "hojaruta_seguimiento";
     function __construct()
     {
         /**
@@ -47,7 +47,7 @@ class Index extends CoreResources {
         /**
          * Additional configuration
          */
-        $extraWhere = "";
+        $extraWhere = "i.estado_id=4 and i.derivado_a_user_id=".$this->userId;
         $groupBy = "";
         $having = "";
         /**
@@ -55,13 +55,11 @@ class Index extends CoreResources {
          */
         $result = $this->getGridDatatableSimple($db,$grid,$table, $primaryKey, $extraWhere);
         foreach ($result['data'] as $itemId => $valor) {
-            if(isset($result['data'][$itemId]['fecha_inicio'])) $result['data'][$itemId]['fecha_inicio'] = $this->changeDataFormat($result['data'][$itemId]['fecha_inicio'],"d/m/Y");
-            if(isset($result['data'][$itemId]['fecha_conclusion'])) $result['data'][$itemId]['fecha_conclusion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_conclusion'],"d/m/Y");
-
+            if(isset($result['data'][$itemId]['fecha_emision'])) $result['data'][$itemId]['fecha_emision'] = $this->changeDataFormat($result['data'][$itemId]['fecha_emision'],"d/m/Y");
+            if(isset($result['data'][$itemId]['fecha_recepcion'])) $result['data'][$itemId]['fecha_recepcion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_recepcion'],"d/m/Y");
 
             $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
             $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
-
         }
         return $result;
     }

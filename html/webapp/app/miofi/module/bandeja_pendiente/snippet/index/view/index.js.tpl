@@ -129,37 +129,7 @@
                     //$('html, body').animate({ scrollTop: 0 }, 'fast');
                 },
                 dom: tableSetting.dom,
-                buttons: [
-                    /*
-                    {extend:'colvis',text:lngUyuni.dataTableWatch
-                        ,columnText: function ( dt, idx, title ) {
-                            return (idx+1)+': '+title;
-                        }
-                    },
-
-                     */
-                    {extend:'excelHtml5'
-                        ,exportOptions: {columns: noExport}
-                        , title: export_title
-                    },
-                    {extend:'pdfHtml5'
-                        ,exportOptions: {columns: noExport}
-                        , title: export_title
-                        , download: 'open'
-
-                        , pageSize: 'LETTER'
-                        ,customize: function(doc) {
-                            doc.styles.tableHeader.fontSize = 7;
-                            doc.defaultStyle.fontSize = 7;
-                            doc.pageMargins= [ 20, 20];
-                        }
-                    },
-                    {extend:'print'
-                        ,exportOptions: {columns: noExport}
-                        ,text: lngUyuni.dataTablePrint
-                    }
-
-                ],
+                buttons: [],
                 responsive: true,
                 colReorder: true,
                 language: {"url": "/language/js/datatable."+lng+".json"},

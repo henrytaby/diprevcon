@@ -98,7 +98,7 @@
                 </div>`;
             return html;
         };
-        var flex_item = function(label,valor){
+        var flex_item = function(){
             let html =`<div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
                     <span class="mr-4">`;
             return html;
