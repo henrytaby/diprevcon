@@ -9,13 +9,6 @@ $grid_table_join = array();
 /**
  * Configuración de tablas relacionales, (JOIN)
  */
-//$grid_table[] = array(
-//    "table" => $appVars["table"] ["hojaruta"] // Nombre de la tabla con la que hara la relación
-//,    "alias"=> "hr" //Alias de la tabla para el join
-//,   "field_id"=>"id" //Id de la tabla que hara la relación
-//,   "relationship_id"=>"hojaruta_id" //Campo de relación en la tabla principal
-//);
-
 $grid_table[] = array(
     "table" => $appVars["table"] ["hojaruta"] // Nombre de la tabla con la que hara la relación
 ,    "alias"=> "hr" //Alias de la tabla para el join
@@ -54,12 +47,14 @@ $grid_table[] = array(
 /**
  * Configuración de los campos que mostraremos en la grilla
  */
-//$grid_item[]=array( "field" => "nur", "label"=> $smarty->config_vars["table_hojaruta"]
-//, "table_as"=> "hr", "as" => "hojaruta");
-
 $grid_item[]=array( "field" => "asunto", "label"=> $smarty->config_vars["table_asunto"]
 , "table_as"=> "hr", "as" => "asunto");
 
+$grid_item[]=array( "field" => "procedencia", "label"=> $smarty->config_vars["table_procedencia"]
+, "table_as"=> "hr", "as" => "procedencia");
+
+$grid_item[]=array( "field" => "destinatario", "label"=> $smarty->config_vars["table_destinatario"]
+, "table_as"=> "hr", "as" => "destinatario");
 
 $grid_item[]=array("field"=> "nur", "label"=> $smarty->config_vars["table_nur"]);
 
@@ -97,8 +92,7 @@ $grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_e
 $grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_proceso"]
 , "table_as"=> "pr", "as" => "proceso");
 
-$grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
-$grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);
+$grid_item[]=array("field"=> "urgente", "label"=> $smarty->config_vars["table_urgente"]);
 
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
 $grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);

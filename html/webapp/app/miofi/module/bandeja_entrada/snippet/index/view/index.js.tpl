@@ -4,44 +4,15 @@
     var table_list;
     var snippet_list = function() {
         "use strict";
-        var show_data_template2 = function (datos) {
-            let html = "";
-            $("#mostrar_bandeja").html(html);
-            let img;
-            jQuery.each( datos, function( i, val ) {
-                html += '<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 p-2"><div class="card card-custom gutter-b card-stretch m-0 p-0"><div class="card-body pt-4 px-3">';
-                img = urlsys+"/"+val.actions+"/portada?r="+Math.floor(Math.random() * 101);;
-                html += '<div class="bgi-no-repeat bgi-size-cover rounded min-h-200px" style="background-image: url('+img+')"></div>';
-                html += '<a href="javascript:snippet_list.update(\''+val.actions+'\');" class="btn btn-block btn-sm btn-light-danger font-weight-bolder text-uppercase py-4 mt-2">Ver Proyecto</a>'
-                html += '<p class="mb-7">'+val.servicio+'</p>';
-                html += '<div class="mb-2">';
-                html += moreInfo("Sector",val.sector_id);
-                html += moreInfo("Fecha Inicio",val.fecha_inicio);
-                html += moreInfo("Fecha Fin",val.fecha_fin);
-                //html += moreInfo("Cliente",val.cliente);
-                html += '</div>';
-                html += '<p class="mb-7"><strong>Cliente: </strong>'+val.cliente+'</p>';
-                html += '</div></div></div>'
-            });
-            $("#mostrar_bandeja").html(html);
-        };
-        var moreInfo2 = function(label,valor){
-
-            let html = '<div class="d-flex justify-content-between align-items-center">' +
-                '<span class="text-dark-75 font-weight-bolder mr-2">'+label+'</span>' +
-                '<span class="text-muted font-weight-bold">'+valor+' </span>' +
-                '</div>';
-            return html;
-        };
-
         var show_data_template = function (datos) {
             let html = "";
             $("#mostrar_bandeja").html(html);
             let img;
             jQuery.each( datos, function( i, val ) {
-                html += '<div class="card card-custom gutter-b"><div class="card-body">';
+                html += `<div class="card card-custom gutter-b"><div class="card-body">`;
                 html += html_top(val);
-                html += '</div></div>'
+                html += html_Bottom(val);
+                html += `</div></div>`
             });
             $("#mostrar_bandeja").html(html);
         };
@@ -49,24 +20,80 @@
         var html_top = function (val){
             let html = "";
             html += '<div class="d-flex">';
-
             html += '<div class="flex-shrink-0 mr-7">' +
-                    '<div class="symbol symbol-50 symbol-lg-120">'+
-                    '<img alt="Pic" src="/app/miofi/template/images/ico/oficial.png">'+'</div></div>';
-            html += "</div>";
+                    '<div class="symbol symbol-50 symbol-lg-120">';
+            if(val.urgente){
+                html +='<img alt="Pic" src="/app/miofi/template/images/ico/oficial_urgente.png">';
+            }else{
+                html +='<img alt="Pic" src="/app/miofi/template/images/ico/oficial.png">';
+            }
+            html +='</div></div>';
+            html += `<div class="flex-grow-1">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap mt-2">
+                        <div class="mr-3">
+                            <a href="#" class="d-flex align-items-center text-dark text-hover-primary font-size-h5 font-weight-bold mr-3">${val.nur}
+                                <i class="flaticon2-correct text-success icon-md ml-2"></i></a>
+                            <div class="d-flex flex-wrap my-2">
+                                <span href="#" class="text-primary text-hover-primary  mr-lg-8 mr-5 mb-lg-0 mb-2">
+                                    <span class="svg-icon svg-icon-md svg-icon-primary mr-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <mask fill="white">
+                                                    <use xlink:href="#path-1"></use>
+                                                </mask>
+                                                <g></g>
+                                                <path d="M7,10 L7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 L17,10 L18,10 C19.1045695,10 20,10.8954305 20,12 L20,18 C20,19.1045695 19.1045695,20 18,20 L6,20 C4.8954305,20 4,19.1045695 4,18 L4,12 C4,10.8954305 4.8954305,10 6,10 L7,10 Z M12,5 C10.3431458,5 9,6.34314575 9,8 L9,10 L15,10 L15,8 C15,6.34314575 13.6568542,5 12,5 Z" fill="#000000"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    Instrucción: ${val.instruccion}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="my-lg-0 my-1">
+                            <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>
+                            <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Recepcionar</a>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center flex-wrap justify-content-between">
+                        <div class="flex-grow-1  text-dark-50 py-2 py-lg-2 mr-5">
+                            ${val.asunto}
+                            <br>
+                            <strong>Procedencia:</strong> ${val.procedencia}
+                            <br>
+                            <strong>Remite:</strong> ${val.destinatario}
+                            <br>
+                            <strong>Observación:</strong><br> ${val.proveido}
+                        </div>
+                    </div>
+                </div>`;
+            html += `</div>`;
             return html;
-
         };
-        var moreInfo = function(label,valor){
 
-            let html = '<div class="d-flex justify-content-between align-items-center">' +
-                '<span class="text-dark-75 font-weight-bolder mr-2">'+label+'</span>' +
-                '<span class="text-muted font-weight-bold">'+valor+' </span>' +
-                '</div>';
+        var html_Bottom = function(val){
+            let html = "";
+            html +=`<div class="separator separator-solid my-7"></div>
+                        <div class="d-flex align-items-center flex-wrap">`;
+            html += bottom_item("Fecha Enviado", val.fecha_emision);
+            html += bottom_item("Días desde el Envio","20");
+            html += bottom_item("# Destinatarios","20");
+            html +='</div></div>';
             return html;
         };
 
-
+        var bottom_item = function(label,valor){
+            let html =`<div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                    <span class="mr-4">
+                        <i class="fas fa-users icon-2x text-muted "></i>
+                    </span>
+                    <div class="d-flex flex-column text-dark-75">
+                        <span class="font-weight-bolder font-size-sm">${label}</span>
+                        <span class="font-weight-bolder font-size-h5">${valor}</span>
+                    </div>
+                </div>`;
+            return html;
+        };
 
         var urlsys = '{/literal}{$path_url}{literal}';
         var initTable = function() {
@@ -77,15 +104,14 @@
             table_list = table_list_var.DataTable({
                 initComplete: function(settings, json) {
                     //$('#index_list').removeClass('d-none');
-                    $('#index_list').after('<div id="mostrar_bandeja" class="row">esto es una prueba</div>');
+                    $('#index_list').after('<div id="mostrar_bandeja" class="container"></div>');
                     show_data_template(settings.json.data);
                 },
                 drawCallback: function( settings ) {
-                    $("#mostrar_bandeja").html("ya funciona");
+                    $("#mostrar_bandeja").html("");
                     show_data_template(settings.json.data);
                     //$('html, body').animate({ scrollTop: 0 }, 'fast');
                 },
-
                 keys: {
                     columns: noExport,
                     clipboard: false,
@@ -130,8 +156,18 @@
                             return boton;
                         },
                     },
-
-
+                    {
+                        targets: [0,1,2,3,13],
+                        searchable: true,
+                    },
+                    {
+                        targets: [17,10],
+                        searchable: false,
+                    },
+                    {
+                        targets: [4,5,6,7,8,9,11,12,14,15,16],
+                        searchable: false,
+                    },
                     {
                         targets: [-2,-3],
                         searchable: false,
@@ -141,7 +177,6 @@
                             return '<span class="text-primary font-size-xs">' + data+ '</span>';
                         },
                     },
-
                 ],
             });
         };
