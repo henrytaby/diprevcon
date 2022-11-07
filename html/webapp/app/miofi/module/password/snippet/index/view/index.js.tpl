@@ -1,183 +1,121 @@
 {literal}
 <script>
-
-    var table_list;
-    var snippet_list = function() {
+    var id;
+    var snippet_general_form = function(){
         "use strict";
-        var urlsys = '{/literal}{$path_url}{literal}';
-        var initTable = function() {
-            let table_list_var = $('#index_list');
-            let export_title = "{/literal}{#dataTableExportTitle#}{literal}";
-            let noExport = tableSetting.noExport;
-            // begin first table
-            table_list = table_list_var.DataTable({
-                initComplete: function(settings, json) {
-                    $('#index_list').removeClass('d-none');
-                },
-                keys: {
-                    columns: noExport,
-                    clipboard: false,
-                },
-                dom: tableSetting.dom,
-                buttons: [
-                    /*
-                    {extend:'colvis',text:lngUyuni.dataTableWatch
-                        ,columnText: function ( dt, idx, title ) {
-                            return (idx+1)+': '+title;
-                        }
-                    },
+        /**
+         * Datos del formulario y el boton
+         */
+        var form = $('#general_form');
+        var btn_submit = $('#general_submit');
 
-                     */
-                    {extend:'excelHtml5'
-                        ,exportOptions: {columns: noExport}
-                        , title: export_title
-                    },
-                    {extend:'pdfHtml5'
-                        ,exportOptions: {columns: noExport}
-                        , title: export_title
-                        , download: 'open'
+        var formv;
+        /**
+         * Antes de enviar el formulario se ejecuta la siguiente funcion
+         */
+        var showRequest= function(formData, jqForm, op)  {
+            btn_submit.addClass('spinner spinner-white spinner-right').attr('disabled', true);
+            return true;
+        };
 
-                        , pageSize: 'LETTER'
-                        ,customize: function(doc) {
-                            doc.styles.tableHeader.fontSize = 7;
-                            doc.defaultStyle.fontSize = 7;
-                            doc.pageMargins= [ 20, 20];
-                        }
-                    },
-                    {extend:'print'
-                        ,exportOptions: {columns: noExport}
-                        ,text: lngUyuni.dataTablePrint
-                    }
+        var showResponse = function (res, statusText) {
+            btn_submit.removeClass('spinner spinner-white spinner-right').attr('disabled', false);
+            let url = "{/literal}{$path_url}{literal}";
+            coreUyuni.generalShowResponse(res,url);
 
-                ],
-                responsive: true,
-                colReorder: true,
-                language: {"url": "/language/js/datatable."+lng+".json"},
-                lengthMenu: [[10, 25, 50,-1], [10, 25, 50, lngUyuni.dataTableAll]],
-                pageLength: 10,
-                //order: [[ 1, "asc" ]], // Por que campo ordenara al momento de desplegar
-                InfoFiltered: false,
-                searchDelay: 500,
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: urlsys+'/list',
-                    type: 'POST',
-                    data: {},
-                },
-                columns: [
-                    {/literal}{foreach from=$gridItem item=row key=idx}
-                                           {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.responsive}, responsivePriority: -1{/if}{literal}}{/literal}
-                    {/foreach}{literal}
-                ],
-                /*
-                rowGroup: {
-                    dataSrc: ['parentname','groupname']
-                },
-
-                 */
-                columnDefs: [
-                    {
-                        targets: -1,
-                        width: "90px",
-                        className: 'noExport',
-                        orderable: false,
-                        searchable: false,
-                        render: function(data, type, full, meta) {
-                            var boton = '<div class="btn-group btn-group-sm " role="group" aria-label="Accion">';
-                            var lbEdit = {/literal}{if $privFace.edit == 1}lngUyuni.btnEdit{else}lngUyuni.btnViewData{/if}{literal};
-                            boton += '<a href="javascript:snippet_list.update(\''+data+'\');" class="btn btn-success btn-sm" title="'+lbEdit+'">'+lbEdit+'</a>';
-                            {/literal}{if $privFace.edit ==1 and $privFace.delete == 1}{literal}
-                            boton += '<a href="javascript:snippet_list.delete(\''+data+'\');" class="btn btn-icon btn-light-danger btn-sm" title="'+lngUyuni.btnDelete+'"><i class="flaticon-delete-1"></i></a>';
-                            {/literal}{/if}{literal}
-                            boton += '<div>';
-                            return boton;
-                        },
-                    },
-                    {
-                        targets: [0,1],
-                        className:"text-left",
-                        render: function(data,type,full,meta){
-                            return '<span style="color: #0357ae;">' + data + ' </span>';
-                        },
-                    },
-                    {
-                        targets: [3],
-                        className:"text-right",
-                        render: function(data,type,full,meta){
-                            return '<span style="color: #27780f;">' + data + ' </span>';
-                        },
-                    },
-                    {
-                        targets: [-2,-3,-4,-5,4],
-                        searchable: false,
-                        className: "none",
-                        render: function(data,type,full,meta){
-                            if (data == null){ data = "";}
-                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
-                        },
-                    },
-
-                ],
-            });
         };
 
         /**
-         * New and Update
+         * Opciones para generar el objeto del formulario
          */
-        //var btn_update = $('#btn_update');
-        var btn_update = $('#btn_new');
-        var handle_button_update = function(){
-            btn_update.click(function(e){
+        var options = {
+            beforeSubmit:showRequest
+            , success:  showResponse
+            , data: {type:'{/literal}{$type}{literal}'}
+        };
+
+
+        /**
+         * Se da las propiedades de ajaxform al formulario
+         */
+        var handle_form_submit=function(){
+            form.ajaxForm(options);
+            formv = FormValidation.formValidation(
+                document.getElementById('general_form'),
+                {
+                    fields: {
+                        "item[type]": {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Seleccione una opción',
+                                },
+                            },
+                        },
+                    },
+
+                }
+            );
+        };
+        /**
+         * Se da las funcionalidades al boton enviar
+         */
+        var handle_btn_submit = function() {
+            btn_submit.click(function(e) {
                 e.preventDefault();
-                item_update("","new");
+                /**
+                 * Copiamos los datos de summerNote a una variable
+                 */
+                $('#descripcion_input').val($('#descripcion').summernote('code'));
+
+                formv.validate().then(function(status) {
+                    if(status === 'Valid'){
+                        form.submit();
+                    }else{
+                        Swal.fire({icon: 'error',title: lngUyuni.formFieldControlTitle, text: lngUyuni.formFieldControlMsg});
+                    }
+                });
+
             });
         };
-
-        var item_update = function(id,type){
-            coreUyuni.itemUpdateIndex(id,type,urlsys);
-        };
         /**
-         * Delete
-         */
-        var  item_delete = function(id){
-            var url = urlsys+"/"+id+"/delete";
-            coreUyuni.itemDelete(id,url,table_list);
-        };
-        /**
-         * Inicializar componentes
+         * Iniciamos los componentes necesarios como , summernote, select2 entre otros
          */
         var handle_components = function(){
             coreUyuni.setComponents();
         };
-        /**
-         * Filtros
-         */
-        var handle_filtro = function () {
-            coreUyuni.tableFilter();
+
+        var handle_tipo_select = function(){
+            $('#type').on('change',function(){
+                handle_tipo();
+            });
+        };
+
+        var distribuidor_div= $('#distribuidor_div');
+        var handle_tipo = function(){
+            id = $('#type').val();
+            id = id==null? '': id.toString();
+            distribuidor_div.addClass('d-none');
+            switch (id){
+                case '3':
+                    distribuidor_div.removeClass('d-none');
+                    break;
+            }
         };
 
         return {
-            //main function to initiate the module
             init: function() {
-                initTable();
-                handle_button_update();
+                handle_form_submit();
+                handle_btn_submit();
                 handle_components();
-                handle_filtro();
-            },
-            update: function(id,type){
-                item_update(id,type);
-            },
-            delete: function(id){
-                item_delete(id);
-            },
+                handle_tipo_select();
+            }
         };
-
     }();
 
+    //== Class Initialization
     jQuery(document).ready(function() {
-        //$('#btn_new').removeClass('d-none');
-        snippet_list.init();
+        snippet_general_form.init();
     });
+
 </script>
 {/literal}

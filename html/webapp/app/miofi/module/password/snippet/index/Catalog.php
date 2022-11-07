@@ -1,7 +1,6 @@
 <?PHP
-namespace App\Diprevcon\Module\Hoja_ruta\Snippet\Index;
+namespace App\Miofi\Module\Password\Snippet\Index;
 use Core\CoreResources;
-
 class Catalog extends CoreResources{
     function __construct(){
         /**
@@ -16,12 +15,5 @@ class Catalog extends CoreResources{
         $dato["1"] = $smarty->config_vars["glOptActive"];
         $dato["0"] = $smarty->config_vars["glOptInactive"];
         return $dato;
-    }
-
-    public function confCatalog(){
-        $this->addCatalogList($this->table["tipo_correspondencia"]
-            ,"tipo_correspondencia","","nombre",""
-            ,"nombre","","","");
-
     }
 }

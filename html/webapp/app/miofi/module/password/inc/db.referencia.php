@@ -11,26 +11,13 @@ $appVars["table"]  = array();
 
 $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
-$dbSchemaName = "public";
-$db_table[] = Core::getTableConfig("hojaruta");
-$db_table[] = Core::getTableConfig("hojaruta_archivo");
+$dbSchemaName = "core";
+$db_table[] = Core::getTableConfig("user");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
 
 
-$db_table = array();
-$dbSchemaName = "catalogo";
-$db_table[] = Core::getTableConfig("tipo_correspondencia");
-$appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
-unset($db_table);
-
-$db_table = array();
-$dbSchemaName = "geo";
-$db_table[] = Core::getTableConfig("departamento");
-$db_table[] = Core::getTableConfig("municipio");
-$appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
-unset($db_table);
 
 /**
  * Otras base de datos

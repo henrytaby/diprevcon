@@ -1,38 +1,26 @@
 <?PHP
-use App\Diprevcon\Module\Hoja_ruta\Snippet\Index\Index;
-use App\Diprevcon\Module\Hoja_ruta\Snippet\Index\Catalog;
+use App\Miofi\Module\Password\Snippet\Index\Index;
+use App\Miofi\Module\Password\Snippet\Index\Catalog;
 use Core\Core;
 
+//$objItem = new Index();
+//$objCatalog = new Catalog();
+/**
+ * Todo el sub Control se recuperará mediante llamadas por ajax
+ */
+//$templateModule = $frontend["baseAjax"];
 
-$objItem = new Index();
-$objCatalog = new Catalog();
-
-switch($action) {
+switch($action){
     default:
-        /**
-         * Smarty Options
-         */
-        //$smarty->caching = true;
-        //$smarty->debugging = true;
         /**
          * Language settings, section
          */
         \Core\Core::setLenguage("index");
         /**
-         * catalog configuration
+         * Get user login info
          */
-
-        $objCatalog->confCatalog();
-        $cataobj= $objCatalog->getCatalogList();
-        $cataobj["activo"] = $catalogo=$objCatalog->getActiveOption();
-        //print_struc($cataobj);exit;
-        $smarty->assign("cataobj", $cataobj);
-        /**
-         * Grid configuration
-         */
-        $gridItem = $objItem->getGridItem("item");
-        $smarty->assign("gridItem", $gridItem);
-
+//        $smarty->assign("userInfo", $_SESSION["userv"]);
+//        print_r($_SESSION["userv"]);
 
         /**
          * Template for index and js
@@ -43,51 +31,10 @@ switch($action) {
     /**
      * Creación de JSON
      */
-    case 'list':
-
-        //$datatable_debug = true;
-        $res = $objItem->getItemDatatableRows();
-        Core::printJson($res);
-        break;
-
-    case 'itemUpdate':
-        /**
-         * Smarty Options
-         */
-        //$smarty->caching = true;
-        //$smarty->debugging = true;
-        /**
-         * Language settings, section
-         */
-        \Core\Core::setLenguage("item");
-        /**
-         * Smarty vars
-         * Type = update, new
-         * id = item id
-         */
-        $smarty->assign("type", $type);
-        $smarty->assign("id", $id);
-        /**
-         * Tabs
-         */
-        $menu_tab = $objItem->getTabItem($type,"index");
-        $smarty->assign("menu_tab", $menu_tab);
-        $smarty->assign("menu_tab_active", "general");
-        /**
-         * GetItem
-         */
-        if ($type == "update") {
-            $item = $objItem->getItem($id);
-            $smarty->assign("item", $item);
-        }
-        /**
-         * Template for index and js
-         */
-        $smarty->assign("subpage", $webm["item_index"]);
-        $smarty->assign("subpage_js", $webm["item_index_js"]);
-        break;
-    case 'delete':
-        $res = $objItem->deleteData($id);
-        Core::printJson($res);
+    case 'save':
+        $respuesta="hola";
+        //$respuesta = $objItem->updateData($_REQUEST["item"],$id,$type);
+        print_r($respuesta);
+        Core::printJson($respuesta);
         break;
 }
