@@ -176,7 +176,7 @@
     }();
 
     jQuery(document).ready(function() {
-        $('#btn_new').removeClass('d-none');
+        //$('#btn_new').removeClass('d-none');
         snippet_list.init();
     });
 </script>
