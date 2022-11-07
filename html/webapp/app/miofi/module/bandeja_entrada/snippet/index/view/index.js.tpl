@@ -72,26 +72,35 @@
         };
 
         var html_Bottom = function(val){
-            let html = "";
-            html +=`<div class="separator separator-solid my-7"></div>
+                let html = "";
+                html +=`<div class="separator separator-solid my-7"></div>
                         <div class="d-flex align-items-center flex-wrap">`;
-            html += bottom_item("Fecha Enviado", val.fecha_emision);
-            html += bottom_item("Días desde el Envio","20");
-            html += bottom_item("# Destinatarios","20");
-            html +='</div></div>';
-            return html;
+                html += flex_item();
+                html += `<i class="fas fa-calendar-check icon-2x text-muted font-weight-bold"></i></span>
+                    <div class="d-flex flex-column text-dark-75">`;
+                html += bottom_item("Fecha Enviado", val.fecha_emision);
+                html += flex_item();
+                html += `<i class="fas fa-sun icon-2x text-muted font-weight-bold"></i></span>
+                    <div class="d-flex flex-column text-dark-75">`;
+                html += bottom_item("Días desde el Envio","20");
+                html += flex_item();
+                html += `<i class="fas fa-users icon-2x text-muted "></i></span>
+                    <div class="d-flex flex-column text-dark-75">`;
+                html += bottom_item("# Destinatarios","20");
+                html +='</div></div>';
+                return html;
         };
 
         var bottom_item = function(label,valor){
-            let html =`<div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
-                    <span class="mr-4">
-                        <i class="fas fa-users icon-2x text-muted "></i>
-                    </span>
-                    <div class="d-flex flex-column text-dark-75">
-                        <span class="font-weight-bolder font-size-sm">${label}</span>
+            let html =`<span class="font-weight-bolder font-size-sm">${label}</span>
                         <span class="font-weight-bolder font-size-h5">${valor}</span>
                     </div>
                 </div>`;
+            return html;
+        };
+        var flex_item = function(label,valor){
+            let html =`<div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                    <span class="mr-4">`;
             return html;
         };
 
@@ -157,15 +166,11 @@
                         },
                     },
                     {
-                        targets: [0,1,2,3,13],
+                        targets: [0,1,2,3,7,8],
                         searchable: true,
                     },
                     {
-                        targets: [17,10],
-                        searchable: false,
-                    },
-                    {
-                        targets: [4,5,6,7,8,9,11,12,14,15,16],
+                        targets: [4,5,6,9],
                         searchable: false,
                     },
                     {

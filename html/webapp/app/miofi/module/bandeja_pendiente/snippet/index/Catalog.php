@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\Hoja_ruta\Snippet\Index;
+namespace App\Miofi\Module\Bandeja_pendiente\Snippet\Index;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{
@@ -19,8 +19,12 @@ class Catalog extends CoreResources{
     }
 
     public function confCatalog(){
-        $this->addCatalogList($this->table["tipo_correspondencia"]
-            ,"tipo_correspondencia","","nombre",""
+        $this->addCatalogList($this->table["estado"]
+            ,"estado","","nombre",""
+            ,"nombre","","","");
+
+        $this->addCatalogList($this->table["instruccion"]
+            ,"instruccion","","nombre",""
             ,"nombre","","","");
 
     }

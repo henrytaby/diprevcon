@@ -32,7 +32,6 @@ class Index extends CoreResources {
             $info = $this->dbm->Execute($sql);
             $info = $info->fields;
         }
-        d($sql);exit;
         return $info;
     }
 

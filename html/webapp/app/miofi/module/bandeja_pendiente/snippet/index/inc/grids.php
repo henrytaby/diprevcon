@@ -10,29 +10,53 @@ $grid_table_join = array();
  * Configuración de tablas relacionales, (JOIN)
  */
 $grid_table[] = array(
-    "table" => $appVars["table"] ["tipo_correspondencia"] // Nombre de la tabla con la que hara la relación
-,    "alias"=> "c" //Alias de la tabla para el join
+    "table" => $appVars["table"] ["hojaruta"] // Nombre de la tabla con la que hara la relación
+,    "alias"=> "hr" //Alias de la tabla para el join
 ,   "field_id"=>"id" //Id de la tabla que hara la relación
-,   "relationship_id"=>"tipo_correspondencia_id" //Campo de relación en la tabla principal
+,   "relationship_id"=>"hojaruta_id" //Campo de relación en la tabla principal
 );
 
+$grid_table[] = array(
+    "table" => $appVars["table"] ["estado"] // Nombre de la tabla con la que hara la relación
+,    "alias"=> "e" //Alias de la tabla para el join
+,   "field_id"=>"id" //Id de la tabla que hara la relación
+,   "relationship_id"=>"estado_id" //Campo de relación en la tabla principal
+);
+
+$grid_table[] = array(
+    "table" => $appVars["table"] ["instruccion"] // Nombre de la tabla con la que hara la relación
+,    "alias"=> "ins" //Alias de la tabla para el join
+,   "field_id"=>"id" //Id de la tabla que hara la relación
+,   "relationship_id"=>"instruccion_id" //Campo de relación en la tabla principal
+);
 /**
  * Configuración de los campos que mostraremos en la grilla
  */
 
-$grid_item[]=array("field"=> "procedencia", "label"=> $smarty->config_vars["table_procedencia"]);
-$grid_item[]=array("field"=> "destinatario", "label"=> $smarty->config_vars["table_destinatario"]);
+$grid_item[]=array( "field" => "asunto", "label"=> $smarty->config_vars["table_asunto"]
+, "table_as"=> "hr", "as" => "asunto");
 
-$grid_item[]=array("field"=> "asunto", "label"=>  $smarty->config_vars["table_asunto"]);
-$grid_item[]=array("field"=> "fojas", "label"=> $smarty->config_vars["table_fojas"]);
+$grid_item[]=array( "field" => "procedencia", "label"=> $smarty->config_vars["table_procedencia"]
+, "table_as"=> "hr", "as" => "procedencia");
 
-$grid_item[]=array("field" => "fecha","label"=> $smarty->config_vars["table_fecha"]);
+$grid_item[]=array( "field" => "destinatario", "label"=> $smarty->config_vars["table_destinatario"]
+, "table_as"=> "hr", "as" => "destinatario");
 
-$grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_tipo_correspondenica"]
-, "table_as"=> "c", "as" => "tipo_correspondencia");
+$grid_item[]=array("field"=> "nur", "label"=> $smarty->config_vars["table_nur"]);
 
-$grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
-$grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);
+
+$grid_item[]=array("field" => "fecha_emision","label"=> $smarty->config_vars["table_fecha_emision"]);
+$grid_item[]=array("field" => "fecha_recepcion","label"=> $smarty->config_vars["table_fecha_recepcion"]);
+
+$grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_estado"]
+, "table_as"=> "e", "as" => "estado");
+
+$grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_instruccion"]
+, "table_as"=> "ins", "as" => "instruccion");
+
+$grid_item[]=array("field"=> "proveido", "label"=> $smarty->config_vars["table_proveido"]);
+
+$grid_item[]=array("field"=> "urgente", "label"=> $smarty->config_vars["table_urgente"]);
 
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
 $grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);

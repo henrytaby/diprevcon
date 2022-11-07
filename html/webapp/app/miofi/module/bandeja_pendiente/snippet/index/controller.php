@@ -1,6 +1,6 @@
 <?PHP
-use App\Diprevcon\Module\Hoja_ruta\Snippet\Index\Index;
-use App\Diprevcon\Module\Hoja_ruta\Snippet\Index\Catalog;
+use App\Miofi\Module\Bandeja_pendiente\Snippet\Index\Index;
+use App\Miofi\Module\Bandeja_pendiente\Snippet\Index\Catalog;
 use Core\Core;
 
 
