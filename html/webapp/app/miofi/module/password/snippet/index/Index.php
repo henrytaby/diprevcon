@@ -1,9 +1,9 @@
 <?PHP
-namespace App\Diprevcon\Module\Hoja_ruta\Snippet\Index;
+namespace App\Miofi\Module\Password\Snippet\Index;
 use Core\CoreResources;
-
-class Index extends CoreResources {
-    var $objTable = "hojaruta";
+class Index extends CoreResources
+{
+    var $objTable = "user";
     function __construct()
     {
         /**
@@ -36,48 +36,79 @@ class Index extends CoreResources {
         }
         return $info;
     }
+    function updateData($rec,$que_form){
 
+        global $db;
+        $accion = "update";
+        $itemId = $this->userv["itemId"];
+        $form="module";
 
-    public function getItemDatatableRows(){
-        global $dbSetting;
-        $table = $this->table[$this->objTable];
-        $primaryKey = 'id';
-        $grid = "item";
-        $db=$dbSetting[0];
         /**
-         * Additional configuration
+         * preprocesamos los datos
          */
-        $extraWhere = "";
-        $groupBy = "";
-        $having = "";
+        $respuesta_procesa = $this->processData($form,$rec,$accion);
+
+        /*
+         * Procesamiento de verificacion
+        */
+        $verifica = true;
+
+        if($rec["password2"] == $rec["password3"]){
+            $item = $this->getItem($itemId);
+            if($item["password"] == $rec["password1"]){
+                $respuesta_procesa["password"] = $rec["password2"];
+            }  else{
+                $verifica = false;
+                $res["msg"] = 'Error en la contraseña actual.';
+            }
+        }else{
+            $verifica = false;
+            $res["msg"] = 'Error: las contraseñas no son las mismas.';
+        }
         /**
-         * Result of the query sent
+         * Guardo los datos ya procesados
          */
-        $result = $this->getGridDatatableSimple($db,$grid,$table, $primaryKey, $extraWhere);
-        foreach ($result['data'] as $itemId => $valor) {
-            if(isset($result['data'][$itemId]['fecha_inicio'])) $result['data'][$itemId]['fecha_inicio'] = $this->changeDataFormat($result['data'][$itemId]['fecha_inicio'],"d/m/Y");
-            if(isset($result['data'][$itemId]['fecha_conclusion'])) $result['data'][$itemId]['fecha_conclusion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_conclusion'],"d/m/Y");
-
-
-            $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
-            $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
+        $field_id = "id";
+        $campo_id="itemId";
+        /**
+         * hacemos el cambio de la base de datos a utilizar en $this->dbm para usar la conexion $db
+         */
+        if($verifica){
+            //$this->dbm = $db;
+            //$res = $this->item_update_sbm($itemId,$respuesta_procesa,$this->tabla_core["usuario"],$accion,$campo_id);
+            $res = $this->updateItem($itemId, $respuesta_procesa, $this->table[$this->objTable], $accion, $field_id);
+            $res["accion"] = $accion;
+        }else{
+            $res["res"] = 2;
 
         }
-        return $result;
-    }
-
-    /**
-     * Index::deleteData($id)
-     *
-     * Delete a record from the database
-     *
-     * @param $id
-     * @return mixed
-     */
-    function deleteData($id){
-        $field_id="id";
-        $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable]);
         return $res;
     }
+
+    function processData($form,$rec,$action="new"){
+        $dataResult = array();
+        switch($form){
+            case 'module':
+                $dataResult = $this->processFields($rec,$this->campos[$form],$action);
+
+                /**
+                 * Additional processes when saving the data
+                 */
+                if ($action=="new" or $rec["password"]!= ""){
+                    //$dataResult["active"] = 1;
+                    $dataResult["password"] = md5(trim($dataResult["password"]));
+                }else{
+                    unset($dataResult["password"]);
+                    if($rec["type"] != "3"){
+                        $dataResult["distribuidor_id"] = NULL;
+                    }
+                }
+
+                break;
+        }
+        return $dataResult;
+    }
+
+
 
 }
