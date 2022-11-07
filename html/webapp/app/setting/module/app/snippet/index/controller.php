@@ -81,4 +81,11 @@ switch($action) {
         $res = $objItem->deleteData($id);
         Core::printJson($res);
         break;
+
+
+    case 'getDictionary':
+
+        $objItem->getDictonary($_REQUEST["schema"]);
+        break;
+
 }
