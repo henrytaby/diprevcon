@@ -3,8 +3,8 @@ use App\Miofi\Module\Password\Snippet\Index\Index;
 use App\Miofi\Module\Password\Snippet\Index\Catalog;
 use Core\Core;
 
-//$objItem = new Index();
-//$objCatalog = new Catalog();
+$objItem = new Index();
+$objCatalog = new Catalog();
 /**
  * Todo el sub Control se recuperará mediante llamadas por ajax
  */
@@ -32,9 +32,8 @@ switch($action){
      * Creación de JSON
      */
     case 'save':
-        $respuesta="hola";
-        //$respuesta = $objItem->updateData($_REQUEST["item"],$id,$type);
-        print_r($respuesta);
+        $respuesta = $objItem->updateData($_REQUEST["item"],"module");
+        //print_r($respuesta);
         Core::printJson($respuesta);
         break;
 }
