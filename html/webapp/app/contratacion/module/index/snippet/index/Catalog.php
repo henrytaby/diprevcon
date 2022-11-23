@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\Index\Snippet\Index;
+namespace App\Contratacion\Module\Index\Snippet\Index;
 use Core\CoreResources;
 class Catalog extends CoreResources{
     function __construct(){
