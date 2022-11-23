@@ -43,7 +43,6 @@ out/
 ### PHP ###
 html/composer.lock
 html/vendor/
-html/datafile/
 data/mysql/
 data/geoserver/
 data/postgresql/
