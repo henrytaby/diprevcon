@@ -2,7 +2,8 @@
 namespace App\Diprevcon\Module\Entidad\Snippet\Index;
 use Core\CoreResources;
 
-class Index extends CoreResources {
+class         //print_struc($cataobj);exit;
+Index extends CoreResources {
     var $objTable = "entidad";
     function __construct()
     {
