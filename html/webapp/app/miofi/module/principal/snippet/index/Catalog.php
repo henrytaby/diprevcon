@@ -19,9 +19,9 @@ class Catalog extends CoreResources{
     }
 
     public function confCatalog(){
-        $this->addCatalogList($this->table["tipo_correspondencia"]
-            ,"tipo_correspondencia","","nombre",""
-            ,"nombre","","","");
+        $this->addCatalogList($this->table["mensaje"]
+            ,"mensaje","","titulo",""
+            ,"titulo","","","");
 
     }
 }

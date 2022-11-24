@@ -14,6 +14,7 @@ $db_table = array();
 $dbSchemaName = "public";
 $db_table[] = Core::getTableConfig("hojaruta");
 $db_table[] = Core::getTableConfig("hojaruta_archivo");
+$db_table[] = Core::getTableConfig("mensaje");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
