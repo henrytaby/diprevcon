@@ -24,8 +24,8 @@ class ContratacionResource extends JsonResource
             ],
 
             'tipo' => [
-                'id' => $this->estado->id,
-                'name' => $this->estado->nombre
+                'id' => $this->tipo->id,
+                'name' => $this->tipo->nombre
             ],
             'modalidad' => [
                 'id' => $this->modalidad->id,
