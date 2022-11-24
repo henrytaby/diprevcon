@@ -16,6 +16,32 @@ class ContratacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *     path="/api/v1/contratacion/",
+     *     summary="Lista de contrataciones",
+     *     description="Devuelve la lista de los datos de todas las contrataciones almacenadas en el sistema",
+     *     operationId="v1getContratacionList",
+     *     tags={"V1"},
+     *     security={{"bearerAuth":{}}},
+
+     *     @OA\Response(
+     *         response=200,
+     *         description="Json con datos de la lista de contrataciones",
+     *         @OA\JsonContent()
+     *
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="No autentificado",
+     *         @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Unauthenticated"),
+     *         )
+     *     )
+     *
+     * )
+     *
+     */
     public function index()
     {
         return ContratacionResource::collection(Contratacion::all());
@@ -38,6 +64,43 @@ class ContratacionController extends Controller
      * @param  \App\Models\Contratacion  $contratacion
      * @return \Illuminate\Http\Response
      */
+
+     /**
+     * @OA\Get(
+     *     path="/api/v1/contratacion/{contratacionId}",
+     *     summary="Buscar una contratación por ID",
+     *     description="Devuelve la información de una contratación específico",
+     *     operationId="v1getContratacion",
+     *     tags={"V1"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *      name="contratacionId",in="path",required=true,
+     *      description="ID de la Contratación",
+     *      @OA\Schema(type="integer",default="1",format="int64")
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="Se optiene los datos con éxito",
+     *          @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="No se encontraron datos",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="No autentificado",
+     *         @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Unauthenticated"),
+     *         )
+     *     )
+     *
+     * )
+     *
+     */
+
     public function show(Contratacion $contratacion)
     {
         //

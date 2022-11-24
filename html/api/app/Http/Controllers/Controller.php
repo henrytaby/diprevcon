@@ -28,7 +28,7 @@ use Illuminate\Routing\Controller as BaseController;
  * )
  * @OA\Tag(
  *     name="V1",
- *     description="Funcionalidad para acceder a la información de solicitudes CITES",
+ *     description="Funcionalidad para acceder a la información de DIPREVCON",
  * )
  */
 

@@ -121,17 +121,17 @@
                 }
             }
         },
-        "/api/v1/cites/": {
+        "/api/v1/contratacion/": {
             "get": {
                 "tags": [
                     "V1"
                 ],
-                "summary": "Lista de solicitudes CITES generadas",
-                "description": "Devuelve la lista de los datos de todas las solicitudes cites generadas en el sistema",
-                "operationId": "v1getCitesList",
+                "summary": "Lista de contrataciones",
+                "description": "Devuelve la lista de los datos de todas las contrataciones almacenadas en el sistema",
+                "operationId": "v1getContratacionList",
                 "responses": {
                     "200": {
-                        "description": "Json con datos de la lista de solicitudes CITES",
+                        "description": "Json con datos de la lista de contrataciones",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -162,19 +162,19 @@
                 ]
             }
         },
-        "/api/v1/cites/{citesId}": {
+        "/api/v1/contratacion/{contratacionId}": {
             "get": {
                 "tags": [
                     "V1"
                 ],
-                "summary": "Buscar una solicitud CITES por ID",
-                "description": "Devuelve la información de una ficha de una solicitud CITES específico",
-                "operationId": "v1getCites",
+                "summary": "Buscar una contratación por ID",
+                "description": "Devuelve la información de una contratación específico",
+                "operationId": "v1getContratacion",
                 "parameters": [
                     {
-                        "name": "citesId",
+                        "name": "contratacionId",
                         "in": "path",
-                        "description": "ID de la solicitud CITES",
+                        "description": "ID de la Contratación",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -244,7 +244,7 @@
         },
         {
             "name": "V1",
-            "description": "Funcionalidad para acceder a la información de solicitudes CITES"
+            "description": "Funcionalidad para acceder a la información de DIPREVCON"
         }
     ]
 }
