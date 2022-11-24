@@ -35,7 +35,7 @@
                     <span class="form-text text-black-50">{#field_msg_objeto_contratacion#}</span>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_fecha_publicacion#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control date_general" id="valid_until"
@@ -58,6 +58,15 @@
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="far fa-hourglass"></i></span></div>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_cuce#}</span>
+                </div>
+                <div class="col-lg-2">
+                    <label>{#field_subasta#}:</label>
+                    <div class="input-group">
+                    <span class="switch switch-icon">
+                        <label><input type="checkbox" {if $item.subasta == 1}checked="checked"{/if} name="item[subasta]" value="1" ><span></span></label>
+                    </span>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_active#}</span>
                 </div>
 
                 <div class="col-lg-4">
@@ -102,17 +111,7 @@
                     <span class="form-text text-black-50">{#field_msg_estado_id#}</span>
                 </div>
 
-                <div class="col-lg-1">
-                    <label>{#field_subasta#}:</label>
-                    <div class="input-group">
-                    <span class="switch switch-icon">
-                        <label><input type="checkbox" {if $item.subasta == 1}checked="checked"{/if} name="item[subasta]" value="1" ><span></span></label>
-                    </span>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_active#}</span>
-                </div>
-
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <label>{#field_procesador#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -125,7 +124,7 @@
                     <span class="form-text text-black-50">{#field_msg_procesador#}</span>
                 </div>
 
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <label>{#field_codigo_interno#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -136,6 +135,18 @@
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fab fa-centercode"></i></span></div>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_codigo_interno#}</span>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_numero_contrato#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[contrato_codigo]" value="{$item.contrato_codigo|escape:"html"}"
+                               minlength="3"
+                               data-fv-string-length___message="{#field_length_numero_contrato#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fab fa-codepen"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_numero_contrato#}</span>
                 </div>
             </div>
         </div>
@@ -201,7 +212,19 @@
 
         <div class="card-body pt-1 pb-0 ">
             <div class="form-group row">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
+                    <label>{#field_plazo#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[plazo]" value="{$item.plazo|escape:"html"}"
+                               minlength="3"
+                               data-fv-string-length___message="{#field_length_plazo#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-business-time"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_plazo#}</span>
+                </div>
+                <div class="col-lg-4">
                     <label>{#field_fecha_suscripcion#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control date_general" id="valid_until"
@@ -212,7 +235,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_fecha_publicacion#}</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_fecha_fin#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control date_general" id="valid_until"
@@ -223,10 +246,20 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_fecha_fin#}</span>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
+                    <label>{#field_precio_referencial#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control number_decimal input_money text-right pr-5" id="number_decimal"
+                               name="item[precio_referencial]" value="{$item.precio_referencial|escape:"html"}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i class="fas fa-money-bill"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_precio_referencial#}</span>
+                </div>
+                <div class="col-lg-6">
                     <label>{#field_monto#}:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control number_decimal pr-5" id="number_decimal"
+                        <input type="text" class="form-control number_decimal input_money text-right pr-5" id="number_decimal"
                                name="item[monto]" value="{$item.monto|escape:"html"}"
                         >
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-money-bill"></i></span></div>
@@ -234,9 +267,19 @@
                     <span class="form-text text-black-50">{#field_msg_monto#}</span>
                 </div>
                 <div class="col-lg-4">
+                    <label>{#field_pago_total#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control number_decimal input_money text-right pr-5" id="number_decimal"
+                               name="item[pago_total]" value="{$item.pago_total|escape:"html"}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i class="fas fa-money-bill"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_pago_total#}</span>
+                </div>
+                <div class="col-lg-4">
                     <label>{#field_pago_parcial#}:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control number_decimal pr-5" id="number_decimal"
+                        <input type="text" class="form-control number_decimal input_money text-right pr-5" id="number_decimal"
                                name="item[pago_parcial]" value="{$item.pago_parcial|escape:"html"}"
                         >
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-money-bill"></i></span></div>
@@ -246,7 +289,7 @@
                 <div class="col-lg-4">
                     <label>{#field_pago_pendiente#}:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control number_decimal pr-5" id="number_decimal"
+                        <input type="text" class="form-control number_decimal input_money text-right pr-5" id="number_decimal"
                                name="item[pago_pendiente]" value="{$item.pago_pendiente|escape:"html"}"
                         >
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-money-bill"></i></span></div>
