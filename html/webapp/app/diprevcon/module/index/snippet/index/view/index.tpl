@@ -11,6 +11,7 @@
                 <h3 class="card-title">{$row.nombre}</h3>
             </div>
             *}
+
             <div class="card-body p-2">
                 <!--begin::Top-->
                 <div class="d-flex align-items-center">

@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\Hoja_ruta\Snippet\Index;
+namespace App\Diprevcon\Module\Mensaje\Snippet\Index;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{
@@ -17,10 +17,7 @@ class Catalog extends CoreResources{
         $dato["0"] = $smarty->config_vars["glOptInactive"];
         return $dato;
     }
-    public function confCatalog(){
-        $this->addCatalogList($this->table["mensaje"]
-            ,"mensaje","","titulo",""
-            ,"titulo","","","");
 
+    public function confCatalog(){
     }
 }
