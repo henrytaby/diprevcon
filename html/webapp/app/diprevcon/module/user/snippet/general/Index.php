@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sinpreh\Module\User\Snippet\General;
+namespace App\Diprevcon\User\General;
 use Core\CoreResources;
 class Index extends CoreResources
 {
@@ -31,6 +31,11 @@ class Index extends CoreResources
                 $field_id = "id";
                 $res = $this->updateItem($itemId, $itemData, $this->table[$this->objTable], $action, $field_id);
                 $res["accion"] = $action;
+
+                if($res["res"]==1){
+                    $this->updateDataAditional($res["id"],$itemData);
+                }
+
             } else {
                 $res["res"] = 2;
                 $res["msg"] = "No existe datos de registro";
@@ -41,6 +46,80 @@ class Index extends CoreResources
         }
         return $res;
     }
+
+    function updateDataAditional($id,$itemData){
+        $table = "persona";
+        $sql = "SELECT * FROM ". $this->table[$table]." AS u WHERE u.id ='".$id."'";
+        $it = $this->dbm->Execute($sql);
+        $item = $it->fields;
+
+        $action = ($item["id"]=="")?"new":"update";
+
+        if($item["id"]==""){
+            $itemData["id"] = $id;
+            $itemData["created_at"] = $itemData["updated_at"];
+            $itemData["user_create"] = $itemData["user_update"];
+        }
+        $itemData["entidad_id"]=$this->getEntidadFromOficina($itemData["oficina_id"]);
+
+        if($itemData["type"]!=3 && $itemData["type"]!=4){
+            $itemData["oficina_id"] = NULL;
+            $itemData["superior_persona_id"] = NULL;
+            $itemData["cargo"] = NULL;
+            $itemData["jefe"] = "FALSE";
+            $itemData["entidad_id"] = NULL;
+            /**
+             * Quita los permisos de mi ofi
+             */
+            $this->deletePermisos($id);
+        }else{
+            /**
+             * Da los permisos correspondientes
+             */
+            $this->setPermisos($id);
+        }
+        $field_id = "id";
+        $res = $this->updateItem($id, $itemData, $this->table[$table], $action, $field_id);
+        $res["accion"] = $action;
+    }
+
+    function getEntidadFromOficina($id){
+        $sql = "SELECT entidad_id,id FROM ". $this->table["oficina"]." AS o WHERE o.id ='".$id."'";
+        $it = $this->dbm->Execute($sql);
+        $item = $it->fields;
+        return $item["entidad_id"];
+    }
+
+    public function deletePermisos($user_id){
+        $app_id= 7;
+        $sql = "delete from ".$this->table_core["user_module"]."  where user_id =".$user_id."
+                and app_module_id in ( SELECT am.id FROM ".$this->table_core["app_module"]." as am where am.app_id = ".$app_id.")";
+        $this->dbm->execute($sql);
+    }
+    public function setPermisos($user_id){
+        $app_id= 7;
+        $sql = "select * from  ".$this->table_core["app_module"]." as am where am.app_id=".$app_id;
+        $item = $this->dbm->Execute($sql);
+        $item = $item->getRows();
+        foreach ($item as $row){
+            $this->save($row["id"],$user_id);
+        }
+    }
+    public function save($id,$user_id){
+        $sql = "select * from ".$this->table_core["user_module"]." as um where um.user_id= ".$user_id." and um.app_module_id=".$id;
+        $m = $this->dbm->Execute($sql);
+        $m = $m->fields;
+        if($m["id"]==""){
+            $rec = array();
+            $rec["created_at"] = $rec["updated_at"] =  date("Y-m-d H:i:s");
+            $rec["user_create"] = $rec["user_update"] = $this->userId;
+            $rec["add"] =$rec["edit"]=$rec["delete"]="TRUE";
+            $rec["user_id"] = $user_id;
+            $rec["app_module_id"] = $id;
+            $this->dbm->AutoExecute($this->table_core["user_module"],$rec);
+        }
+    }
+
 
     function processData($form,$rec,$action="new"){
         $dataResult = array();

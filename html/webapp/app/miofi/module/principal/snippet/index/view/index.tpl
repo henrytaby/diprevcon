@@ -175,52 +175,22 @@
                             <div class="tab-pane fade show active" id="kt_tab_pane_2_2" role="tabpanel" aria-labelledby="kt_tab_pane_2_2">
                                 <!--begin::Form-->
                                 <div class="form">
+                                    {foreach from=$mensajes item=row key=idx}
+{*                                        <p>{$row.titulo}</p>*}
+{*                                        <p>{$row.mensaje}</p>*}
+                                        <div class="d-flex align-items-center pb-9">
+                                            <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
+                                                <div class="symbol-label" style="background-image: url('/app/miofi/template/images/ico/principal.png')"></div>
+                                            </div>
 
-                                    <div class="d-flex align-items-center pb-9">
-                                        <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
-                                            <div class="symbol-label" style="background-image: url('/app/miofi/template/images/ico/principal.png')"></div>
+                                            <div class="d-flex flex-column flex-grow-1">
+                                                <a href="#" class="text-dark-75 font-weight-bolder font-size-lg text-hover-primary mb-1">{$row.titulo}</a>
+                                                <span class="text-dark-50 font-weight-normal font-size-sm">{$row.mensaje}</span>
+                                                <span class="text-muted">{$row.fecha_inicio}  -  {$row.fecha_fin}</span>
+                                            </div>
+
                                         </div>
-
-                                        <div class="d-flex flex-column flex-grow-1">
-                                            <a href="#" class="text-dark-75 font-weight-bolder font-size-lg text-hover-primary mb-1">Noticia 01</a>
-                                            <span class="text-dark-50 font-weight-normal font-size-sm">Noticia y/o anuncio, permite comunicar el administrador y compartir información a los usuarios</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="d-flex align-items-center pb-9">
-                                        <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
-                                            <div class="symbol-label" style="background-image: url('/app/miofi/template/images/ico/principal.png')"></div>
-                                        </div>
-
-                                        <div class="d-flex flex-column flex-grow-1">
-                                            <a href="#" class="text-dark-75 font-weight-bolder font-size-lg text-hover-primary mb-1">Noticia 02</a>
-                                            <span class="text-dark-50 font-weight-normal font-size-sm">Noticia y/o anuncio, permite comunicar el administrador y compartir información a los usuarios</span>
-                                        </div>
-
-                                    </div>
-                                    <div class="d-flex align-items-center pb-9">
-                                        <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
-                                            <div class="symbol-label" style="background-image: url('/app/miofi/template/images/ico/principal.png')"></div>
-                                        </div>
-
-                                        <div class="d-flex flex-column flex-grow-1">
-                                            <a href="#" class="text-dark-75 font-weight-bolder font-size-lg text-hover-primary mb-1">Noticia 03</a>
-                                            <span class="text-dark-50 font-weight-normal font-size-sm">Noticia y/o anuncio, permite comunicar el administrador y compartir información a los usuarios</span>
-                                        </div>
-
-                                    </div>
-                                    <div class="d-flex align-items-center pb-9">
-                                        <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
-                                            <div class="symbol-label" style="background-image: url('/app/miofi/template/images/ico/principal.png')"></div>
-                                        </div>
-
-                                        <div class="d-flex flex-column flex-grow-1">
-                                            <a href="#" class="text-dark-75 font-weight-bolder font-size-lg text-hover-primary mb-1">Noticia 04</a>
-                                            <span class="text-dark-50 font-weight-normal font-size-sm">Noticia y/o anuncio, permite comunicar el administrador y compartir información a los usuarios</span>
-                                        </div>
-
-                                    </div>
+                                    {/foreach}
                                 </div>
                                 <!--end::Form-->
                             </div>

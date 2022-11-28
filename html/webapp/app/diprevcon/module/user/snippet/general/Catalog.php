@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sinpreh\Module\User\Snippet\General;
+namespace App\Diprevcon\User\General;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 
@@ -17,40 +17,31 @@ class Catalog extends CoreResources{
             ,"nombre","","", true);
         */
     }
-/*
-    public function getGroupOptions(){
-        $sql = "select 
-                g2.name as padre_name ,g.id, g.name
-                
-                from ".$this->table["group"]." as g
-                left join ".$this->table["group"]." as g2 on g2.id = g.parent
-                where g.parent is not null
-                order by g.parent, g.name
-                ";
-
-        $item = $this->dbm->Execute($sql)->GetRows();
-        $res = array();
-        foreach ($item as $row){
-            $res[$row["padre_name"]] [$row["id"]] = $row["name"];
-        }
-
-        return $res;
-    }
-    public function getTypeOption(){
-        global $smarty;
-        $dato = array();
-        $dato["app"] = $smarty->config_vars["OptApp"];
-        $dato["url"] = $smarty->config_vars["OptUrl"];
-        return $dato;
-    }*/
 
     public function getUserType(){
         global $smarty;
         $dato = array();
         $dato[1] = $smarty->config_vars["opt_typeuser_1"];
         $dato[2] = $smarty->config_vars["opt_typeuser_2"];
-        //$dato[3] = $smarty->config_vars["opt_typeuser_3"];
+        $dato[3] = $smarty->config_vars["opt_typeuser_3"];
+        //$dato[4] = $smarty->config_vars["opt_typeuser_4"];
         //$dato[3] = $smarty->config_vars["opt_typeuser_3"];
         return $dato;
     }
+
+    public function getOficinaOptions(){
+        $sql = "select 
+                e.sigla as entidad ,o.id, o.nombre, o.sigla, o.entidad_id
+                from ".$this->table["oficina"]." as o
+                LEFT JOIN ".$this->table["entidad"]." as e on e.id= o.entidad_id
+                order by o.entidad_id, o.sigla
+                ";
+        $item = $this->dbm->Execute($sql)->GetRows();
+        $res = array();
+        foreach ($item as $row){
+            $res[$row["entidad"]] [$row["id"]] = "[".$row["sigla"]."] - ". $row["nombre"];
+        }
+        return $res;
+    }
+
 }

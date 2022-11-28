@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\Catalogo_proyecto\Snippet\cargo;
+namespace App\Diprevcon\CatalogoProyecto\Cargo;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{

@@ -1,12 +1,14 @@
 <?PHP
-use App\Sinpreh\Module\User\Snippet\General\Index;
-use App\Sinpreh\Module\User\Snippet\General\Catalog;
+use App\Diprevcon\User\General\Index;
+use App\Diprevcon\User\General\Catalog;
 use Core\Core;
-use App\Sinpreh\Module\User\Snippet\Index\Index as indexParent;
+
+use App\Diprevcon\User\Index\Index as indexPrincipal;
+$objItemIndex = new indexPrincipal();
 
 $objItem = new Index();
 $objCatalog = new Catalog();
-$objItemParent = new indexParent();
+
 /**
  * Todo el sub Control se recuperará mediante llamadas por ajax
  */
@@ -24,8 +26,12 @@ switch($action){
 
         $smarty->assign("type",$type);
         if($type=="update"){
-            $item = $objItemParent->getItem($id,"app");
+            $item = $objItemIndex->getItem($id,"app");
         }else{
+            /**
+             * Datos por defecto
+             */
+            $item["active"] = 1;
         }
         $smarty->assign("item",$item);
         /**
@@ -34,6 +40,8 @@ switch($action){
         $objCatalog->confCatalog();
         $cataobj= $objCatalog->getCatalogList();
         $cataobj["type"] = $objCatalog->getUserType();
+        $cataobj["oficina"] = $objCatalog->getOficinaOptions();
+
 
         $smarty->assign("cataobj" , $cataobj);
         $smarty->assign("subpage",$webm["sc_index"]);

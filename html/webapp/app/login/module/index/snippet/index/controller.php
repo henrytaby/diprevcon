@@ -22,7 +22,7 @@ switch($action) {
                      * si no tuviera algun acceso se actualizará
                      */
 
-                    $url = 'Location: /distribuidor';
+                    $url = 'Location: /miofi/principal';
                     break;
                 default:
                     $url = 'Location: /diprevcon';

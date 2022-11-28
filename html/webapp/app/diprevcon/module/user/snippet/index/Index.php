@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sinpreh\Module\User\Snippet\Index;
+namespace App\Diprevcon\User\Index;
 use Core\CoreResources;
 class Index extends CoreResources {
     var $objTable = "user";
@@ -10,27 +10,22 @@ class Index extends CoreResources {
          */
         $this->appInit();
     }
-    function getItem($idItem){
-        $info = '';
-        if($idItem!=''){
-            $sqlSelect = ' i.*
-                           , concat(u1.name,\' \',u1.last_name) AS user_creater
-                            , CONCAT(u2.name,\' \',u2.last_name) as user_updater';
-            $sqlFrom = ' '.$this->table[$this->objTable].' i
-                         LEFT JOIN '.$this->table_core["user"].' u1 on u1.id=i.user_create
-                         LEFT JOIN '.$this->table_core["user"].' u2 on u2.id=i.user_update';
-            $sqlWhere = ' i.id='.$idItem;
-            $sqlGroup = ' ';
-
-            $sql = 'SELECT '.$sqlSelect.'
-                  FROM '.$sqlFrom.'
-                  WHERE '.$sqlWhere.'
-                  '.$sqlGroup;
-            $info = $this->dbm->Execute($sql);
-            $info = $info->fields;
-            //print_struc($info);
-            $info["password"] = trim($info["password"]);
+    function getItem($id){
+        if($id!='') {
+            $sql = "select 
+            p.cargo,p.jefe,p.entidad_id,p.oficina_id,p.superior_persona_id,p.ingreso_hoja
+            ,u.* 
+            , concat(u1.name,' ',u1.last_name) AS user_creater
+            , CONCAT(u2.name,' ',u2.last_name) as user_updater
+            from ".$this->table[$this->objTable]." as u 
+            left join ".$this->table["persona"]." as p on p.\"id\"=u.\"id\"
+            LEFT JOIN ".$this->table_core["user"]." u1 on u1.id=u.user_create
+            LEFT JOIN ".$this->table_core["user"]." u2 on u2.id=u.user_update
+            where u.\"id\"=".$id;
         }
+        $info = $this->dbm->Execute($sql);
+        $info = $info->fields;
+        //$info["password"] = trim($info["password"]);
         return $info;
     }
     function get_filtro_where($item){

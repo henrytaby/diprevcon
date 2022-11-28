@@ -1,12 +1,14 @@
 <?PHP
-use App\Sinpreh\Module\User\Snippet\Permits\Index;
-use App\Sinpreh\Module\User\Snippet\Permits\Catalog;
+use App\Diprevcon\User\Permits\Index;
+use App\Diprevcon\User\Permits\Catalog;
 use Core\Core;
-use App\Sinpreh\Module\User\Snippet\Index\Index as indexParent;
+
+use App\Diprevcon\User\Index\Index as indexPrincipal;
+$objItemIndex = new indexPrincipal();
 
 $objItem = new Index();
 $objCatalog = new Catalog();
-$objItemParent = new indexParent();
+
 /**
  * Todo el sub Control se recuperará mediante llamadas por ajax
  */
@@ -17,7 +19,7 @@ switch($action){
      * Página por defecto (index)
      */
     default:
-        $item = $objItemParent->getItem($id);
+        $item = $objItemIndex->getItem($id);
         $smarty->assign("item",$item);
         /**
          * Language settings, section

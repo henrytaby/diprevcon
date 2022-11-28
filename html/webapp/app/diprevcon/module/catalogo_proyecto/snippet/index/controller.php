@@ -1,8 +1,7 @@
 <?PHP
-use App\Diprevcon\Module\Catalogo_proyecto\Snippet\Index\Index;
-use App\Diprevcon\Module\Catalogo_proyecto\Snippet\Index\Catalog;
+use App\Diprevcon\CatalogoProyecto\Index\Index;
+use App\Diprevcon\CatalogoProyecto\Index\Catalog;
 use Core\Core;
-
 
 $objItem = new Index();
 $objCatalog = new Catalog();

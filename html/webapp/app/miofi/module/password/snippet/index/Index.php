@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Miofi\Module\Password\Snippet\Index;
+namespace App\Miofi\Password\Index;
 use Core\CoreResources;
 class Index extends CoreResources
 {

@@ -21,8 +21,9 @@ $item_tab[]=array(
     "label"=> $smarty->config_vars["tab_permits"]
 ,   "id_name"=>"permits"
 ,   "icon" => "flaticon-share m--font-success"
-,   "new" => 1
+,   "new" => 0
 );
+
 /*
 //-------------------------------------------------------------
 $item_tab[]=array(

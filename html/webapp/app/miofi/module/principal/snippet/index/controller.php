@@ -25,13 +25,15 @@ switch($action) {
         $objCatalog->confCatalog();
         $cataobj= $objCatalog->getCatalogList();
         $cataobj["activo"] = $catalogo=$objCatalog->getActiveOption();
-        //print_struc($cataobj);exit;
+//        print_struc($cataobj);exit;
         $smarty->assign("cataobj", $cataobj);
         /**
          * Grid configuration
          */
-        $gridItem = $objItem->getGridItem("item");
-        $smarty->assign("gridItem", $gridItem);
+        $gridItems = $objItem->getActiveItems();
+//        print_struc($gridItem);exit;
+        $smarty->assign("mensajes", $gridItems);
+//        $smarty->assign("gridItem", $gridItem);
 
 
         /**
@@ -73,9 +75,11 @@ switch($action) {
         $menu_tab = $objItem->getTabItem($type,"index");
         $smarty->assign("menu_tab", $menu_tab);
         $smarty->assign("menu_tab_active", "general");
+
         /**
          * GetItem
          */
+
         if ($type == "update") {
             $item = $objItem->getItem($id);
             $smarty->assign("item", $item);

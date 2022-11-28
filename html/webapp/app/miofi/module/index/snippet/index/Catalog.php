@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Latinosan\Module\Index\Snippet\Index;
+namespace App\Miofi\Index\Index;
 use Core\CoreResources;
 class Catalog extends CoreResources{
     function __construct(){

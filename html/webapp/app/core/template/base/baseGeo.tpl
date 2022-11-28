@@ -8,12 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="Cache-control" content="public">
     <!--begin::Fonts-->
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-
-    {*
+    {*<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />*}
     <link href="/themes/fonts.css" rel="stylesheet" type="text/css" />
-    *}
     <!--end::Fonts-->
 
     <!--begin::Page Vendors Styles(used by this page)-->
@@ -42,16 +38,8 @@
     <meta name="msapplication-config" content="/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G533H9V4HE"></script>
     {literal}
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', 'G-G533H9V4HE');
-    </script>
     {/literal}
 </head>
 <!--end::Head-->
