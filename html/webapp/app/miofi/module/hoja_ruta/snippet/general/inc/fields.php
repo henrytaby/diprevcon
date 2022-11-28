@@ -25,6 +25,9 @@ $field_item["descripcion"]=array("type"=>"text");
 $field_item["fojas"]=array("type"=>"text");
 $field_item["tipo_correspondencia_id"]=array("type"=>"text");
 
+$field_item["descripcion"]=array("type"=>"text");
+
+
 $fields["module"]= $field_item;
 unset($field_item);
 /**

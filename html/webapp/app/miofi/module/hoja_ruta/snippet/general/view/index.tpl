@@ -143,6 +143,16 @@
                     <span class="form-text text-black-50">{#field_msg_tipo_correspondencia_id#}</span>
                 </div>
 
+                <div class="col-lg-12">
+                    <label>{#descripcion_field#}:</label>
+                    <div class="input-group">
+                        <textarea rows="3" class="form-control"
+                                  name="item[descripcion]"
+                        >{$item.descripcion|escape:'html'}</textarea>
+                    </div>
+                    <span class="form-text text-muted">{#descripcion_fieldMsg#}</span>
+                </div>
+
             </div>
         </div>
 
