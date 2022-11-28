@@ -71,7 +71,7 @@ switch($action) {
          */
         $menu_tab = $objItem->getTabItem($type,"index");
         $smarty->assign("menu_tab", $menu_tab);
-        $smarty->assign("menu_tab_active", "general");
+        $smarty->assign("menu_tab_active", "seguimiento");
         /**
          * GetItem
          */

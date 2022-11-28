@@ -1,10 +1,10 @@
 <?PHP
-namespace App\Diprevcon\Module\Hoja_ruta\Snippet\destinatario;
+namespace App\Miofi\Module\Bandeja_entrada\Snippet\destinatario;
 use Core\CoreResources;
 
 class Index extends CoreResources
 {
-    var $objTable = "catalogo_destinatario";
+    var $objTable = "hoja_ruta";
     function __construct()
     {
         /**

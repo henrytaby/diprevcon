@@ -57,6 +57,7 @@ $grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_i
 $grid_item[]=array("field"=> "proveido", "label"=> $smarty->config_vars["table_proveido"]);
 
 $grid_item[]=array("field"=> "urgente", "label"=> $smarty->config_vars["table_urgente"]);
+$grid_item[]=array("field"=> "id", "label"=> $smarty->config_vars["table_id"]);
 
 
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);

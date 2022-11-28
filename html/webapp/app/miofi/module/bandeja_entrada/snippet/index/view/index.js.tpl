@@ -9,6 +9,7 @@
             $("#mostrar_bandeja").html(html);
             let img;
             jQuery.each( datos, function( i, val ) {
+                console.log(datos);
                 html += `<div class="card card-custom gutter-b"><div class="card-body">`;
                 html += html_top(val);
                 html += html_Bottom(val);
@@ -50,9 +51,9 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="my-lg-0 my-1">
-                            <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>
-                            <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Recepcionar</a>
+                        <div class="my-lg-0 my-1">`;
+            html += '<a href="javascript:snippet_list.update(\''+val.id+'\');" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>';
+            html += `<a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Recepcionar</a>
                         </div>
                     </div>
                     <div class="d-flex align-items-center flex-wrap justify-content-between">

@@ -1,8 +1,8 @@
 <?PHP
-use App\Diprevcon\Module\Hoja_ruta\Snippet\destinatario\Index;
-use App\Diprevcon\Module\Hoja_ruta\Snippet\destinatario\Catalog;
+use App\Miofi\Module\Bandeja_entrada\Snippet\destinatario\Index;
+use App\Miofi\Module\Bandeja_entrada\Snippet\destinatario\Catalog;
 use Core\Core;
-use App\Diprevcon\Module\Hoja_ruta\Snippet\Index\Index as indexParent;
+use App\MiOfi\Module\Bandeja_entrada\Snippet\Index\Index as indexParent;
 
 $objItem = new Index();
 $objCatalog = new Catalog();
