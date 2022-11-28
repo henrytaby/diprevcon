@@ -1,6 +1,6 @@
 <?PHP
-use App\Latinosan\Module\Index\Snippet\Index\Index;
-use App\Latinosan\Module\Index\Snippet\Index\Catalog;
+use App\Miofi\Index\Index\Index;
+use App\Miofi\Index\Index\Catalog;
 use Core\Core;
 $objItem = new Index();
 $objCatalog = new Catalog();
@@ -10,6 +10,8 @@ switch($action) {
      * Página por defecto
      */
     default:
+        $url = 'Location: /miofi/principal';
+        header($url);exit;
         //$smarty->debugging = true;
         /**
          * usamos el template para mootools

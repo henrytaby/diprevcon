@@ -14,19 +14,24 @@ class UserType extends CoreResources {
     }
 
     public function setUserInfoAditional(){
+        global $smarty;
         $sql = "select * from  ".$this->table_core["persona"]." as am where am.id=".$this->userId;
         $item = $this->dbm->Execute($sql);
         $item = $item->fields;
+        $_SESSION["uservAdd"] = $item;
+        $smarty->assign("uservAdd", $item);
+        /*
         $_SESSION["userv"]["oficina_id"]=$item["oficina_id"];
         $_SESSION["userv"]["entidad_id"]=$item["entidad_id"];
         $_SESSION["userv"]["ingreso_hoja"]=$item["ingreso_hoja"];
         $_SESSION["userv"]["jefe"]=$item["jefe"];
         $_SESSION["userv"]["cargo"]=$item["cargo"];
         $_SESSION["userv"]["superior_persona_id"]=$item["superior_persona_id"];
+        */
     }
 
     public function setPermisos(){
-        $sql = "select * from  ".$this->table_core["app_module"]." as am where am.app_id=1 ";
+        $sql = "select * from  ".$this->table_core["app_module"]." as am where am.app_id=7 ";
         $item = $this->dbm->Execute($sql);
         $item = $item->getRows();
         foreach ($item as $row){

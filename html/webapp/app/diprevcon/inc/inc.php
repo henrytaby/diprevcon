@@ -20,18 +20,13 @@ $db_table[] = Core::getTableConfig("persona");
 $tableCore  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$tableCore);
 unset($db_table);
 unset($db_prefix);
-
 /*/
 print_struc($tableCore);
 exit;
 /**/
-//print_struc($_SESSION["userv"]);exit;
 /**
  * Funcionalidad para añadir datos extras a userv
  */
-//if($_SESSION["userv"]["type"]==1){
-    $action_path = APP_PATH."inc/UserType.php";
-    include_once($action_path);
-    $userType = new UserType;
-    //$userType->setUserInfoAditional();
-//}
+$action_path = APP_PATH."inc/UserType.php";
+include_once($action_path);
+$userType = new UserType;

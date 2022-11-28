@@ -8,16 +8,15 @@ use Core\Core;
  * Configuramos el directorio para este modulo
  * -----------------------------------------------------------------------------------
  */
-
 /**
  * Verificamos y/o Creamos la carpeta padre
  */
-$appVars["folderParent"] = "setting";
+$appVars["folderParent"] = "diprevcon";
 $appVars["directory"] = $_ENV['DATA_FILE'].$appVars["folderParent"]."/";
 Core::createDirectory($appVars["directory"]);
 /**
  *  Verificamos y/o Creamos la carpeta del módulo
  */
-$appVars["folderModule"] = "user";
+$appVars["folderModule"] = "hoja_ruta";
 $appVars["directory"] = $appVars["directory"].$appVars["folderModule"]."/";
 Core::createDirectory($appVars["directory"]);
