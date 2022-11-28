@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\User\Snippet\General;
+namespace App\Diprevcon\User\General;
 use Core\CoreResources;
 class Index extends CoreResources
 {
@@ -31,6 +31,11 @@ class Index extends CoreResources
                 $field_id = "id";
                 $res = $this->updateItem($itemId, $itemData, $this->table[$this->objTable], $action, $field_id);
                 $res["accion"] = $action;
+
+                if($res["res"]==1){
+                    $this->updateDataAditional($res["id"],$itemData);
+                }
+
             } else {
                 $res["res"] = 2;
                 $res["msg"] = "No existe datos de registro";
@@ -40,6 +45,41 @@ class Index extends CoreResources
             $res["msg"] = "El nombre de usuario ya se encuentra registrado";
         }
         return $res;
+    }
+
+    function updateDataAditional($id,$itemData){
+        $table = "persona";
+        $sql = "SELECT * FROM ". $this->table[$table]." AS u WHERE u.id ='".$id."'";
+        $it = $this->dbm->Execute($sql);
+        $item = $it->fields;
+
+        $action = ($item["id"]=="")?"new":"update";
+
+        if($item["id"]==""){
+            $itemData["id"] = $id;
+            $itemData["created_at"] = $itemData["updated_at"];
+            $itemData["user_create"] = $itemData["user_update"];
+        }
+        $itemData["entidad_id"]=$this->getEntidadFromOficina($itemData["oficina_id"]);
+
+        if($itemData["type"]!=3 && $itemData["type"]!=4){
+            $itemData["oficina_id"] = NULL;
+            $itemData["superior_persona_id"] = NULL;
+            $itemData["cargo"] = NULL;
+            $itemData["jefe"] = "FALSE";
+            $itemData["entidad_id"] = NULL;
+        }
+        $field_id = "id";
+        $res = $this->updateItem($id, $itemData, $this->table[$table], $action, $field_id);
+        $res["accion"] = $action;
+    }
+
+    function getEntidadFromOficina($id){
+        $table = "persona";
+        $sql = "SELECT entidad_id,id FROM ". $this->table["oficina"]." AS o WHERE o.id ='".$id."'";
+        $it = $this->dbm->Execute($sql);
+        $item = $it->fields;
+        return $item["entidad_id"];
     }
 
     function processData($form,$rec,$action="new"){

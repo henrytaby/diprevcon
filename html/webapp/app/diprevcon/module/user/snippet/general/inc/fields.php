@@ -22,6 +22,12 @@ $field_item["password"]=array("type"=>"text");
 $field_item["description"]=array("type"=>"text");
 $field_item["type"]=array("type"=>"text");
 $field_item["distribuidor_id"]=array("type"=>"text");
+$field_item["email"]=array("type"=>"text");
+
+$field_item["oficina_id"]=array("type"=>"text");
+$field_item["jefe"]=array("type"=>"checkbox_02");
+$field_item["cargo"]=array("type"=>"text");
+$field_item["ingreso_hoja"]=array("type"=>"checkbox_02");
 
 $fields["module"]= $field_item;
 unset($field_item);

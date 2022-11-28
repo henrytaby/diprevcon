@@ -1,6 +1,5 @@
 {literal}
 <script>
-
     var table_list;
     var snippet_list = function() {
         "use strict";
@@ -26,7 +25,6 @@
                             return (idx+1)+': '+title;
                         }
                     },
-
                      */
                     {extend:'excelHtml5'
                         ,exportOptions: {columns: noExport}

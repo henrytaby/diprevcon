@@ -21,3 +21,8 @@ Core::createDirectory($appVars["directory"]);
 $appVars["folderModule"] = "user";
 $appVars["directory"] = $appVars["directory"].$appVars["folderModule"]."/";
 Core::createDirectory($appVars["directory"]);
+
+/**
+ * Colocar datos adicionales del usuario
+ */
+$userType->setUserInfoAditional();

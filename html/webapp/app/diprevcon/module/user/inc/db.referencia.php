@@ -26,9 +26,17 @@ unset($db_prefix);
  */
 $db_table = array();
 $dbSchemaName = "public";
-$db_table[] = Core::getTableConfig("distribuidor");
+$db_table[] = Core::getTableConfig("entidad");
+$db_table[] = Core::getTableConfig("oficina");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);
+
+$db_table = array();
+$dbSchemaName = "personal";
+$db_table[] = Core::getTableConfig("persona");
+$appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
+unset($db_table);
+
 /* /
 print_struc($appVars["table"] );
 print_struc($CFG->table);

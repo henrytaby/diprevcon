@@ -10,5 +10,11 @@
             border-top: 3px solid #f5d7bc;
             border-bottom: 1px dotted #f5d7bc;
         }
+        .usuario{
+            background: #ebf8ff;
+            padding-top: 5px;
+            border-top: 3px solid #bde2f8;
+            border-bottom: 1px dotted #f5d7bc;
+        }
     </style>
 {/literal}

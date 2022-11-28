@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\User\Snippet\Index;
+namespace App\Diprevcon\User\Index;
 use Core\CoreResources;
 class Catalog extends CoreResources{
     function __construct(){
@@ -22,7 +22,7 @@ class Catalog extends CoreResources{
         $dato = array();
         $dato[1] = $smarty->config_vars["opt_typeuser_1"];
         $dato[2] = $smarty->config_vars["opt_typeuser_2"];
-        //$dato[3] = $smarty->config_vars["opt_typeuser_3"];
+        $dato[3] = $smarty->config_vars["opt_typeuser_3"];
         //$dato[3] = $smarty->config_vars["opt_typeuser_3"];
         return $dato;
     }

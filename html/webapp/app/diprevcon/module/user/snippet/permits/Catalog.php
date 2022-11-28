@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\User\Snippet\Index\Permits;
+namespace App\Diprevcon\User\Permits;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 

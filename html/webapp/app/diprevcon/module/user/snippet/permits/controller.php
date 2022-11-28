@@ -1,9 +1,9 @@
 <?PHP
-use App\Diprevcon\Module\User\Snippet\Index\Permits\Index;
-use App\Diprevcon\Module\User\Snippet\Index\Permits\Catalog;
+use App\Diprevcon\User\Permits\Index;
+use App\Diprevcon\User\Permits\Catalog;
 use Core\Core;
 
-use App\Diprevcon\Module\User\Snippet\Index\Index as indexPrincipal;
+use App\Diprevcon\User\Index\Index as indexPrincipal;
 $objItemIndex = new indexPrincipal();
 
 $objItem = new Index();
