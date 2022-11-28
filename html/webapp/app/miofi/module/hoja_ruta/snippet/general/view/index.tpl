@@ -20,6 +20,38 @@
 
         <div class="card-body">
             <div class="form-group row">
+
+                <div class="col-lg-4">
+                    <label>{#nur_field#}<span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[nur]" value="{$item.nur|escape:"html"}"
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                               minlength="3"
+                               data-fv-string-length___message="{#nur_fieldLength#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-stream"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#nur_fieldMsg#}</span>
+                </div>
+
+                <div class="col-lg-4">
+                    <label>{#cite_field#}<span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[cite]" value="{$item.cite|escape:"html"}"
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                               minlength="3"
+                               data-fv-string-length___message="{#cite_fieldLength#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-stream"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#cite_fieldMsg#}</span>
+                </div>
+
+
                 <div class="col-lg-12">
                     <label>{#field_procedencia#}<span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
@@ -34,6 +66,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_procedencia#}</span>
                 </div>
+
                 <div class="col-lg-12">
                     <label>{#field_destinatario#}<span class="text-danger bold">*</span> :</label>
                     <div class="input-group">

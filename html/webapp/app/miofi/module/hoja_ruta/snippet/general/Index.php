@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Miofi\Hoja_ruta\general;
+namespace App\Miofi\Hojaruta\General;
 use Core\CoreResources;
 
 class Index extends CoreResources

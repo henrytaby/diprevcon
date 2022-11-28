@@ -13,6 +13,8 @@ $fields = array();
  */
 $field_item = array();
 //*******Identificacion del consumidor rgula solicitante
+$field_item["nur"]=array("type"=>"text");
+$field_item["cite"]=array("type"=>"text");
 $field_item["procedencia"]=array("type"=>"text");
 $field_item["destinatario"]=array("type"=>"text");
 $field_item["asunto"]=array("type"=>"text");

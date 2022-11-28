@@ -1,8 +1,8 @@
 <?PHP
-use App\Miofi\Hoja_ruta\destinatario\Index;
-use App\Miofi\Hoja_ruta\destinatario\Catalog;
+use App\Miofi\Hojaruta\Destinatario\Index;
+use App\Miofi\Hojaruta\Destinatario\Catalog;
 use Core\Core;
-use App\Miofi\Hoja_ruta\Index\Index as indexParent;
+use App\Miofi\Hojaruta\Index\Index as indexParent;
 
 $objItem = new Index();
 $objCatalog = new Catalog();

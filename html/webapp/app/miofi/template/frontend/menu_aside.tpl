@@ -2,14 +2,14 @@
     <!--begin::Menu Nav-->
     <ul class="menu-nav">
 
-        {*
+
         <li class="menu-item menu-item-active" aria-haspopup="true">
             <a href="/" class="menu-link">
                 <span class="menu-icon"><i class="la la-angle-double-left icon-xl "></i></span>
                 <span class="menu-text">{#sbmBtnMain#}</span>
             </a>
         </li>
-        *}
+
         <li class="menu-item menu-item-active" aria-haspopup="true">
             <a href="/{$app}" class="menu-link">
                 <span class="menu-icon "><i class="fa fa-home text-primary"></i></span>

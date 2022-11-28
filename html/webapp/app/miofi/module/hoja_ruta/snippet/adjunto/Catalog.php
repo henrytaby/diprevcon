@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Miofi\Hoja_ruta\adjunto;
+namespace App\Miofi\Hojaruta\Adjunto;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 

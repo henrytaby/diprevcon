@@ -1,6 +1,6 @@
 <?PHP
-use App\Miofi\Hoja_ruta\general\Index;
-use App\Miofi\Hoja_ruta\general\Catalog;
+use App\Miofi\Hojaruta\General\Index;
+use App\Miofi\Hojaruta\General\Catalog;
 use Core\Core;
 
 $objItem = new Index();
