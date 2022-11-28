@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\Proceso\Snippet\Index;
+namespace App\Diprevcon\Actividad\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {

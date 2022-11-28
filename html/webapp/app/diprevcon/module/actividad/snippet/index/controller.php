@@ -1,6 +1,6 @@
 <?PHP
-use App\Diprevcon\Module\Proceso\Snippet\Index\Index;
-use App\Diprevcon\Module\Proceso\Snippet\Index\Catalog;
+use App\Diprevcon\Actividad\Index\Index;
+use App\Diprevcon\Actividad\Index\Catalog;
 use Core\Core;
 
 

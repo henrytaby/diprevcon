@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\Proceso\Snippet\general;
+namespace App\Diprevcon\Actividad\General;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{
