@@ -34,9 +34,6 @@ $grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_t
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
 $grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);
 
-$grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
-$grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);
-
 $group = "item";
 $grid[$group]= $grid_item;
 $grid_table_join[$group]= $grid_table;

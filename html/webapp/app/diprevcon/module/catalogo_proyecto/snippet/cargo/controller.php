@@ -1,6 +1,6 @@
 <?PHP
-use App\Diprevcon\Module\Catalogo_proyecto\Snippet\cargo\Index;
-use App\Diprevcon\Module\Catalogo_proyecto\Snippet\cargo\Catalog;
+use App\Diprevcon\CatalogoProyecto\Cargo\Index;
+use App\Diprevcon\CatalogoProyecto\Cargo\Catalog;
 use Core\Core;
 
 $objItem = new Index();

@@ -1,6 +1,6 @@
 <?PHP
-use App\Miofi\Module\Password\Snippet\Index\Index;
-use App\Miofi\Module\Password\Snippet\Index\Catalog;
+use App\Miofi\Password\Index\Index;
+use App\Miofi\Password\Index\Catalog;
 use Core\Core;
 
 $objItem = new Index();
