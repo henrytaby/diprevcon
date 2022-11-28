@@ -113,14 +113,17 @@
             });
         };
 
-        var distribuidor_div= $('#distribuidor_div');
+        var oficina_div= $('#oficina_div');
         var handle_tipo = function(){
             id = $('#type').val();
             id = id==null? '': id.toString();
-            distribuidor_div.addClass('d-none');
+            oficina_div.addClass('d-none');
             switch (id){
                 case '3':
-                    distribuidor_div.removeClass('d-none');
+                    oficina_div.removeClass('d-none');
+                    break;
+                case '4':
+                    oficina_div.removeClass('d-none');
                     break;
             }
         };

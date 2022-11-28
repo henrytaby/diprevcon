@@ -10,6 +10,7 @@
     <!--begin::Fonts-->
     {*<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />*}
     <link href="/themes/fonts.css" rel="stylesheet" type="text/css" />
+    {**}
     <!--end::Fonts-->
 
     <!--begin::Page Vendors Styles(used by this page)-->
@@ -38,9 +39,9 @@
     <meta name="msapplication-config" content="/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-{literal}
+    {literal}
 
-{/literal}
+    {/literal}
 
 </head>
 <!--end::Head-->
@@ -48,7 +49,7 @@
 <body id="kt_body"
       class="header-fixed header-mobile-fixed subheader-enabled
       subheader-fixed aside-enabled aside-fixed
-      aside-minimize-hoverable {*aside-minimize *}
+      aside-minimize-hoverable aside-minimize
       page-loading">
 
 {include file=$frontend._page_loader}
@@ -61,7 +62,7 @@
     <div class="d-flex flex-row flex-column-fluid page">
         {include file=$frontend_app.left_aside}
         <!--begin::Wrapper-->
-        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper" style="padding-top:65px!important;">
             {include file=$frontend._header}
 
             <!--begin::Content-->

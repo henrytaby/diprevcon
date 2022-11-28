@@ -26,6 +26,31 @@
         <div class="card-body pt-0 pb-0">
 
             <div class="form-group row">
+                <div class="col-lg-4">
+                    <label>{#fieldType#} <span class="text-danger bold">*</span>: </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[type]" id="type"
+                                data-placeholder="{#field_Holder_type#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.type selected=$item.type}
+                        </select>
+                    </div>
+                    <span class="form-text text-muted">{#field_GroupMsg_type#}</span>
+                </div>
+                <div class="col-lg-4">
+                    <label>{#fieldActiveName#}:</label>
+                    <div class="input-group">
+                    <span class="switch switch-icon">
+                        <label><input type="checkbox" {if $item.active == 1}checked="checked"{/if} name="item[active]" value="1" ><span></span></label>
+                    </span>
+                    </div>
+                    <span class="form-text text-muted">{#fieldActiveMsg#}</span>
+                </div>
+
                 <div class="col-lg-6">
                     <label>{#fieldUserName#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
@@ -93,36 +118,49 @@
                     </div>
                     <span class="form-text text-muted">{#fieldLastNameMsg#}</span>
                 </div>
-                <div class="col-lg-6">
-                    <label>{#fieldType#} <span class="text-danger bold">*</span>: </label>
-                    <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
-                                name="item[type]" id="type"
-                                data-placeholder="{#field_Holder_type#}" {$privFace.input}
-                                required
-                                data-fv-not-empty___message="{#glFieldRequired#}"
-                        >
-                            <option></option>
-                            {html_options options=$cataobj.type selected=$item.type}
-                        </select>
-                    </div>
-                    <span class="form-text text-muted">{#field_GroupMsg_type#}</span>
-                </div>
-                <div class="col-lg-6 {if $item.type != '3'}d-none{/if}" id="distribuidor_div">
-                    <label>{#field_distribuidora#} <span class="text-danger bold">*</span>: </label>
+
+
+            </div>
+
+            <div class="form-group row {if $item.type != '3' or $item.type != '4' }d-none{/if} oficina" id="oficina_div">
+                <div class="col-lg-8">
+                    <label>{#field_oficina#} <span class="text-danger bold">*</span>: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[distribuidor_id]" id="select_distribuidor"
-                                data-placeholder="{#field_Holder_distribuidora#}" {$privFace.input}
+                                data-placeholder="{#field_Holder_oficina#}" {$privFace.input}
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.distribuidor selected=$item.distribuidor_id}
+                            {html_options options=$cataobj.oficina selected=$item.oficina_id}
                         </select>
                     </div>
-                    <span class="form-text text-muted">{#field_GroupMsg_distribuidora#}</span>
+                    <span class="form-text text-muted">{#field_GroupMsg_oficina#}</span>
+                </div>
+                <div class="col-lg-4">
+                    <label>{#fieldActiveName#}:</label>
+                    <div class="input-group">
+                    <span class="switch switch-icon">
+                        <label><input type="checkbox" {if $item.active == 1}checked="checked"{/if} name="item[active]" value="1" ><span></span></label>
+                    </span>
+                    </div>
+                    <span class="form-text text-muted">{#fieldActiveMsg#}</span>
+                </div>
+                <div class="col-lg-12">
+                    <label>{#fieldUserName#}  <span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[username]" value="{$item.username|escape:"html"}"
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-user"></i></span></div>
+                    </div>
+                    <span class="form-text text-muted">{#fieldUserNameMsg#}</span>
                 </div>
             </div>
+
             <div class="form-group row">
                 <div class="col-lg-4">
                     <label>{#fieldMobile#}:</label>
@@ -148,15 +186,7 @@
                     </div>
                     <span class="form-text text-muted">{#fieldPhoneMsg#}</span>
                 </div>
-                <div class="col-lg-4">
-                    <label>{#fieldActiveName#}:</label>
-                    <div class="input-group">
-                    <span class="switch switch-icon">
-                        <label><input type="checkbox" {if $item.active == 1}checked="checked"{/if} name="item[active]" value="1" ><span></span></label>
-                    </span>
-                    </div>
-                    <span class="form-text text-muted">{#fieldActiveMsg#}</span>
-                </div>
+
 
                 <div class="col-lg-12">
                     <label>{#fieldDescription#}:</label>

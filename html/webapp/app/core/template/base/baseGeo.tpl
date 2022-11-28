@@ -8,10 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="Cache-control" content="public">
     <!--begin::Fonts-->
-
-    {*
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-    *}
+    {*<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />*}
     <link href="/themes/fonts.css" rel="stylesheet" type="text/css" />
     <!--end::Fonts-->
 

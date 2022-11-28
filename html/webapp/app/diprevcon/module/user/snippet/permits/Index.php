@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sinpreh\Module\User\Snippet\Permits;
+namespace App\Diprevcon\Module\User\Snippet\Index\Permits;
 use Core\CoreResources;
 class Index extends CoreResources
 {

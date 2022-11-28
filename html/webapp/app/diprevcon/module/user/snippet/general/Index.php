@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sinpreh\Module\User\Snippet\General;
+namespace App\Diprevcon\Module\User\Snippet\General;
 use Core\CoreResources;
 class Index extends CoreResources
 {

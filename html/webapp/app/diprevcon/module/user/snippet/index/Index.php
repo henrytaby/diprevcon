@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sinpreh\Module\User\Snippet\Index;
+namespace App\Diprevcon\Module\User\Snippet\Index;
 use Core\CoreResources;
 class Index extends CoreResources {
     var $objTable = "user";
