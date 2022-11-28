@@ -16,6 +16,7 @@ switch($action){
      * Página por defecto (index)
      */
     default:
+        //$dbm->debug =true;
         /**
          * Language settings, section
          */
