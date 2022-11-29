@@ -21,45 +21,19 @@
         <div class="card-body">
             <div class="form-group row">
                 <div class="col-lg-8">
-                    <label>{#field_nombre#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_titulo#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
-                               name="item[nombre]" value="{$item.nombre|escape:"html"}"
+                               name="item[titulo]" value="{$item.titulo|escape:"html"}"
                                required
                                data-fv-not-empty___message="{#glFieldRequired#}"
                                minlength="3"
-                               data-fv-string-length___message="{#field_length_nombre#}"
+                               data-fv-string-length___message="{#field_length_titulo#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-info"></i></span></div>
                     </div>
-                    <span class="form-text text-black-50">{#field_msg_nombre#}</span>
+                    <span class="form-text text-black-50">{#field_msg_titulo#}</span>
                 </div>
-                <div class="col-lg-4">
-                    <label>{#field_sigla#}  <span class="text-danger bold">*</span> :</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control"
-                               name="item[sigla]" value="{$item.sigla|escape:"html"}"
-                               required
-                               data-fv-not-empty___message="{#glFieldRequired#}"
-                               minlength="3"
-                               data-fv-string-length___message="{#field_length_sigla#}"
-                        >
-                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-info"></i></span></div>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_sigla#}</span>
-                </div>
-
-                <div class="col-lg-8">
-                    <label>{#field_direccion#}:</label>
-                    <div class="input-group">
-                        <textarea rows="2" class="form-control m-input"
-                                  name="item[direccion]"
-                        >{$item.direccion|escape:'html'}</textarea>
-                        <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
-                    </div>
-                    <span class="form-text text-muted">{#field_msg_direccion#}</span>
-                </div>
-
                 <div class="col-lg-4">
                     <label>{#field_active#}:</label>
                     <div class="input-group">
@@ -69,6 +43,42 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_active#}</span>
                 </div>
+
+                <div class="col-lg-6">
+                    <label>{#field_fecha_inicio#}<span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control date_general" id="valid_until"
+                               name="item[fecha_inicio]" value="{$item.fecha_inicio|date_format:'%d/%m/%Y'}"
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_fecha_inicio#}</span>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_fecha_fin#}<span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control date_general" id="valid_until"
+                               name="item[fecha_fin]" value="{$item.fecha_fin|date_format:'%d/%m/%Y'}"
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_fecha_fin#}</span>
+                </div>
+
+                <div class="col-lg-12">
+                    <label>{#field_mensaje#}:</label>
+                    <div class="input-group">
+                        <textarea rows="2" class="form-control m-input"
+                                  name="item[mensaje]"
+                        >{$item.mensaje|escape:'html'}</textarea>
+                        <div class="input-group-append"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
+                    </div>
+                    <span class="form-text text-muted">{#field_msg_mensaje#}</span>
+                </div>
+
+
 
             </div>
         </div>

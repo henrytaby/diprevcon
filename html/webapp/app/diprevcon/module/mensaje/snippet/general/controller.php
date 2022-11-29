@@ -1,6 +1,6 @@
 <?PHP
-use App\Diprevcon\Module\Entidad\Snippet\general\Index;
-use App\Diprevcon\Module\Entidad\Snippet\general\Catalog;
+use App\Diprevcon\Module\Mensaje\Snippet\general\Index;
+use App\Diprevcon\Module\Mensaje\Snippet\general\Catalog;
 use Core\Core;
 
 $objItem = new Index();

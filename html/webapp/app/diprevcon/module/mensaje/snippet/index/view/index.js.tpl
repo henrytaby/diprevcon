@@ -130,6 +130,11 @@
                         },
                     },
                     {
+                        targets: [4],
+                        searchable: true,
+                        className: "none",
+                    },
+                    {
                         targets: [-2,-3],
                         searchable: false,
                         className: "none",
