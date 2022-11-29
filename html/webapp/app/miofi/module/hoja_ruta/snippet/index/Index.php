@@ -130,7 +130,7 @@ class Index extends CoreResources {
                 $dataResult["emisor_oficina"] = $_SESSION["uservAdd"]["oficina"];
                 $dataResult["emisor_oficina_id"] = $_SESSION["uservAdd"]["oficina_id"];
 
-                $dataResult["fecha_emision"] = $dataResult["user_update"];
+                $dataResult["fecha_emision"] = date("Y-m-d H:i:s");
                 /**
                  * Sacamos los datos de la persona
                  */
@@ -151,6 +151,7 @@ class Index extends CoreResources {
                 $dataResult["nur"] =  $hojaruta["nur"];
 
                 $dataResult["hojaruta_id"] =  $itemId;
+
 
                 break;
         }

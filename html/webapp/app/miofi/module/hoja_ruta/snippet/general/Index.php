@@ -56,8 +56,6 @@ class Index extends CoreResources
         switch($form){
             case 'module':
                 $dataResult = $this->processFields($rec,$this->campos[$form],$action);
-
-
                 /**
                  * Additional processes when saving the data
                  */
