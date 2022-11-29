@@ -18,6 +18,7 @@ $grid_item[]=array("field"=> "titulo", "label"=> $smarty->config_vars["table_tit
 $grid_item[]=array("field"=> "fecha_inicio", "label"=> $smarty->config_vars["table_fecha_inicio"]);
 $grid_item[]=array("field"=> "fecha_fin", "label"=>  $smarty->config_vars["table_fecha_fin"]);
 $grid_item[]=array("field"=> "active", "label"=> $smarty->config_vars["table_active"]);
+$grid_item[]=array("field"=> "mensaje", "label"=> $smarty->config_vars["table_mensaje"]);
 
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
 $grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);

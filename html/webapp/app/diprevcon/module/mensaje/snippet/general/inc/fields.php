@@ -12,10 +12,11 @@ $fields = array();
  * Configuraciòn de los grupos de campos a utilizar
  */
 $field_item = array();
-//*******Identificacion del consumidor rgula solicitante
-$field_item["nombre"]=array("type"=>"text");
-$field_item["sigla"]=array("type"=>"text");
-$field_item["direccion"]=array("type"=>"text");
+//*******datos a registrar de mensajes globales
+$field_item["titulo"]=array("type"=>"text");
+$field_item["mensaje"]=array("type"=>"text");
+$field_item["fecha_inicio"]=array("type"=>"date");
+$field_item["fecha_fin"]=array("type"=>"date");
 $field_item["active"]=array("type"=>"checkbox_02");
 
 $fields["module"]= $field_item;
