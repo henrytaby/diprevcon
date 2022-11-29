@@ -1,3 +1,5 @@
+{if $uservAdd.ingreso_hoja == 1}
+
 {if ($item.id != 0 && $item.id != "" && $type == "update") || $type == "new"}
     {include file="item/index.css.tpl"}
     <div class="d-flex flex-column flex-md-row">
@@ -65,6 +67,16 @@
     {include file=$frontend.error_01}
 {/if}
 
+
+{else}
+    <div class="content ">
+        <div class=" card card-custom gutter-b">
+            <div class="card-body text-center text-danger">
+                No cuenta con permisos para generar Hojas de Rutas Nuevas
+            </div>
+        </div>
+    </div>
+{/if}
 
 
 

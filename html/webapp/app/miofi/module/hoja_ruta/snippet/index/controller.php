@@ -6,8 +6,18 @@ use Core\Core;
 $objItem = new Index();
 $objCatalog = new Catalog();
 
+$smarty->assign("uservAdd", $_SESSION["uservAdd"]);
+
 switch($action) {
     default:
+
+        if($_SESSION["uservAdd"]["ingreso_hoja"]!=1){
+            $privFace["input"] = " disabled='true' ";
+            $privFace["edit"] = false;
+            $privFace["delete"] = false;
+            $privFace["add"] = false;
+            $smarty->assign("privFace", $privFace);
+        }
         /**
          * Smarty Options
          */

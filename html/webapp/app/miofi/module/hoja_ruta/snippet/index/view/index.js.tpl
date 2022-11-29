@@ -182,6 +182,9 @@
     }();
 
     jQuery(document).ready(function() {
+        {/literal}{if $privFace.edit == 1}{literal}
+
+        {/literal}{/if}{literal}
         $('#btn_new').removeClass('d-none');
         snippet_list.init();
     });

@@ -98,7 +98,7 @@
                     <div class="input-group">
                         <input type='text' class="form-control m_timepicker_1" id="m_timepicker_1"
                                readonly placeholder="{#field_holder_time#}" type="text"
-                               name="item[hora]"  $objItem->setDerivacionPermiso($item_id);$objItem->setDerivacionPermiso($item_id);
+                               name="item[hora]"  {$privFace.input}
                                value="{$item.hora|escape:"html"}"
                         />
                         <div class="input-group-append"><span class="input-group-text calendar"><i class="la la-clock-o"></i></span></div>
