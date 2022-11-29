@@ -28,7 +28,7 @@
                                name="item[nur]" value="{$item.nur|escape:"html"}"
                                required
                                data-fv-not-empty___message="{#glFieldRequired#}"
-                               minlength="3"
+                               minlength="3"  {$privFace.input}
                                data-fv-string-length___message="{#nur_fieldLength#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-stream"></i></span></div>
@@ -43,7 +43,7 @@
                                name="item[cite]" value="{$item.cite|escape:"html"}"
                                required
                                data-fv-not-empty___message="{#glFieldRequired#}"
-                               minlength="3"
+                               minlength="3"  {$privFace.input}
                                data-fv-string-length___message="{#cite_fieldLength#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-stream"></i></span></div>
@@ -59,7 +59,7 @@
                                name="item[procedencia]" value="{$item.procedencia|escape:"html"}"
                                required
                                data-fv-not-empty___message="{#glFieldRequired#}"
-                               minlength="3"
+                               minlength="3"  {$privFace.input}
                                data-fv-string-length___message="{#field_length_procedencia#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-info"></i></span></div>
@@ -74,7 +74,7 @@
                                name="item[destinatario]" value="{$item.destinatario|escape:"html"}"
                                required
                                data-fv-not-empty___message="{#glFieldRequired#}"
-                               minlength="3"
+                               minlength="3"  {$privFace.input}
                                data-fv-string-length___message="{#field_length_destinatario#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-info"></i></span></div>
@@ -86,7 +86,7 @@
                     <label>{#field_date#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control date_general" id="valid_until"
-                               name="item[fecha]" value="{$item.fecha|date_format:'%d/%m/%Y'}"
+                               name="item[fecha]" value="{$item.fecha|date_format:'%d/%m/%Y'}"  {$privFace.input}
                                 {*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
                         >
                         <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol"></i></span></div>
@@ -98,7 +98,7 @@
                     <div class="input-group">
                         <input type='text' class="form-control m_timepicker_1" id="m_timepicker_1"
                                readonly placeholder="{#field_holder_time#}" type="text"
-                               name="item[hora]"
+                               name="item[hora]"  $objItem->setDerivacionPermiso($item_id);$objItem->setDerivacionPermiso($item_id);
                                value="{$item.hora|escape:"html"}"
                         />
                         <div class="input-group-append"><span class="input-group-text calendar"><i class="la la-clock-o"></i></span></div>
@@ -109,7 +109,7 @@
                     <label>{#field_asunto#}<span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <textarea rows="2" class="form-control m-input mayus"
-                                  name="item[asunto]"
+                                  name="item[asunto]"  {$privFace.input}
                         >{$item.asunto|escape:'html'}</textarea>
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
                     </div>
@@ -120,7 +120,7 @@
                     <label>{#field_fojas#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control number_integer pr-5" id="number_integer"
-                               name="item[fojas]" value="{$item.fojas|escape:"html"}"
+                               name="item[fojas]" value="{$item.fojas|escape:"html"}"  {$privFace.input}
 {*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
                         >
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
@@ -147,7 +147,7 @@
                     <label>{#descripcion_field#}:</label>
                     <div class="input-group">
                         <textarea rows="3" class="form-control"
-                                  name="item[descripcion]"
+                                  name="item[descripcion]" {$privFace.input}
                         >{$item.descripcion|escape:'html'}</textarea>
                     </div>
                     <span class="form-text text-muted">{#descripcion_fieldMsg#}</span>

@@ -2,6 +2,8 @@
 use App\Miofi\Hojaruta\General\Index;
 use App\Miofi\Hojaruta\General\Catalog;
 use Core\Core;
+use App\Miofi\Hojaruta\Index\Index as indexPrincipal;
+$objItemIndex = new indexPrincipal();
 
 $objItem = new Index();
 $objCatalog = new Catalog();
@@ -9,13 +11,19 @@ $objCatalog = new Catalog();
 /**
  * Todo el sub Control se recuperará mediante llamadas por ajax
  */
-$templateModule = $frontend["baseAjax"];
 
+$templateModule = $frontend["baseAjax"];
+/**
+ * Permisos enbase a si ya existe una derivación
+ */
+$objItemIndex->setDerivacionPermiso($id);
 switch($action){
     /**
      * Página por defecto (index)
      */
     default:
+
+
         /**
          * Language settings, section
          */

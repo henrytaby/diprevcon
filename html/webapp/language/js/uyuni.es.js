@@ -40,4 +40,5 @@ lngUyuni = {
     saveError7:"La matriz de datos enviada está vacía.",
     saveError8:"El tipo de archivo enviado no está permitido",
     saveError9:"Contenido de archivo NO válido",
+    saveError10:"Ya existe el registro para este dato",
 };

@@ -15,7 +15,12 @@ class UserType extends CoreResources {
 
     public function setUserInfoAditional(){
         global $smarty;
-        $sql = "select * from  ".$this->table_core["persona"]." as am where am.id=".$this->userId;
+
+        $sql = "select o.nombre as oficina, e.nombre as entidad
+        ,am.* from  ".$this->table_core["persona"]." as am 
+        left join ".$this->table_core["oficina"]." as o on o.id= am.oficina_id \n\r
+        left join ".$this->table_core["entidad"]." as e on e.id= am.entidad_id
+        where am.id=".$this->userId;
         $item = $this->dbm->Execute($sql);
         $item = $item->fields;
         $_SESSION["uservAdd"] = $item;

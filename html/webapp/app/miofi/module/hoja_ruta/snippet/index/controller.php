@@ -46,6 +46,7 @@ switch($action) {
         Core::printJson($res);
         break;
     case 'itemUpdate':
+        $objItem->setDerivacionPermiso($item_id);
         /**
          * Smarty Options
          */
@@ -84,5 +85,31 @@ switch($action) {
     case 'delete':
         $res = $objItem->deleteData($id);
         Core::printJson($res);
+        break;
+    case 'get.form.derivar':
+        $smarty->assign("item_id",$item_id);
+        $objItem->setDerivacionPermiso($item_id);
+        /**
+         * Language settings, section
+         */
+        \Core\Core::setLenguage("formItem");
+        $item = $objItem->getItem($id);
+        $smarty->assign("item", $item);
+
+        $objCatalog->conf_catalog_form($item,$item_id);
+        $cataobj = $objCatalog->getCatalogList();
+        $cataobj["persona"] = $objCatalog->getPersona();
+        $cataobj["actividad"] = $objCatalog->getActividad();
+        $smarty->assign("cataobj" , $cataobj);
+
+        $templateModule = $frontend["baseAjax"];
+        $smarty->assign("subpage",$webm["sc_form"]);
+
+        break;
+
+    case 'save':
+        $objItem->setDerivacionPermiso($item_id);
+        $respuesta = $objItem->updateData($_REQUEST["item"],$id,"new");
+        Core::printJson($respuesta);
         break;
 }

@@ -246,6 +246,7 @@ var coreUyuni = function() {
                 showClass: {popup: 'animate__animated animate__wobble'}
             });
         }
+        return res;
     }
 
     return {
@@ -274,7 +275,8 @@ var coreUyuni = function() {
             itemUpdateTabs(id,type,url,subcontrol);
         },
         itemFormShowResponse: function (res,pmodal,tablem) {
-            itemFormShowResponse(res,pmodal,tablem);
+            res =itemFormShowResponse(res,pmodal,tablem);
+            return res;
         }
     };
 
