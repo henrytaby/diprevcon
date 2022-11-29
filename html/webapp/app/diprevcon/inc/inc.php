@@ -20,6 +20,14 @@ $db_table[] = Core::getTableConfig("persona");
 $tableCore  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$tableCore);
 unset($db_table);
 unset($db_prefix);
+
+$db_table = array();
+$dbSchemaName = "public";
+$db_table[] = Core::getTableConfig("entidad");
+$db_table[] = Core::getTableConfig("oficina");
+$tableCore  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$tableCore);
+unset($db_table);
+unset($db_prefix);
 /*/
 print_struc($tableCore);
 exit;
