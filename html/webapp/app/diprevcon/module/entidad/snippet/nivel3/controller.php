@@ -57,7 +57,9 @@ switch($action){
         $smarty->assign("item_id",$item_id);
 
         if($type=="update"){
+
             $item = $objItem->getItem($id2,$item_id);
+
         }else{
             $item["class"] = "fab fa-buffer";
             $item["order"] = "1";
