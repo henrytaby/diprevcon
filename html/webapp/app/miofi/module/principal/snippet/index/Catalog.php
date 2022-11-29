@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\Hoja_ruta\Snippet\Index;
+namespace App\Miofi\Module\Principal\Snippet\Index;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{
@@ -18,9 +18,9 @@ class Catalog extends CoreResources{
         return $dato;
     }
     public function confCatalog(){
-        $this->addCatalogList($this->table["mensaje"]
-            ,"mensaje","","titulo",""
-            ,"titulo","","","");
+//        $this->addCatalogList($this->table["mensaje"]
+//            ,"mensaje","","titulo",""
+//            ,"titulo","","","");
 
     }
 }

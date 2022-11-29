@@ -1,6 +1,6 @@
 <?PHP
 
-namespace App\Diprevcon\Module\Hoja_ruta\Snippet\Index;
+namespace App\Miofi\Module\Principal\Snippet\Index;
 
 use Core\CoreResources;
 
@@ -14,6 +14,34 @@ class Index extends CoreResources
          * We initialize all the libraries and variables for the new class
          */
         $this->appInit();
+    }
+
+    function getStatusHojaRuta(){
+        global $db;
+        $data = [];
+        $sql = 'SELECT ce.nombre AS estado, COUNT(hs.id) AS total
+                FROM (SELECT catalogo.estado.id, catalogo.estado.nombre FROM catalogo.estado) ce
+                LEFT JOIN public.hojaruta_seguimiento hs ON hs.estado_id=ce.id
+                GROUP BY ce.nombre
+                ';
+        $item = $db->Execute($sql);
+        while (!$item->EOF)
+        {
+            $estado= $item->fields["estado"];
+            $total= $item->fields["total"];
+            switch( $estado ){
+                case 'Archivado': $data["archivado"] = $total; break;
+
+                case 'No recibido': $data["norecibido"] = $total; break;
+
+                case 'Recibido/Acción pendiente': $data["recibido_pendiente"] = $total; break;
+
+                case 'Recibido/Derivado': $data["recibido_derivado"] = $total; break;
+            }
+            $item->MoveNext();
+        }
+
+        return $data;
     }
 
     function getItem($idItem)

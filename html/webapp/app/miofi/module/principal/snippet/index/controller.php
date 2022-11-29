@@ -1,6 +1,6 @@
 <?PHP
-use App\Diprevcon\Module\Hoja_ruta\Snippet\Index\Index;
-use App\Diprevcon\Module\Hoja_ruta\Snippet\Index\Catalog;
+use App\Miofi\Module\Principal\Snippet\Index\Index;
+use App\Miofi\Module\Principal\Snippet\Index\Catalog;
 use Core\Core;
 
 
@@ -34,6 +34,9 @@ switch($action) {
 //        print_struc($gridItem);exit;
         $smarty->assign("mensajes", $gridItems);
 //        $smarty->assign("gridItem", $gridItem);
+        $statusHojaRuta = $objItem->getStatusHojaRuta();
+        $smarty->assign("statusHojaRuta", $statusHojaRuta);
+        //print_r($statusHojaRuta);
 
 
         /**
