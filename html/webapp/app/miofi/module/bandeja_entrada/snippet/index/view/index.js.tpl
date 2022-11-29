@@ -10,8 +10,9 @@
             let img;
             jQuery.each( datos, function( i, val ) {
                 console.log(datos);
-                html += `<div class="card card-custom gutter-b"><div class="card-body">`;
+                html += `<div class="card card-custom gutter-b"><div class="card-body p-0">`;
                 html += html_top(val);
+                html += html_per(val);
                 html += html_Bottom(val);
                 html += `</div></div>`
             });
@@ -58,13 +59,16 @@
                     </div>
                     <div class="d-flex align-items-center flex-wrap justify-content-between">
                         <div class="flex-grow-1  text-dark-50 py-2 py-lg-2 mr-5">
-                            ${val.asunto}
-                            <br>
-                            <strong>Procedencia:</strong> ${val.procedencia}
-                            <br>
-                            <strong>Remite:</strong> ${val.destinatario}
-                            <br>
-                            <strong>Observación:</strong><br> ${val.proveido}
+
+<div class="alert alert-custom alert-light-primary fade show mb-5 p-2" role="alert">
+    <div class="alert-text">${val.asunto}</div>
+</div>
+                            <strong>Procedencia:</strong> ${val.procedencia}<br>
+                            <strong>Remite:</strong> ${val.destinatario} <br>
+
+<div class="alert alert-custom alert-light-info fade show mb-5 p-2" role="alert">
+    <div class="alert-text"><strong>Observación/Proveído:</strong> ${val.proveido}</div>
+</div>
                         </div>
                     </div>
                 </div>`;
@@ -72,9 +76,30 @@
             return html;
         };
 
+        var html_per = function (val){
+            let html = '';
+            html += `
+<div class="row">
+<div class="col-lg-6"">
+    <strong>Emisor:</strong> ${val.emisor_nombre}<br>
+    <strong>Emisor Cargo:</strong> ${val.emisor_cargo} <br>
+    <strong>Emisor Oficina:</strong> ${val.emisor_oficina}
+</div>
+<div class="col-lg-6">
+    <strong>Receptor:</strong> ${val.receptor_nombre}<br>
+    <strong>Receptor Cargo:</strong> ${val.receptor_cargo} <br>
+    <strong>Receptor Oficina:</strong> ${val.receptor_oficina}
+</div>
+</div>
+            `;
+            html += '';
+            return html;
+        };
+
+
         var html_Bottom = function(val){
                 let html = "";
-                html +=`<div class="separator separator-solid my-7"></div>
+                html +=`<div class="separator separator-solid my-2"></div>
                         <div class="d-flex align-items-center flex-wrap">`;
                 html += flex_item();
                 html += `<i class="fas fa-calendar-check icon-2x text-muted font-weight-bold"></i></span>
@@ -83,11 +108,11 @@
                 html += flex_item();
                 html += `<i class="fas fa-sun icon-2x text-muted font-weight-bold"></i></span>
                     <div class="d-flex flex-column text-dark-75">`;
-                html += bottom_item("Días desde el Envio","20");
+                html += bottom_item("Días desde el Envio",val.recepcion_dias);
                 html += flex_item();
                 html += `<i class="fas fa-users icon-2x text-muted "></i></span>
                     <div class="d-flex flex-column text-dark-75">`;
-                html += bottom_item("# Destinatarios","20");
+                html += bottom_item("# Destinatarios",val.total_seguimiento);
                 html +='</div></div>';
                 return html;
         };

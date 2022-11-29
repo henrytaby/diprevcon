@@ -1,6 +1,6 @@
 <?PHP
-use App\Miofi\Module\Bandeja_entrada\Snippet\Index\Index;
-use App\Miofi\Module\Bandeja_entrada\Snippet\Index\Catalog;
+use App\Miofi\BandejaEntrada\Index\Index;
+use App\Miofi\BandejaEntrada\Index\Catalog;
 use Core\Core;
 
 $objItem = new Index();

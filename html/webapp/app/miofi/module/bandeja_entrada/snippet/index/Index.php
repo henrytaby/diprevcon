@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Miofi\Module\Bandeja_entrada\Snippet\Index;
+namespace App\Miofi\BandejaEntrada\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {
@@ -52,16 +52,47 @@ class Index extends CoreResources {
          * Result of the query sent
          */
         $result = $this->getGridDatatableSimple($db,$grid,$table, $primaryKey, $extraWhere);
+
         foreach ($result['data'] as $itemId => $valor) {
+
+            if(isset($result['data'][$itemId]['created_at'])) $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
+            if(isset($result['data'][$itemId]['updated_at'])) $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
+
+            if(isset($result['data'][$itemId]['fecha_emision'])) {
+                $result['data'][$itemId]['recepcion_dias'] = $this->getDiasTranscurridos($result['data'][$itemId]['fecha_emision'],true);
+            }
+
+            if(isset($result['data'][$itemId]['total_seguimiento']))   $result['data'][$itemId]['total_seguimiento'] = $this->getSeguimientoTotal($result['data'][$itemId]['hojaruta_id']);
+
             if(isset($result['data'][$itemId]['fecha_emision'])) $result['data'][$itemId]['fecha_emision'] = $this->changeDataFormat($result['data'][$itemId]['fecha_emision'],"d/m/Y");
             if(isset($result['data'][$itemId]['fecha_recepcion'])) $result['data'][$itemId]['fecha_recepcion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_recepcion'],"d/m/Y");
 
-            $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
-            $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
         }
         return $result;
     }
 
+    public function getSeguimientoTotal($id){
+
+        $sql = "select count(*) as total from ".$this->table["hojaruta_seguimiento"]." as hrs where hrs.hojaruta_id =".$id;
+        $item = $this->dbm->Execute($sql)->fields;
+        return $item["total"];
+    }
+
+    public function getDiasTranscurridos($fecha,$modificar = false){
+        $fechaActual = date("Y-m-d");
+        //$hoy = date("Y-m-d H:i:s");
+        if($modificar){
+            $fechaEnvio = explode(" ",$fecha);
+            $fecha = $fechaEnvio[0];
+        }
+
+        $datetime1 = date_create($fecha);
+        $datetime2 = date_create($fechaActual);
+        $contador = date_diff($datetime1, $datetime2);
+        $differenceFormat = '%a';
+        //echo $contador->format($differenceFormat);
+        return $contador->format($differenceFormat);
+    }
     /**
      * Index::deleteData($id)
      *

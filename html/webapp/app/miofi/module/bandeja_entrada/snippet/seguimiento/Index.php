@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Miofi\Module\Bandeja_entrada\Snippet\Seguimiento;
+namespace App\Miofi\BandejaEntrada\Seguimiento;
 use Core\CoreResources;
 class Index extends CoreResources
 {

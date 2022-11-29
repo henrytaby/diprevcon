@@ -1,8 +1,8 @@
 <?PHP
-use App\Miofi\Module\Bandeja_entrada\Snippet\destinatario\Index;
-use App\Miofi\Module\Bandeja_entrada\Snippet\destinatario\Catalog;
+use App\Miofi\BandejaEntrada\destinatario\Index;
+use App\Miofi\BandejaEntrada\destinatario\Catalog;
 use Core\Core;
-use App\MiOfi\Module\Bandeja_entrada\Snippet\Index\Index as indexParent;
+use App\Miofi\BandejaEntrada\Index\Index as indexParent;
 
 $objItem = new Index();
 $objCatalog = new Catalog();

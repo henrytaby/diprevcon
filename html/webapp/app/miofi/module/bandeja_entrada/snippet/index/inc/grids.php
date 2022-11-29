@@ -29,10 +29,19 @@ $grid_table[] = array(
 ,   "field_id"=>"id" //Id de la tabla que hara la relación
 ,   "relationship_id"=>"instruccion_id" //Campo de relación en la tabla principal
 );
+$grid_table[] = array(
+    "table" => $appVars["table"] ["proceso"] // Nombre de la tabla con la que hara la relación
+,    "alias"=> "pro" //Alias de la tabla para el join
+,   "field_id"=>"id" //Id de la tabla que hara la relación
+,   "relationship_id"=>"proceso_id" //Campo de relación en la tabla principal
+);
 
 /**
  * Configuración de los campos que mostraremos en la grilla
  */
+$grid_item[]=array("field" => "hojaruta_id","label"=> $smarty->config_vars["table_fecha_emision"]);
+
+
 $grid_item[]=array( "field" => "asunto", "label"=> $smarty->config_vars["table_asunto"]
 , "table_as"=> "hr", "as" => "asunto");
 
@@ -44,9 +53,21 @@ $grid_item[]=array( "field" => "destinatario", "label"=> $smarty->config_vars["t
 
 $grid_item[]=array("field"=> "nur", "label"=> $smarty->config_vars["table_nur"]);
 
+$grid_item[]=array("field" => "emisor_nombre","label"=> $smarty->config_vars["table_fecha_emision"]);
+$grid_item[]=array("field" => "emisor_cargo","label"=> $smarty->config_vars["table_fecha_emision"]);
+$grid_item[]=array("field" => "emisor_oficina","label"=> $smarty->config_vars["table_fecha_emision"]);
+
+$grid_item[]=array("field" => "receptor_nombre","label"=> $smarty->config_vars["table_fecha_emision"]);
+$grid_item[]=array("field" => "receptor_cargo","label"=> $smarty->config_vars["table_fecha_emision"]);
+$grid_item[]=array("field" => "receptor_oficina","label"=> $smarty->config_vars["table_fecha_emision"]);
+
 
 $grid_item[]=array("field" => "fecha_emision","label"=> $smarty->config_vars["table_fecha_emision"]);
 $grid_item[]=array("field" => "fecha_recepcion","label"=> $smarty->config_vars["table_fecha_recepcion"]);
+$grid_item[]=array("field" => "recepcion_dias","label"=> $smarty->config_vars["table_fecha_recepcion"]);
+
+
+$grid_item[]=array("field" => "estado_id","label"=> $smarty->config_vars["table_estado"]);
 
 $grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_estado"]
 , "table_as"=> "e", "as" => "estado");
@@ -57,8 +78,17 @@ $grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_i
 $grid_item[]=array("field"=> "proveido", "label"=> $smarty->config_vars["table_proveido"]);
 
 $grid_item[]=array("field"=> "urgente", "label"=> $smarty->config_vars["table_urgente"]);
-$grid_item[]=array("field"=> "id", "label"=> $smarty->config_vars["table_id"]);
 
+
+$grid_item[]=array("field" => "proceso_id","label"=> $smarty->config_vars["table_estado"]);
+$grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_estado"]
+, "table_as"=> "pro", "as" => "proceso");
+$grid_item[]=array("field" => "proceso_dias","label"=> $smarty->config_vars["table_estado"]);
+$grid_item[]=array("field" => "proceso_fecha_fin","label"=> $smarty->config_vars["table_estado"]);
+$grid_item[]=array("field" => "proceso_dias_retraso","label"=> $smarty->config_vars["table_estado"]);
+$grid_item[]=array("field" => "proceso_limite","label"=> $smarty->config_vars["table_estado"]);
+
+$grid_item[]=array("field" => "id", "as" =>"total_seguimiento","label"=> $smarty->config_vars["table_estado"]);
 
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
 $grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);

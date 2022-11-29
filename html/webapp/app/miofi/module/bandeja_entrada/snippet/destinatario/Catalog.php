@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Miofi\Module\Bandeja_entrada\Snippet\destinatario;
+namespace App\Miofi\BandejaEntrada\destinatario;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{
