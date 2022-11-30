@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="my-lg-0 my-1">`;
-            html += '<a href="javascript:snippet_list.update(\''+val.actions+'\');" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>';
+            //html += '<a href="javascript:snippet_list.update(\''+val.actions+'\');" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>';
 
 
             html += `<a href="javascript:snippet_list.recepcionar('${val.actions}','${val.nur}');" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Recepcionar</a>
