@@ -9,7 +9,6 @@
             $("#mostrar_bandeja").html(html);
             let img;
             jQuery.each( datos, function( i, val ) {
-                console.log(datos);
                 html += `<div class="card card-custom gutter-b"><div class="card-body p-0">`;
                 html += html_top(val);
                 html += html_per(val);
@@ -53,8 +52,10 @@
                             </div>
                         </div>
                         <div class="my-lg-0 my-1">`;
-            html += '<a href="javascript:snippet_list.update(\''+val.id+'\');" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>';
-            html += `<a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Recepcionar</a>
+            html += '<a href="javascript:snippet_list.update(\''+val.actions+'\');" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>';
+
+
+            html += `<a href="javascript:snippet_list.recepcionar('${val.actions}','${val.nur}');" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Recepcionar</a>
                         </div>
                     </div>
                     <div class="d-flex align-items-center flex-wrap justify-content-between">
@@ -75,7 +76,6 @@
             html += `</div>`;
             return html;
         };
-
         var html_per = function (val){
             let html = '';
             html += `
@@ -95,8 +95,6 @@
             html += '';
             return html;
         };
-
-
         var html_Bottom = function(val){
                 let html = "";
                 html +=`<div class="separator separator-solid my-2"></div>
@@ -116,7 +114,6 @@
                 html +='</div></div>';
                 return html;
         };
-
         var bottom_item = function(label,valor){
             let html =`<span class="font-weight-bolder font-size-sm">${label}</span>
                         <span class="font-weight-bolder font-size-h5">${valor}</span>
@@ -230,9 +227,60 @@
         /**
          * Delete
          */
-        var  item_delete = function(id){
-            var url = urlsys+"/"+id+"/delete";
-            coreUyuni.itemDelete(id,url,table_list);
+        var  item_recepcionar = function(id,nur){
+
+            let html ="Se recepcionara el documento y moverá el documento de la bandeja de entrada a la bandeja de pendiente<br> ";
+            html += "<strong>NUR: "+nur+"</strong><br> ID : "+id+"  ";
+            Swal.fire({
+                title: '¿Esta seguro de recepcionar el documento?',
+                html: html,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "<i class='fas fa-thumbs-up'></i> Si, Recepcionar",
+                cancelButtonText: "<i class='la la-thumbs-down'></i>"+lngUyuni.deleteBtnNo,
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-default"
+                }
+            }).then(function(result) {
+                if (result.value) {
+                    item_recepcionar_accion(id);
+                }
+            });
+
+
+        };
+
+        var item_recepcionar_accion = function(id){
+            var url = urlsys+"/"+id+"/estado";
+            Swal.fire({
+                title: "Recepcionando Documento",
+                html: "Iniciando el proceso de recepción"+cargando_vista,
+                showConfirmButton: false,
+                allowEnterKey: false,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+            });
+
+            $.get( url, {},
+                function(res){
+                    if(res.res == 1){
+                        Swal.close();
+                        Swal.fire({icon: 'success',title: "El documento fue recepcionado",showConfirmButton: false,timer: 1000});
+                        table_list.ajax.reload();
+                    }else{
+                        var msg_error = "No se pudo realizar la recepción del documento";
+                        if (res.msgdb !== undefined){
+                            msg_error += '<div class="alert alert-danger font-size-xs" role="alert">';
+                            msg_error += '<strong>'+lngUyuni.technicalData+': </strong>'+res.msgdb+'</div>';
+                        }
+                        Swal.fire({
+                            icon: "error", title: "No se puede Recepcionar",
+                            html:msg_error, showClass: {popup: 'animate__animated animate__wobble'}
+                        });
+
+                    }
+                },"json");
         };
         /**
          * Inicializar componentes
@@ -258,8 +306,8 @@
             update: function(id,type){
                 item_update(id,type);
             },
-            delete: function(id){
-                item_delete(id);
+            recepcionar: function(id,nur){
+                item_recepcionar(id,nur);
             },
         };
 

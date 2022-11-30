@@ -67,6 +67,8 @@ class Index extends CoreResources {
             if(isset($result['data'][$itemId]['fecha_emision'])) $result['data'][$itemId]['fecha_emision'] = $this->changeDataFormat($result['data'][$itemId]['fecha_emision'],"d/m/Y");
             if(isset($result['data'][$itemId]['fecha_recepcion'])) $result['data'][$itemId]['fecha_recepcion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_recepcion'],"d/m/Y");
 
+            if(isset($result['data'][$itemId]['nur'])) $result['data'][$itemId]['nur'] = htmlspecialchars($result['data'][$itemId]['nur'],ENT_QUOTES );
+
         }
         return $result;
     }
@@ -93,6 +95,11 @@ class Index extends CoreResources {
         //echo $contador->format($differenceFormat);
         return $contador->format($differenceFormat);
     }
+
+    public function sumarDiasFecha($fecha,$dias){
+        $mod_date = strtotime($fecha."+ ".$dias." days");
+        return date("Y-m-d",$mod_date);
+    }
     /**
      * Index::deleteData($id)
      *
@@ -101,9 +108,26 @@ class Index extends CoreResources {
      * @param $id
      * @return mixed
      */
-    function deleteData($id){
-        $field_id="id";
-        $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable]);
+    function recepcionar($id){
+        $item = $this->getItem($id);
+
+        if($item["estado_id"]==1){
+            $rec = array();
+            $rec["fecha_recepcion"]= date("Y-m-d H:i:s");
+            $rec["estado_id"]= 2;
+            $rec["recepcion_dias"] = $this->getDiasTranscurridos($item["fecha_emision"],true);
+            if($item["proceso_limite"]){
+                $rec["proceso_fecha_fin"] = $this->sumarDiasFecha($rec["fecha_recepcion"],$item["proceso_dias"]);
+            }
+            $where = "id=".$id;
+            $resupdate = $this->dbm->AutoExecute($this->table[$this->objTable],$rec,"UPDATE",$where);
+            $res["res"] = 1;
+            $res["msg"] = "Se realizado la recepción";
+        }else{
+            $res = array();
+            $res["res"] = 2;
+            $res["msg"] = "No se puede recepcionar el documento por que se encuentra en otro estado";
+        }
         return $res;
     }
 

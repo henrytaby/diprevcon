@@ -85,8 +85,14 @@ switch($action) {
         $smarty->assign("subpage", $webm["item_index"]);
         $smarty->assign("subpage_js", $webm["item_index_js"]);
         break;
-    case 'delete':
-        $res = $objItem->deleteData($id);
+    case 'estado':
+        $res = $objItem->recepcionar($id);
+        /*
+        $res = array();
+        $res["res"] = 2;
+        $res["id"] = $itemId;
+        */
+
         Core::printJson($res);
         break;
 }
