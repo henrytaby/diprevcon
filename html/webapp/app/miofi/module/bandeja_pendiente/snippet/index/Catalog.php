@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Miofi\Module\Bandeja_pendiente\Snippet\Index;
+namespace App\Miofi\BandejaPendiente\Index;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{

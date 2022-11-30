@@ -9,8 +9,9 @@
             $("#mostrar_bandeja").html(html);
             let img;
             jQuery.each( datos, function( i, val ) {
-                html += `<div class="card card-custom gutter-b"><div class="card-body">`;
+                html += `<div class="card card-custom gutter-b"><div class="card-body p-0">`;
                 html += html_top(val);
+                html += html_per(val);
                 html += html_Bottom(val);
                 html += `</div></div>`
             });
@@ -50,29 +51,53 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="my-lg-0 my-1">
-                            <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Ver</a>
-                            <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Recepcionar</a>
+                        <div class="my-lg-0 my-1">`;
+            html += '<a href="javascript:#" class="btn btn-sm btn-success font-weight-bolder text-uppercase mr-2">Derivar</a>';
+
+
+            html += `<a href="javascript:snippet_list.archivar('${val.actions}','${val.nur}');" class="btn btn-sm btn-warning font-weight-bolder text-uppercase">Archivar</a>
                         </div>
                     </div>
                     <div class="d-flex align-items-center flex-wrap justify-content-between">
                         <div class="flex-grow-1  text-dark-50 py-2 py-lg-2 mr-5">
-                            ${val.asunto}
-                            <br>
-                            <strong>Procedencia:</strong> ${val.procedencia}
-                            <br>
-                            <strong>Remite:</strong> ${val.destinatario}
-                            <br>
-                            <strong>Observación:</strong><br> ${val.proveido}
+
+<div class="alert alert-custom alert-light-primary fade show mb-5 p-2" role="alert">
+    <div class="alert-text">${val.asunto}</div>
+</div>
+                            <strong>Procedencia:</strong> ${val.procedencia}<br>
+                            <strong>Remite:</strong> ${val.destinatario} <br>
+
+<div class="alert alert-custom alert-light-info fade show mb-5 p-2" role="alert">
+    <div class="alert-text"><strong>Observación/Proveído:</strong> ${val.proveido}</div>
+</div>
                         </div>
                     </div>
                 </div>`;
             html += `</div>`;
             return html;
         };
+        var html_per = function (val){
+            let html = '';
+            html += `
+<div class="row">
+<div class="col-lg-6"">
+    <strong>Emisor:</strong> ${val.emisor_nombre}<br>
+    <strong>Emisor Cargo:</strong> ${val.emisor_cargo} <br>
+    <strong>Emisor Oficina:</strong> ${val.emisor_oficina}
+</div>
+<div class="col-lg-6">
+    <strong>Receptor:</strong> ${val.receptor_nombre}<br>
+    <strong>Receptor Cargo:</strong> ${val.receptor_cargo} <br>
+    <strong>Receptor Oficina:</strong> ${val.receptor_oficina}
+</div>
+</div>
+            `;
+            html += '';
+            return html;
+        };
         var html_Bottom = function(val){
             let html = "";
-            html +=`<div class="separator separator-solid my-7"></div>
+            html +=`<div class="separator separator-solid my-2"></div>
                         <div class="d-flex align-items-center flex-wrap">`;
             html += flex_item();
             html += `<i class="fas fa-calendar-check icon-2x text-muted font-weight-bold"></i></span>
@@ -85,19 +110,24 @@
             html += flex_item();
             html += `<i class="fas fa-sun icon-2x text-muted font-weight-bold"></i></span>
                     <div class="d-flex flex-column text-dark-75">`;
-            html += bottom_item("Días hasta Recepción","6");
+            html += bottom_item("Días hasta Recepción",val.recepcion_dias);
             html += flex_item();
             html += `<i class="fas fa-calendar-day icon-2x text-info"></i></span>
                     <div class="d-flex flex-column text-danger">`;
-            html += bottom_item("Días Transcurridos ","20 / 14");
+            if(val.proceso_limite) {
+                html += bottom_item("Días Transcurridos ",val.accion_dias+" / "+val.proceso_dias);
+            }else{
+                html += bottom_item("Días Transcurridos ",val.accion_dias);
+            }
+
+
             html += flex_item();
             html += `<i class="fas fa-users icon-2x text-muted "></i></span>
                     <div class="d-flex flex-column text-dark-75">`;
-            html += bottom_item("# Destinatarios","20");
+            html += bottom_item("# Destinatarios",val.total_seguimiento);
             html +='</div></div>';
             return html;
         };
-
         var bottom_item = function(label,valor){
             let html =`<span class="font-weight-bolder font-size-sm">${label}</span>
                         <span class="font-weight-bolder font-size-h5">${valor}</span>
@@ -105,7 +135,7 @@
                 </div>`;
             return html;
         };
-        var flex_item = function(label,valor){
+        var flex_item = function(){
             let html =`<div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
                     <span class="mr-4">`;
             return html;
@@ -128,6 +158,10 @@
                     show_data_template(settings.json.data);
                     //$('html, body').animate({ scrollTop: 0 }, 'fast');
                 },
+                keys: {
+                    columns: noExport,
+                    clipboard: false,
+                },
                 dom: tableSetting.dom,
                 buttons: [],
                 responsive: true,
@@ -147,15 +181,9 @@
                 },
                 columns: [
                     {/literal}{foreach from=$gridItem item=row key=idx}
-                                           {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.responsive}, responsivePriority: -1{/if}{literal}}{/literal}
+                    {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.responsive}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}{literal}
                 ],
-                /*
-                rowGroup: {
-                    dataSrc: ['parentname','groupname']
-                },
-
-                 */
                 columnDefs: [
                     {
                         targets: -1,
@@ -191,7 +219,6 @@
                             return '<span class="text-primary font-size-xs">' + data+ '</span>';
                         },
                     },
-
                 ],
             });
         };
@@ -199,7 +226,7 @@
         /**
          * New and Update
          */
-        //var btn_update = $('#btn_update');
+            //var btn_update = $('#btn_update');
         var btn_update = $('#btn_new');
         var handle_button_update = function(){
             btn_update.click(function(e){
@@ -214,9 +241,60 @@
         /**
          * Delete
          */
-        var  item_delete = function(id){
-            var url = urlsys+"/"+id+"/delete";
-            coreUyuni.itemDelete(id,url,table_list);
+        var  item_archivar = function(id,nur){
+
+            let html ="Se archivará el documento y moverá el documento de la bandeja de \"Archivados\" <br> ";
+            html += "<strong>NUR: "+nur+"</strong><br> ID : "+id+"  ";
+            Swal.fire({
+                title: '¿Esta seguro de archivar el documento?',
+                html: html,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "<i class='fas fa-thumbs-up'></i> Si, Archivar",
+                cancelButtonText: "<i class='la la-thumbs-down'></i>"+lngUyuni.deleteBtnNo,
+                customClass: {
+                    confirmButton: "btn btn-warning",
+                    cancelButton: "btn btn-default"
+                }
+            }).then(function(result) {
+                if (result.value) {
+                    item_archivar_accion(id);
+                }
+            });
+
+
+        };
+
+        var item_archivar_accion = function(id){
+            var url = urlsys+"/"+id+"/estado";
+            Swal.fire({
+                title: "Recepcionando Documento",
+                html: "Iniciando el proceso de recepción"+cargando_vista,
+                showConfirmButton: false,
+                allowEnterKey: false,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+            });
+
+            $.get( url, {},
+                function(res){
+                    if(res.res == 1){
+                        Swal.close();
+                        Swal.fire({icon: 'success',title: "El documento fue recepcionado",showConfirmButton: false,timer: 1000});
+                        table_list.ajax.reload();
+                    }else{
+                        var msg_error = "No se pudo realizar la recepción del documento";
+                        if (res.msgdb !== undefined){
+                            msg_error += '<div class="alert alert-danger font-size-xs" role="alert">';
+                            msg_error += '<strong>'+lngUyuni.technicalData+': </strong>'+res.msgdb+'</div>';
+                        }
+                        Swal.fire({
+                            icon: "error", title: "No se puede Archivar",
+                            html:msg_error, showClass: {popup: 'animate__animated animate__wobble'}
+                        });
+
+                    }
+                },"json");
         };
         /**
          * Inicializar componentes
@@ -242,8 +320,8 @@
             update: function(id,type){
                 item_update(id,type);
             },
-            delete: function(id){
-                item_delete(id);
+            archivar: function(id,nur){
+                item_archivar(id,nur);
             },
         };
 

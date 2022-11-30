@@ -90,6 +90,9 @@ $grid_item[]=array("field" => "proceso_limite","label"=> $smarty->config_vars["t
 
 $grid_item[]=array("field" => "id", "as" =>"total_seguimiento","label"=> $smarty->config_vars["table_estado"]);
 
+$grid_item[]=array("field" => "accion_dias", "label"=> $smarty->config_vars["table_estado"]);
+$grid_item[]=array("field" => "accion_fecha", "label"=> $smarty->config_vars["table_estado"]);
+
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
 $grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);
 

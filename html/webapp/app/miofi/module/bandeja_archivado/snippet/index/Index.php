@@ -31,8 +31,6 @@ class Index extends CoreResources {
                   '.$sqlGroup;
             $info = $this->dbm->Execute($sql);
             $info = $info->fields;
-
-
         }
         return $info;
     }
@@ -54,16 +52,54 @@ class Index extends CoreResources {
          * Result of the query sent
          */
         $result = $this->getGridDatatableSimple($db,$grid,$table, $primaryKey, $extraWhere);
+
         foreach ($result['data'] as $itemId => $valor) {
+
+            if(isset($result['data'][$itemId]['created_at'])) $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
+            if(isset($result['data'][$itemId]['updated_at'])) $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
+            /*
+            if(isset($result['data'][$itemId]['fecha_recepcion'])) {
+                $result['data'][$itemId]['accion_dias'] = $this->getDiasTranscurridos($result['data'][$itemId]['fecha_recepcion'],true);
+            }
+            */
+            if(isset($result['data'][$itemId]['total_seguimiento']))   $result['data'][$itemId]['total_seguimiento'] = $this->getSeguimientoTotal($result['data'][$itemId]['hojaruta_id']);
+
             if(isset($result['data'][$itemId]['fecha_emision'])) $result['data'][$itemId]['fecha_emision'] = $this->changeDataFormat($result['data'][$itemId]['fecha_emision'],"d/m/Y");
             if(isset($result['data'][$itemId]['fecha_recepcion'])) $result['data'][$itemId]['fecha_recepcion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_recepcion'],"d/m/Y");
 
-            $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
-            $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
+            if(isset($result['data'][$itemId]['nur'])) $result['data'][$itemId]['nur'] = htmlspecialchars($result['data'][$itemId]['nur'],ENT_QUOTES );
+
         }
         return $result;
     }
 
+    public function getSeguimientoTotal($id){
+
+        $sql = "select count(*) as total from ".$this->table["hojaruta_seguimiento"]." as hrs where hrs.hojaruta_id =".$id;
+        $item = $this->dbm->Execute($sql)->fields;
+        return $item["total"];
+    }
+
+    public function getDiasTranscurridos($fecha,$modificar = false){
+        $fechaActual = date("Y-m-d");
+        //$hoy = date("Y-m-d H:i:s");
+        if($modificar){
+            $fechaEnvio = explode(" ",$fecha);
+            $fecha = $fechaEnvio[0];
+        }
+
+        $datetime1 = date_create($fecha);
+        $datetime2 = date_create($fechaActual);
+        $contador = date_diff($datetime1, $datetime2);
+        $differenceFormat = '%a';
+        //echo $contador->format($differenceFormat);
+        return $contador->format($differenceFormat);
+    }
+
+    public function sumarDiasFecha($fecha,$dias){
+        $mod_date = strtotime($fecha."+ ".$dias." days");
+        return date("Y-m-d",$mod_date);
+    }
     /**
      * Index::deleteData($id)
      *
@@ -72,9 +108,24 @@ class Index extends CoreResources {
      * @param $id
      * @return mixed
      */
-    function deleteData($id){
-        $field_id="id";
-        $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable]);
+    function estado($id){
+        $item = $this->getItem($id);
+
+        if($item["estado_id"]==2){
+            $rec = array();
+            $rec["accion_fecha"]= date("Y-m-d H:i:s");
+            $rec["estado_id"]= 4;
+            $rec["accion_dias"] = $this->getDiasTranscurridos($item["fecha_recepcion"],true);
+            $where = "id=".$id;
+            $resupdate = $this->dbm->AutoExecute($this->table[$this->objTable],$rec,"UPDATE",$where);
+
+            $res["res"] = 1;
+            $res["msg"] = "Se ha realizado el archivo del documento";
+        }else{
+            $res = array();
+            $res["res"] = 2;
+            $res["msg"] = "No se puede archivar el documento por que se encuentra en otro estado";
+        }
         return $res;
     }
 
