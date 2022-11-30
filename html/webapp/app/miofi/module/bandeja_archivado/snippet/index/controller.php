@@ -1,6 +1,6 @@
 <?PHP
-use App\Miofi\Module\Bandeja_archivado\Snippet\Index\Index;
-use App\Miofi\Module\Bandeja_archivado\Snippet\Index\Catalog;
+use App\Miofi\BandejaArchivado\Index\Index;
+use App\Miofi\BandejaArchivado\Index\Catalog;
 use Core\Core;
 
 

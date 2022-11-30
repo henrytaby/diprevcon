@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Miofi\Module\Bandeja_archivado\Snippet\Index;
+namespace App\Miofi\BandejaArchivado\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {
