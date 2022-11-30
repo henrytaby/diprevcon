@@ -93,8 +93,8 @@ switch($action) {
          */
         \Core\Core::setLenguage("formItem");
 
-        $item = $objItem->getItem($id);
-        $smarty->assign("item", $item);
+        //$item = $objItem->getItem($id);
+        //$smarty->assign("item", $item);
 
         $objCatalog->conf_catalog_form($item,$item_id);
         $cataobj = $objCatalog->getCatalogList();

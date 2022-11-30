@@ -18,10 +18,12 @@ class Index extends CoreResources
 
     function getStatusHojaRuta(){
         global $db;
-        $data = [];
+        $data = array();
+
         $sql = 'SELECT ce.nombre AS estado, COUNT(hs.id) AS total
                 FROM (SELECT catalogo.estado.id, catalogo.estado.nombre FROM catalogo.estado) ce
                 LEFT JOIN public.hojaruta_seguimiento hs ON hs.estado_id=ce.id
+                where hs.derivado_a_user_id='.$this->userId.'
                 GROUP BY ce.nombre
                 ';
         $item = $db->Execute($sql);
@@ -31,16 +33,17 @@ class Index extends CoreResources
             $total= $item->fields["total"];
             switch( $estado ){
                 case 'Archivado': $data["archivado"] = $total; break;
-
                 case 'No recibido': $data["norecibido"] = $total; break;
-
                 case 'Recibido/Acción pendiente': $data["recibido_pendiente"] = $total; break;
-
                 case 'Recibido/Derivado': $data["recibido_derivado"] = $total; break;
             }
             $item->MoveNext();
         }
 
+        if($data["archivado"]=="")$data["archivado"]=0;
+        if($data["norecibido"]=="")$data["norecibido"]=0;
+        if($data["recibido_pendiente"]=="")$data["recibido_pendiente"]=0;
+        if($data["recibido_derivado"]=="")$data["recibido_derivado"]=0;
         return $data;
     }
 
