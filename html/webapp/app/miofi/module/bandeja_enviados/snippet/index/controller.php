@@ -1,6 +1,6 @@
 <?PHP
-use App\Miofi\Module\Bandeja_enviados\Snippet\Index\Index;
-use App\Miofi\Module\Bandeja_enviados\Snippet\Index\Catalog;
+use App\Miofi\BandejaEnviados\Index\Index;
+use App\Miofi\BandejaEnviados\Index\Catalog;
 use Core\Core;
 
 
@@ -25,7 +25,7 @@ switch($action) {
         $objCatalog->confCatalog();
         $cataobj= $objCatalog->getCatalogList();
         $cataobj["activo"] = $catalogo=$objCatalog->getActiveOption();
-        //print_struc($cataobj);exit;
+//        d($cataobj);exit;
         $smarty->assign("cataobj", $cataobj);
         /**
          * Grid configuration
@@ -72,7 +72,7 @@ switch($action) {
          */
         $menu_tab = $objItem->getTabItem($type,"index");
         $smarty->assign("menu_tab", $menu_tab);
-        $smarty->assign("menu_tab_active", "general");
+        $smarty->assign("menu_tab_active", "seguimiento");
         /**
          * GetItem
          */
@@ -86,8 +86,8 @@ switch($action) {
         $smarty->assign("subpage", $webm["item_index"]);
         $smarty->assign("subpage_js", $webm["item_index_js"]);
         break;
-    case 'delete':
-        $res = $objItem->deleteData($id);
+    case 'estado':
+        $res = $objItem->estado($id);
         Core::printJson($res);
         break;
 }
