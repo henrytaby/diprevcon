@@ -52,8 +52,7 @@
                             </div>
                         </div>
                         <div class="my-lg-0 my-1">`;
-            html += '<a href="javascript:#" class="btn btn-sm btn-success font-weight-bolder text-uppercase mr-2">Derivar</a>';
-
+            html += `<a href="javascript:snippet_list.derivar('${val.actions}');" class="btn btn-sm btn-success font-weight-bolder text-uppercase mr-2">Derivar</a>`;
 
             html += `<a href="javascript:snippet_list.archivar('${val.actions}','${val.nur}');" class="btn btn-sm btn-warning font-weight-bolder text-uppercase">Archivar</a>
                         </div>
@@ -235,8 +234,16 @@
             });
         };
 
-        var item_update = function(id,type){
-            coreUyuni.itemUpdateIndex(id,type,urlsys);
+        var derivar = function(id){
+            //alert("hola mundo "+id);
+            var subcontrol = "index";
+            var load_url = urlsys+"/"+id+"/get.form.derivar/";
+            let cargando = lngUyuni.loading+'...'+cargando_vista;
+            $("#modal-content_"+subcontrol).html(cargando);
+            $("#form_modal_"+subcontrol).modal("show");
+            $.get(load_url, function(data) {
+                $("#modal-content_"+subcontrol).html(data);
+            });
         };
         /**
          * Delete
@@ -317,8 +324,8 @@
                 handle_components();
                 handle_filtro();
             },
-            update: function(id,type){
-                item_update(id,type);
+            derivar: function(id){
+                derivar(id);
             },
             archivar: function(id,nur){
                 item_archivar(id,nur);

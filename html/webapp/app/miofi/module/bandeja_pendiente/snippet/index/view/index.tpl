@@ -18,3 +18,16 @@
         </div>
     </div>
 </div>
+
+
+<!--begin::Modal-->
+<div class="modal fade" id="form_modal_{$subcontrol}"
+     data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="staticBackdrop" aria-hidden="true"
+>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content modal-lg" id="modal-content_{$subcontrol}">
+        </div>
+    </div>
+</div>
+<!--end::Modal-->

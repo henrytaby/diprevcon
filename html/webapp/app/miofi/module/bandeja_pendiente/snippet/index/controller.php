@@ -21,11 +21,8 @@ switch($action) {
         /**
          * catalog configuration
          */
-
         $objCatalog->confCatalog();
         $cataobj= $objCatalog->getCatalogList();
-        $cataobj["activo"] = $catalogo=$objCatalog->getActiveOption();
-//        d($cataobj);exit;
         $smarty->assign("cataobj", $cataobj);
         /**
          * Grid configuration
@@ -44,12 +41,10 @@ switch($action) {
      * Creación de JSON
      */
     case 'list':
-
         //$datatable_debug = true;
         $res = $objItem->getItemDatatableRows();
         Core::printJson($res);
         break;
-
     case 'itemUpdate':
         /**
          * Smarty Options
@@ -89,5 +84,33 @@ switch($action) {
     case 'estado':
         $res = $objItem->estado($id);
         Core::printJson($res);
+        break;
+
+    case 'get.form.derivar':
+        $smarty->assign("item_id",$item_id);
+        /**
+         * Language settings, section
+         */
+        \Core\Core::setLenguage("formItem");
+
+        $item = $objItem->getItem($id);
+        $smarty->assign("item", $item);
+
+        $objCatalog->conf_catalog_form($item,$item_id);
+        $cataobj = $objCatalog->getCatalogList();
+        $cataobj["persona"] = $objCatalog->getPersona();
+        $cataobj["actividad"] = $objCatalog->getActividad();
+        $smarty->assign("cataobj" , $cataobj);
+
+        //print_struc($cataobj);exit;
+
+        $templateModule = $frontend["baseAjax"];
+        $smarty->assign("subpage",$webm["sc_form"]);
+
+        break;
+
+    case 'save':
+        $respuesta = $objItem->updateData($_REQUEST["item"],$id,"new");
+        Core::printJson($respuesta);
         break;
 }

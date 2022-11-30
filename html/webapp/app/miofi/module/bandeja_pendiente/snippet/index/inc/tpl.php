@@ -11,4 +11,5 @@ $webm["index_js"] = "index.js.tpl";
 $template_folder = "item/";
 $webm["item_index"] = $template_folder."index.tpl";
 $webm["item_index_js"] = $template_folder."index.js.tpl";
+$webm["sc_form"] = $template_folder."derivar/form.tpl";
 

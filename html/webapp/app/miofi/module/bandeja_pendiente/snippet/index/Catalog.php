@@ -28,4 +28,43 @@ class Catalog extends CoreResources{
             ,"nombre","","","");
 
     }
+
+
+
+    public function conf_catalog_form(){
+
+        $this->addCatalogList($this->table["instruccion"]
+            ,"instruccion","","nombre",""
+            ,"nombre","","","");
+    }
+
+    public function getPersona(){
+        $sql = "select u.id
+            , o.nombre as oficina
+            ,u.name, u.last_name
+            , p.cargo, p.jefe, p.oficina_id, p.entidad_id
+            from core.user as u 
+            left join personal.persona as p on p.id = u.id 
+            left join public.oficina as o on o.id = p.oficina_id
+            where u.active = true
+            and p.jefe = true
+            and p.entidad_id=".$_SESSION["uservAdd"]["entidad_id"];
+        $item = $this->dbm->Execute($sql)->GetRows();
+        $res = array();
+        foreach ($item as $row){
+            $res[$row["id"]] = "Of: ".$row["oficina"]." | ".$row["name"]." ".$row["last_name"]." - ".$row["cargo"];
+        }
+        return $res;
+    }
+
+    public function getActividad(){
+        $sql = "select * from proceso as p  where p.active=true;";
+        $item = $this->dbm->Execute($sql)->GetRows();
+        $res = array();
+        foreach ($item as $row){
+            $res[$row["id"]] = $row["nombre"];
+            if($row["limite"] == true) $res[$row["id"]] .= " | Límite:  ".$row["dias"]." Dias ";
+        }
+        return $res;
+    }
 }
