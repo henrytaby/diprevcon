@@ -1,6 +1,5 @@
 {literal}
 <script>
-
     var table_list;
     var snippet_list = function() {
         "use strict";

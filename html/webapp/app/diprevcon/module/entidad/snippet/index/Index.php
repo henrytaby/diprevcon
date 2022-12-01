@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\Entidad\Snippet\Index;
+namespace App\Diprevcon\Entidad\Index;
 use Core\CoreResources;
 
 class         //print_struc($cataobj);exit;

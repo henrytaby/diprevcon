@@ -1,9 +1,9 @@
 <?PHP
-use App\Diprevcon\Module\Entidad\Snippet\Nivel1\Index;
-use App\Diprevcon\Module\Entidad\Snippet\Nivel1\Catalog;
+use App\Diprevcon\Entidad\Nivel1\Index;
+use App\Diprevcon\Entidad\Nivel1\Catalog;
 use Core\Core;
 
-use App\Diprevcon\Module\Entidad\Snippet\Index\Index as indexParent;
+use App\Diprevcon\Entidad\Index\Index as indexParent;
 $objItem = new Index();
 $objCatalog = new Catalog();
 $objItemParent = new indexParent();

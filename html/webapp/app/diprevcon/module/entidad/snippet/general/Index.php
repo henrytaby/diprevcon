@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\Entidad\Snippet\general;
+namespace App\Diprevcon\Entidad\General;
 use Core\CoreResources;
 
 class Index extends CoreResources

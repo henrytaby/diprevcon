@@ -37,28 +37,6 @@
                 </div>
             </div>
         </div>
-
-        {*
-        <div class="flex-md-row-auto w-md-275px w-xl-325px ml-md-6 ml-lg-8">
-
-            <div class="card card-custom bgi-no-repeat gutter-b " style="height: 140px; background-color: #663259;
-                        background-position: calc(100% + 0.5rem) 100%; background-size: 100% auto;
-                        background-image: url(/themes/metro72/assets/media/svg/patterns/taieri.svg)">
-                <!--begin::Body-->
-                <div class="card-body d-flex align-items-center pt-2 pb-2">
-                    <div>
-                        <h3 class="text-white font-weight-bolder line-height-lg mb-5">{#title#}</h3>
-                        <a href="{$path_url}" class="btn btn-primary  ">
-                            <i class="ki ki-double-arrow-back"></i> {#glBtnBack#}
-                        </a>
-                    </div>
-                </div>
-                <!--end::Body-->
-            </div>
-            {if $type !="new"}{/if}
-
-        </div>
-    *}
     </div>
 
 {else}
