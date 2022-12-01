@@ -33,7 +33,7 @@
 
         <!--begin::Toolbar-->
         <div class="d-flex align-items-center">
-            <a href="{$path_url}" class="btn btn-primary d-none btn-sm" id="btn_back"><i class="ki ki-double-arrow-back"></i>{#glBtnBack#}</a>
+            <a href="{$path_url}" class="btn btn-primary d-none btn-sm" id="btn_back"><i class="ki ki-double-arrow-back"></i>{#glBtnBackToList#}</a>
             <a href="#"           class="btn btn-success d-none btn-sm" id="btn_new" rel="new"><i class="fa fa-plus"></i>{#btnNew#}</a>
         </div>
         <!--end::Toolbar-->

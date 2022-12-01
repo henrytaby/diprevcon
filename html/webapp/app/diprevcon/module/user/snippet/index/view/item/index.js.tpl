@@ -13,6 +13,7 @@
     }();
 
     jQuery(document).ready(function() {
+        $('#btn_back').removeClass('d-none');
         snippet_tab_item.init();
         $('#{/literal}{$menu_tab_active}{literal}_tab').trigger('click');
     });
