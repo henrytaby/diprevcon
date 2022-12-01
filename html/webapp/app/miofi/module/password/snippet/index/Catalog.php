@@ -1,6 +1,7 @@
 <?PHP
 namespace App\Miofi\Password\Index;
 use Core\CoreResources;
+
 class Catalog extends CoreResources{
     function __construct(){
         /**
@@ -15,5 +16,11 @@ class Catalog extends CoreResources{
         $dato["1"] = $smarty->config_vars["glOptActive"];
         $dato["0"] = $smarty->config_vars["glOptInactive"];
         return $dato;
+    }
+    public function confCatalog(){
+//        $this->addCatalogList($this->table["mensaje"]
+//            ,"mensaje","","titulo",""
+//            ,"titulo","","","");
+
     }
 }

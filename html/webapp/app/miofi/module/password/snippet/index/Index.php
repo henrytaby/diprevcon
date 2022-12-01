@@ -4,6 +4,7 @@ use Core\CoreResources;
 class Index extends CoreResources
 {
     var $objTable = "user";
+
     function __construct()
     {
         /**
@@ -11,6 +12,7 @@ class Index extends CoreResources
          */
         $this->appInit();
     }
+
     function getItem($idItem){
 
         $info = '';
@@ -47,7 +49,7 @@ class Index extends CoreResources
          * preprocesamos los datos
          */
         $respuesta_procesa = $this->processData($form,$rec,$accion);
-
+        //print_struc($respuesta_procesa);exit();
         /*
          * Procesamiento de verificacion
         */
@@ -74,8 +76,6 @@ class Index extends CoreResources
          * hacemos el cambio de la base de datos a utilizar en $this->dbm para usar la conexion $db
          */
         if($verifica){
-            //$this->dbm = $db;
-            //$res = $this->item_update_sbm($itemId,$respuesta_procesa,$this->tabla_core["usuario"],$accion,$campo_id);
             $res = $this->updateItem($itemId, $respuesta_procesa, $this->table[$this->objTable], $accion, $field_id);
             $res["accion"] = $accion;
         }else{
@@ -95,20 +95,14 @@ class Index extends CoreResources
                  * Additional processes when saving the data
                  */
                 if ($action=="new" or $rec["password"]!= ""){
-                    //$dataResult["active"] = 1;
                     $dataResult["password"] = md5(trim($dataResult["password"]));
                 }else{
                     unset($dataResult["password"]);
-                    if($rec["type"] != "3"){
-                        $dataResult["distribuidor_id"] = NULL;
-                    }
                 }
 
                 break;
         }
         return $dataResult;
     }
-
-
 
 }

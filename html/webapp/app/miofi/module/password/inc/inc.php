@@ -11,7 +11,7 @@ use Core\Core;
 /**
  * Verificamos y/o Creamos la carpeta padre
  */
-$appVars["folderParent"] = "diprevcon";
+$appVars["folderParent"] = "miofi";
 $appVars["directory"] = $_ENV['DATA_FILE'].$appVars["folderParent"]."/";
 Core::createDirectory($appVars["directory"]);
 /**
