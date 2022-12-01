@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Diprevcon\Module\Mensaje\Snippet\Index;
+namespace App\Diprevcon\Mensaje\Index;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{

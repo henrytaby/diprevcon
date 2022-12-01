@@ -1,10 +1,6 @@
 <?PHP
-
-//namespace App\Diprevcon\Module\Mensaje\Snippet\Index;
-
-//use App\Diprevcon\Module\Mensaje\Snippet\general\Index;
-use App\Diprevcon\Module\Mensaje\Snippet\Index\Index;
-use App\Diprevcon\Module\Mensaje\Snippet\Index\Catalog;
+use App\Diprevcon\Mensaje\Index\Index;
+use App\Diprevcon\Mensaje\Index\Catalog;
 use Core\Core;
 
 
