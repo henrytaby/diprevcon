@@ -1,6 +1,5 @@
 {literal}
 <script>
-    var id;
     var snippet_general_form = function(){
         "use strict";
         /**
@@ -43,16 +42,12 @@
             formv = FormValidation.formValidation(
                 document.getElementById('general_form'),
                 {
-                    fields: {
-                        "item[type]": {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Seleccione una opción',
-                                },
-                            },
-                        },
-                    },
-
+                    plugins: {
+                        declarative: new FormValidation.plugins.Declarative({html5Input: true,}),
+                        trigger: new FormValidation.plugins.Trigger(),
+                        bootstrap: new FormValidation.plugins.Bootstrap(),
+                        submitButton: new FormValidation.plugins.SubmitButton(),
+                    }
                 }
             );
         };
@@ -85,21 +80,9 @@
         };
 
         var handle_tipo_select = function(){
-            $('#type').on('change',function(){
-                handle_tipo();
-            });
-        };
+            $('#tipo_select').on('change',function(){
 
-        var distribuidor_div= $('#distribuidor_div');
-        var handle_tipo = function(){
-            id = $('#type').val();
-            id = id==null? '': id.toString();
-            distribuidor_div.addClass('d-none');
-            switch (id){
-                case '3':
-                    distribuidor_div.removeClass('d-none');
-                    break;
-            }
+            });
         };
 
         return {

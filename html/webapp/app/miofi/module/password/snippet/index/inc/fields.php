@@ -13,6 +13,9 @@ $fields = array();
  */
 $field_item = array();
 $field_item["password"]=array("type"=>"text");
+$field_item["password1"]=array("type"=>"text");
+$field_item["password2"]=array("type"=>"text");
+$field_item["password3"]=array("type"=>"text");
 
 $fields["module"]= $field_item;
 unset($field_item);

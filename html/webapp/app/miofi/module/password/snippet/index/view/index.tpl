@@ -1,4 +1,3 @@
-{include file="index.css.tpl"}
 <div class="d-flex flex-row">
     <!--begin::Aside-->
     <div class="flex-row-auto offcanvas-mobile w-250px w-xxl-350px" id="kt_profile_aside">
@@ -28,7 +27,7 @@
                     </div>
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <span class="font-weight-bold mr-2">Email:</span>
-                        <a href="#" class="text-muted text-hover-primary">james@diprevcon.com</a>
+                        <a href="#" class="text-muted text-hover-primary">{$userInfo.email}</a>
                     </div>
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <span class="font-weight-bold mr-2">Teléfono:</span>
@@ -177,6 +176,3 @@
     </div>
     <!--end::Content-->
 </div>
-
-
-{include file="index.js.tpl"}
