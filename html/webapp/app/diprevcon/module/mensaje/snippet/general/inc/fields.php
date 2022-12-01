@@ -15,8 +15,8 @@ $field_item = array();
 //*******datos a registrar de mensajes globales
 $field_item["titulo"]=array("type"=>"text");
 $field_item["mensaje"]=array("type"=>"text");
-$field_item["fecha_inicio"]=array("type"=>"date");
-$field_item["fecha_fin"]=array("type"=>"date");
+$field_item["fecha_inicio"]=array("type"=>"date_01");
+$field_item["fecha_fin"]=array("type"=>"date_01");
 $field_item["active"]=array("type"=>"checkbox_02");
 
 $fields["module"]= $field_item;
