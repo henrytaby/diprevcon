@@ -45,7 +45,8 @@ class Index extends CoreResources {
         /**
          * Additional configuration
          */
-        $extraWhere = "i.estado_id=3 and i.derivado_a_user_id=".$this->userId;
+        //$extraWhere = "i.estado_id=3 and i.derivado_por_user_id=".$this->userId;
+        $extraWhere = " i.derivado_por_user_id=".$this->userId;
         $groupBy = "";
         $having = "";
         /**
@@ -68,7 +69,13 @@ class Index extends CoreResources {
             if(isset($result['data'][$itemId]['fecha_recepcion'])) $result['data'][$itemId]['fecha_recepcion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_recepcion'],"d/m/Y");
 
             if(isset($result['data'][$itemId]['nur'])) $result['data'][$itemId]['nur'] = htmlspecialchars($result['data'][$itemId]['nur'],ENT_QUOTES );
-
+            //$result['data'][$itemId]['accion_dias']=0;
+            /*
+            if(isset($result['data'][$itemId]['accion_dias'])){
+                $result['data'][$itemId]['accion_dias']=0;
+                //if($result['data'][$itemId]['accion_dias']=="") $result['data'][$itemId]['accion_dias']=0;
+            }
+            */
         }
         return $result;
     }
