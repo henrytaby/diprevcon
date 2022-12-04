@@ -42,6 +42,7 @@ class Index extends CoreResources
         //print_struc($rec);exit;
         $form="module";
         $itemData  = $this->processData($form,$rec,$action);
+        //print_struc($itemData);exit;
         /**
          * Save processed data
          */
