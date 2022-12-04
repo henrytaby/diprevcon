@@ -67,7 +67,7 @@ switch($action){
         }
         $smarty->assign("item",$item);
 
-        $objCatalog->conf_catalog_form();
+        $objCatalog->conf_catalog_form($item_id);
         $cataobj = $objCatalog->getCatalogList();
         $smarty->assign("cataobj",$cataobj);
 

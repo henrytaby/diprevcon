@@ -27,9 +27,9 @@ class Index extends CoreResources
          */
         $extraWhere = "i.entidad_id='".$item_id."' and i.parent in (
                                                     select o2.id from oficina as o2
-                                                    where o2.entidad_id=1
+                                                    where o2.entidad_id= '".$item_id."'
                                                     and o2.parent in (select o1.id from oficina as o1
-                                                    where o1.entidad_id=1
+                                                    where o1.entidad_id= '".$item_id."'
                                                     and o1.parent=0))" ;
         $groupBy = "";
         $having = "";

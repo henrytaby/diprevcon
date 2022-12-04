@@ -18,9 +18,9 @@ class Catalog extends CoreResources{
         return $dato;
     }
 
-    public function conf_catalog_form(){
+    public function conf_catalog_form($id){
        // $this->dbm->debug = true;
-        $where = "parent = 0 ";
+        $where = "parent = 0  and entidad_id='".$id."' ";
         $this->addCatalogList($this->table["oficina"],"oficina","","nombre","","", $where,"","");
         //$this->addCatalogList($this->table["modulo"],"modulo","","titulo","","itemid","","");
     }
