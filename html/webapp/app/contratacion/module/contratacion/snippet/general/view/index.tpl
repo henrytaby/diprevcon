@@ -158,6 +158,7 @@
         </div>
         <div class="card-body  pt-1 p   b-0 proyecto" >
             <div class="form-group row  pt-0 pb-0 mb-0">
+                {*
                 <div class="col-lg-4">
                     <label>{#field_proponente#}: </label>
                     <div class="input-group">
@@ -171,7 +172,9 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_proponente#}</span>
                 </div>
-                <div class="col-lg-8">
+                *}
+
+                <div class="col-lg-12">
                     <label>{#field_nombre_proponente#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -217,7 +220,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[plazo]" value="{$item.plazo|escape:"html"}"
-                               minlength="3"
+                               minlength="1"
                                data-fv-string-length___message="{#field_length_plazo#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-business-time"></i></span></div>
