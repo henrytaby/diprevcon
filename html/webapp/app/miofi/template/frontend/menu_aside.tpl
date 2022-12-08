@@ -23,7 +23,7 @@
         </li>
 
         {foreach from=$menu_modulo_principal item=row key=idx}
-
+            {if $row.id neq 19 or $uservAdd.ingreso_hoja }
             <li class="menu-item menu-item-submenu {if $miga.appGroupData.id eq $row.id }menu-item-open menu-item-here{/if}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-icon {$row.class}"></i>
@@ -58,6 +58,7 @@
                     </ul>
                 </div>
             </li>
+            {/if}
         {/foreach}
     </ul>
     <!--end::Menu Nav-->
