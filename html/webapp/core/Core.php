@@ -175,7 +175,7 @@ class Core{
         $menu = array();
         foreach ($appGroup as $row){
 
-            if($_SESSION["userv"]["type"]==0 || $_SESSION["userv"]["type"]==1)
+            if( isset($_SESSION["userv"]["type"])  && ($_SESSION["userv"]["type"]==0 || $_SESSION["userv"]["type"]==1) )
             {
                 $where = [
                     ['app_id', '=', $appData["id"]],
@@ -227,7 +227,7 @@ class Core{
         /**
          * Sacamos los datos de la base de datos
          */
-        if($_SESSION["userv"]["id"]>0){
+        if(isset($_SESSION["userv"]["id"]) && $_SESSION["userv"]["id"]>0){
             $_SESSION["userv"] = Core::getUserInfo($_SESSION["userv"]["id"]);
 
             if(!isset($_SESSION["userv"]["id"]) || $_SESSION["userv"]["id"]==''){

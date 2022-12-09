@@ -39,7 +39,7 @@ exit;
  */
 
 
-if($_SESSION["userv"]["type"]==3){
+if(isset($_SESSION["userv"]["type"]) && $_SESSION["userv"]["type"]==3){
     $action_path = APP_PATH."./../diprevcon/inc/UserType.php";
     include_once($action_path);
     $userType = new UserType;
