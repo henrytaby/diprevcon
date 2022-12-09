@@ -188,7 +188,7 @@ class Core{
                     ['core.app_module.app_id', '=', $appData["id"]]
                     ,  ['core.app_module.app_group_id', '=', $row->id]
                     ,  ['core.app_module.active', '=', 'TRUE']
-                    ,  ['core.user_module.user_id', '=', $_SESSION["userv"]["id"]??""]
+                    ,  ['core.user_module.user_id', '=', ($_SESSION["userv"]["id"]??0)]
                 ];
                 $appModule = AppModule::select('core.app_module.id'
                     ,'core.app_module.app_id'
