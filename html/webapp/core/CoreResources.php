@@ -268,7 +268,7 @@ class CoreResources
             require("./core/lib/datatable/ssp.seth.class.php");
         }
 
-        if(!is_array($_REQUEST['columns'])) $_REQUEST['columns'] = array();
+        if(!isset($_REQUEST['columns']) || !is_array($_REQUEST['columns'])) $_REQUEST['columns'] = array();
 
         $resultado = SSP::simple( $_REQUEST, $sql_details, $table, $primaryKey, $col, $joinQuery, $extraWhere, $groupBy, $having );
         return $resultado;
