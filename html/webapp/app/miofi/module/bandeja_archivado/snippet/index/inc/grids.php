@@ -56,7 +56,7 @@ $grid_item[]=array( "field" => "destinatario", "label"=> $smarty->config_vars["t
 $grid_item[]=array( "field" => "nur", "label"=> $smarty->config_vars["table_nur"]
 , "table_as"=> "hr", "as" => "nur");
 
-$grid_item[]=array( "field" => "fecha", "label"=> $smarty->config_vars["table_fecha"]
+$grid_item[]=array( "field" => "fecha", "label"=> $smarty->config_vars["table_default"]
 , "table_as"=> "hr", "as" => "fecha");
 
 $grid_item[]=array( "field" => "hora", "label"=> $smarty->config_vars["table_default"]
