@@ -61,6 +61,8 @@ class Core{
             }
         }
 
+        $ruta[3] = $ruta[3] ?? "";
+
         if( isset($ruta[3]) || $ruta[3] !="" ){
             $ruta_accion =$ruta[3];
             $ruta_id =$ruta[3];
