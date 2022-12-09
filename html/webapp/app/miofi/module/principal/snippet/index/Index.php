@@ -40,11 +40,11 @@ class Index extends CoreResources
         $item =  $item->fields;
         $data["recibido_derivado"] = $item["total"];
 
-
-        if($data["archivado"]=="")$data["archivado"]=0;
-        if($data["norecibido"]=="")$data["norecibido"]=0;
-        if($data["recibido_pendiente"]=="")$data["recibido_pendiente"]=0;
-        if($data["recibido_derivado"]=="")$data["recibido_derivado"]=0;
+        
+        $data["archivado"]= $data["archivado"]??0;
+        $data["norecibido"]= $data["norecibido"]??0;
+        $data["recibido_pendiente"]= $data["recibido_pendiente"]??0;
+        $data["recibido_derivado"]= $data["recibido_derivado"]??0;
         return $data;
     }
 
