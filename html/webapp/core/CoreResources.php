@@ -282,7 +282,8 @@ class CoreResources
         for($i=0 ; $i<count($campos);$i++){
             $field = $campos[$i]["field"];
             $col_extra = $campos[$i];
-            if(isset($campos[$i]["table_as"])  && trim($campos[$i]["table_as"])==""){
+            $campos[$i]["table_as"] = isset($campos[$i]["table_as"])?trim($campos[$i]["table_as"]):"";
+            if(trim($campos[$i]["table_as"])==""){
                 $col_extra["db"] = 'i.'.$field.'';
             }else{
                 $col_extra["db"] = ''.trim($campos[$i]["table_as"]).'.'.$field.'';
