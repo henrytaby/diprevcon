@@ -87,21 +87,7 @@ class Index extends CoreResources {
         return $item["total"];
     }
 
-    public function getDiasTranscurridos($fecha,$modificar = false){
-        $fechaActual = date("Y-m-d");
-        //$hoy = date("Y-m-d H:i:s");
-        if($modificar){
-            $fechaEnvio = explode(" ",$fecha);
-            $fecha = $fechaEnvio[0];
-        }
 
-        $datetime1 = date_create($fecha);
-        $datetime2 = date_create($fechaActual);
-        $contador = date_diff($datetime1, $datetime2);
-        $differenceFormat = '%a';
-        //echo $contador->format($differenceFormat);
-        return $contador->format($differenceFormat);
-    }
 
     public function sumarDiasFecha($fecha,$dias){
         $mod_date = strtotime($fecha."+ ".$dias." days");
@@ -118,11 +104,15 @@ class Index extends CoreResources {
     function estado($id){
         $item = $this->getItem($id);
 
-        if($item["estado_id"]==2){
+        if($item["estado_id"]==4){
             $rec = array();
-            $rec["accion_fecha"]= date("Y-m-d H:i:s");
-            $rec["estado_id"]= 4;
-            $rec["accion_dias"] = $this->getDiasTranscurridos($item["fecha_recepcion"],true);
+            //$rec["accion_fecha"]= date("Y-m-d H:i:s");
+            $rec["accion_fecha"]= NULL;
+            $rec["accion_dias"]= 0;
+            $rec["accion_horas"]= 0;
+            $rec["accion_minutos"]= 0;
+            $rec["accion_minutos_total"]= 0;
+            $rec["estado_id"]= 2;
             $where = "id=".$id;
             $resupdate = $this->dbm->AutoExecute($this->table[$this->objTable],$rec,"UPDATE",$where);
 

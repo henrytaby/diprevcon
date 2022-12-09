@@ -20,25 +20,26 @@ class Index extends CoreResources
         global $db;
         $data = array();
 
-        $sql = 'SELECT ce.nombre AS estado, COUNT(hs.id) AS total
-                FROM (SELECT catalogo.estado.id, catalogo.estado.nombre FROM catalogo.estado) ce
-                LEFT JOIN public.hojaruta_seguimiento hs ON hs.estado_id=ce.id
-                where hs.derivado_a_user_id='.$this->userId.'
-                GROUP BY ce.nombre
-                ';
+        $sql = "select hs.estado_id,COUNT(hs.id) AS total from public.hojaruta_seguimiento as hs
+                where hs.derivado_a_user_id=".$this->userId." group by hs.estado_id";
+
         $item = $db->Execute($sql);
-        while (!$item->EOF)
-        {
-            $estado= $item->fields["estado"];
-            $total= $item->fields["total"];
-            switch( $estado ){
-                case 'Archivado': $data["archivado"] = $total; break;
-                case 'No recibido': $data["norecibido"] = $total; break;
-                case 'Recibido/Acción pendiente': $data["recibido_pendiente"] = $total; break;
-                case 'Recibido/Derivado': $data["recibido_derivado"] = $total; break;
+        $item = $item->getRows();
+        foreach ($item as $row){
+            $total = $row["total"];
+            switch( $row["estado_id"] ){
+                case '4': $data["archivado"] = $total; break;
+                case '1': $data["norecibido"] = $total; break;
+                case '2': $data["recibido_pendiente"] = $total; break;
             }
-            $item->MoveNext();
         }
+
+        $sql = "select COUNT(hs.id) AS total from public.hojaruta_seguimiento as hs
+                where hs.derivado_por_user_id=".$this->userId;
+        $item = $db->Execute($sql);
+        $item =  $item->fields;
+        $data["recibido_derivado"] = $item["total"];
+
 
         if($data["archivado"]=="")$data["archivado"]=0;
         if($data["norecibido"]=="")$data["norecibido"]=0;

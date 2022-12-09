@@ -58,13 +58,15 @@
             html += `</div>
                     </div>
                     <div class="d-flex align-items-center flex-wrap justify-content-between">
-                        <div class="flex-grow-1  text-dark-50 py-2 py-lg-2 mr-5">
-
-<div class="alert alert-custom alert-light-primary fade show mb-5 p-2" role="alert">
-    <div class="alert-text">${val.asunto}</div>
-</div>
+                         <div class="flex-grow-1  text-dark-50 py-2 py-lg-1 mr-5 mt-0">
                             <strong>Procedencia:</strong> ${val.procedencia}<br>
-                            <strong>Remite:</strong> ${val.destinatario} <br>
+                            <strong>Destinatario:</strong> ${val.destinatario} <br>
+                            <strong>Fecha Ingreso:</strong> ${val.fecha} |
+                            <strong>Hora:</strong> ${val.hora} <br>
+<div class="alert alert-custom alert-light-primary fade show mb-1 p-2" role="alert">
+    <div class="alert-text"><strong>Asunto:</strong> ${val.asunto}</div>
+</div>
+
 
 <div class="alert alert-custom alert-light-info fade show mb-5 p-2" role="alert">
     <div class="alert-text"><strong>Observación/Proveído:</strong> ${val.proveido}</div>
@@ -98,47 +100,44 @@
             let html = "";
             html +=`<div class="separator separator-solid my-2"></div>
                         <div class="d-flex align-items-center flex-wrap">`;
-            html += flex_item();
-            html += `<i class="fas fa-calendar-check icon-2x text-muted font-weight-bold"></i></span>
-                    <div class="d-flex flex-column text-dark-75">`;
-            html += bottom_item("Fecha Enviado", val.fecha_emision);
-            html += flex_item();
-            html += `<i class="fas fa-calendar-check icon-2x text-info"></i></span>
-                    <div class="d-flex flex-column text-primary">`;
-            html += bottom_item("Fecha Recepcion", val.fecha_recepcion);
-            html += flex_item();
-            html += `<i class="fas fa-sun icon-2x text-muted font-weight-bold"></i></span>
-                    <div class="d-flex flex-column text-dark-75">`;
-            html += bottom_item("Días hasta Recepción",val.recepcion_dias);
-            html += flex_item();
-            html += `<i class="fas fa-calendar-day icon-2x text-info"></i></span>
-                    <div class="d-flex flex-column text-danger">`;
-            if(val.proceso_limite) {
-                html += bottom_item("Días Transcurridos ",val.accion_dias+" / "+val.proceso_dias);
-            }else{
-                html += bottom_item("Días Transcurridos ",val.accion_dias);
-            }
 
 
-            html += flex_item();
-            html += `<i class="fas fa-users icon-2x text-muted "></i></span>
-                    <div class="d-flex flex-column text-dark-75">`;
-            html += bottom_item("# Destinatarios",val.total_seguimiento);
+
+            html += iconos_abajo("Fecha Enviado",val.fecha_emision,"text-dark-75","fas fa-calendar-check","text-success font-weight-bold");
+            html += iconos_abajo("Fecha Recepcion",val.fecha_recepcion,"text-dark-75o","fas fa-calendar-check","text-info font-weight-bold");
+
+            let tiempo = getTiempo(val.recepcion_dias,val.recepcion_horas,val.recepcion_minutos);
+            html += iconos_abajo("Tiempo de Recepción",tiempo,"text-dark-75","far fa-clock font-weight-bold","text-muted");
+            let accion = getTiempo(val.accion_dias,val.accion_horas,val.accion_minutos);
+            let proceso = getTiempo(val.proceso_dias,val.proceso_horas,val.proceso_minutos);
+            let accion_dias = val.proceso_limite?accion+" / "+proceso:accion;
+
+
+            html += iconos_abajo("Estado",val.estado,"estado","fas fa-thermometer-three-quarters","text-danger","control");
+            html += iconos_abajo("# Destinatarios",val.total_seguimiento,"text-dark-75","fas fa-users","text-muted");
+
             html +='</div></div>';
             return html;
         };
-        var bottom_item = function(label,valor){
-            let html =`<span class="font-weight-bolder font-size-sm">${label}</span>
-                        <span class="font-weight-bolder font-size-h5">${valor}</span>
+        var getTiempo = function (dias,horas,minutos){
+            let html = "" ;
+            if(dias>0) html += dias+" días,";
+            if(horas>0) html += horas+" horas,";
+            if(minutos>0) html += minutos+" minutos";
+            if (html=="") html += "Sin Tiempo";
+            return html;
+        }
+        var iconos_abajo = function (label,valor,classTexto,icon,iconclass,divclass){
+            let html =`
+                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1 ${divclass}">
+                    <span class="mr-4"><i class="${icon} icon-2x ${iconclass}"></i></span>
+                    <div class="d-flex flex-column ${classTexto}">
+                        <span class="font-weight-bolder font-size-sm">${label}</span>
+                        <span class=" font-size-sm">${valor}</span>
                     </div>
                 </div>`;
             return html;
-        };
-        var flex_item = function(){
-            let html =`<div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
-                    <span class="mr-4">`;
-            return html;
-        };
+        }
 
         var urlsys = '{/literal}{$path_url}{literal}';
         var initTable = function() {

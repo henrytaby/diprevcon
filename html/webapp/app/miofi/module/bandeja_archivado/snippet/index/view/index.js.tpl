@@ -52,10 +52,8 @@
                             </div>
                         </div>
                         <div class="my-lg-0 my-1">`;
-            //html += '<a href="javascript:#" class="btn btn-sm btn-success font-weight-bolder text-uppercase mr-2">Derivar</a>';
-
-            //html += `<a href="javascript:snippet_list.archivar('${val.actions}','${val.nur}');" class="btn btn-sm btn-warning font-weight-bolder text-uppercase">Archivar</a>`;
-            html += `</div>
+            html += `<a href="javascript:snippet_list.archivar('${val.actions}','${val.nur}');" class="btn btn-sm btn-success font-weight-bolder text-uppercase">Desarchivar</a>
+                        </div>
                     </div>
                     <div class="d-flex align-items-center flex-wrap justify-content-between">
                         <div class="flex-grow-1  text-dark-50 py-2 py-lg-2 mr-5">
@@ -237,14 +235,14 @@
          */
         var  item_archivar = function(id,nur){
 
-            let html ="Se archivará el documento y moverá el documento de la bandeja de \"Archivados\" <br> ";
+            let html ="Se desarchivará el documento y moverá el documento a la bandeja de \"Pendientes\" <br> <strong>Tomar en cuenta!</strong>, Volverá a correr el tiempo desde la fecha de recepción <br>";
             html += "<strong>NUR: "+nur+"</strong><br> ID : "+id+"  ";
             Swal.fire({
-                title: '¿Esta seguro de archivar el documento?',
+                title: '¿Esta seguro que desea desarchivar el documento?',
                 html: html,
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: "<i class='fas fa-thumbs-up'></i> Si, Archivar",
+                confirmButtonText: "<i class='fas fa-thumbs-up'></i> Si, Desarchivar",
                 cancelButtonText: "<i class='la la-thumbs-down'></i>"+lngUyuni.deleteBtnNo,
                 customClass: {
                     confirmButton: "btn btn-warning",
@@ -262,8 +260,8 @@
         var item_archivar_accion = function(id){
             var url = urlsys+"/"+id+"/estado";
             Swal.fire({
-                title: "Recepcionando Documento",
-                html: "Iniciando el proceso de recepción"+cargando_vista,
+                title: "Desarchivando Documento",
+                html: "Iniciando el proceso para desarchivar "+cargando_vista,
                 showConfirmButton: false,
                 allowEnterKey: false,
                 allowOutsideClick: false,
@@ -274,16 +272,16 @@
                 function(res){
                     if(res.res == 1){
                         Swal.close();
-                        Swal.fire({icon: 'success',title: "El documento fue recepcionado",showConfirmButton: false,timer: 1000});
+                        Swal.fire({icon: 'success',title: "El documento fue Desarchivado ",showConfirmButton: false,timer: 1000});
                         table_list.ajax.reload();
                     }else{
-                        var msg_error = "No se pudo realizar la recepción del documento";
+                        var msg_error = "No se pudo desarchivar el documento";
                         if (res.msgdb !== undefined){
                             msg_error += '<div class="alert alert-danger font-size-xs" role="alert">';
                             msg_error += '<strong>'+lngUyuni.technicalData+': </strong>'+res.msgdb+'</div>';
                         }
                         Swal.fire({
-                            icon: "error", title: "No se puede Archivar",
+                            icon: "error", title: "No se puede Desarchivar",
                             html:msg_error, showClass: {popup: 'animate__animated animate__wobble'}
                         });
 
