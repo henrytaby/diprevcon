@@ -51,7 +51,17 @@ $grid_item[]=array( "field" => "procedencia", "label"=> $smarty->config_vars["ta
 $grid_item[]=array( "field" => "destinatario", "label"=> $smarty->config_vars["table_destinatario"]
 , "table_as"=> "hr", "as" => "destinatario");
 
-$grid_item[]=array("field"=> "nur", "label"=> $smarty->config_vars["table_nur"]);
+//$grid_item[]=array("field"=> "nur", "label"=> $smarty->config_vars["table_nur"]);
+
+$grid_item[]=array( "field" => "nur", "label"=> $smarty->config_vars["table_nur"]
+, "table_as"=> "hr", "as" => "nur");
+
+$grid_item[]=array( "field" => "fecha", "label"=> $smarty->config_vars["table_fecha"]
+, "table_as"=> "hr", "as" => "fecha");
+
+$grid_item[]=array( "field" => "hora", "label"=> $smarty->config_vars["table_hora"]
+, "table_as"=> "hr", "as" => "hora");
+
 
 $grid_item[]=array("field" => "emisor_nombre","label"=> $smarty->config_vars["table_fecha_emision"]);
 $grid_item[]=array("field" => "emisor_cargo","label"=> $smarty->config_vars["table_fecha_emision"]);

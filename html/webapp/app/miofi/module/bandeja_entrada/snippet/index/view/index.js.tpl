@@ -34,7 +34,7 @@
                         <div class="mr-3">
                             <a href="#" class="d-flex align-items-center text-dark text-hover-primary font-size-h5 font-weight-bold mr-3">${val.nur}
                                 <i class="flaticon2-correct text-success icon-md ml-2"></i></a>
-                            <div class="d-flex flex-wrap my-2">
+                            <div class="d-flex flex-wrap my-0">
                                 <span href="#" class="text-primary text-hover-primary  mr-lg-8 mr-5 mb-lg-0 mb-2">
                                     <span class="svg-icon svg-icon-md svg-icon-primary mr-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -59,13 +59,15 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center flex-wrap justify-content-between">
-                        <div class="flex-grow-1  text-dark-50 py-2 py-lg-2 mr-5">
-
-<div class="alert alert-custom alert-light-primary fade show mb-5 p-2" role="alert">
-    <div class="alert-text">${val.asunto}</div>
-</div>
+                        <div class="flex-grow-1  text-dark-50 py-2 py-lg-1 mr-5 mt-0">
                             <strong>Procedencia:</strong> ${val.procedencia}<br>
-                            <strong>Remite:</strong> ${val.destinatario} <br>
+                            <strong>Destinatario:</strong> ${val.destinatario} <br>
+                            <strong>Fecha Ingreso:</strong> ${val.fecha} |
+                            <strong>Hora:</strong> ${val.hora} <br>
+<div class="alert alert-custom alert-light-primary fade show mb-1 p-2" role="alert">
+    <div class="alert-text"><strong>Asunto:</strong> ${val.asunto}</div>
+</div>
+
 
 <div class="alert alert-custom alert-light-info fade show mb-5 p-2" role="alert">
     <div class="alert-text"><strong>Observación/Proveído:</strong> ${val.proveido}</div>
