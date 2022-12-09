@@ -32,7 +32,7 @@ switch($action) {
      * Creación de JSON
      */
     case 'getPhoto':
-        $objItem->getPhoto($type);
+        $objItem->getPhoto($_REQUEST["type"]??"");
         break;
 
 }

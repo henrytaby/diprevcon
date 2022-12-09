@@ -99,7 +99,7 @@ class Index extends CoreResources {
         header ("Cache-Control: no-cache, must-revalidate");
         header ("Pragma: no-cache");
         header ("Content-Type: $type");
-        header ('Content-Disposition: '.$conten_Disposition.'; filename="perfil.'.$ext.'"');
+        header ('Content-Disposition: attachment; filename="perfil.'.$ext.'"');
         //header ("Content-Length: ".$item["photoSize"]);
         readfile($file);
         exit;
