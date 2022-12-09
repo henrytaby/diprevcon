@@ -339,7 +339,7 @@ class Core{
             }
         }
 
-        return $res ?? "";
+        return $res ?? array();
     }
 
     /**
