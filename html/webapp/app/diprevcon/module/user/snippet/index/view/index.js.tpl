@@ -123,11 +123,40 @@
                         },
                     },
                     {
-                        targets: [4,5,-2,-3],
+                        targets: [8],
+                        render: function(data, type, full, meta) {
+                            var status = {
+                                'false': {'title': 'NO', 'state': 'text-dark'},
+                                'true': {'title': 'SI', 'state': 'text-success'}
+                            };
+                            if (typeof status[data] === 'undefined') {
+                                return data;
+                            }
+                            return '<span class="'+ status[data].state +' ">' + status[data].title+ '</span>';
+                        },
+                    },
+
+                    {
+                        targets: [9],
+                        render: function(data, type, full, meta) {
+                            var status = {
+                                'false': {'title': 'NO', 'state': 'text-dark'},
+                                'true': {'title': 'SI', 'state': 'text-success'}
+                            };
+                            if (typeof status[data] === 'undefined') {
+                                return data;
+                            }
+                            return '<span class="'+ status[data].state +' ">' + status[data].title+ '</span>';
+                        },
+                    },
+
+
+                    {
+                        targets: [4,5,-2,-3,8,9],
                         searchable: false,
                     },
                     {
-                        targets: [-2,-3,-4,3],
+                        targets: [-2,-3,-4,3, -5,-6,-7,-8],
                         className: "none"
                     },
                     {
@@ -179,6 +208,9 @@
          * Filtros
          */
         var filter_type = $('#filter_type');
+        var filter_entidad = $('#filter_entidad');
+        var filter_jefe = $('#filter_jefe');
+        var filter_hoja = $('#filter_hoja');
 
         var handle_filtro = function () {
             coreUyuni.tableFilter();
@@ -186,7 +218,26 @@
             $('.filter_select').on('change',function(){
                 filer_select();
             });
+        };
+        var handle_filtro_entidad = function () {
+            coreUyuni.tableFilter();
+            $('.filter_select_entidad').on('change',function(){
+                filer_select_entidad();
+            });
 
+        };
+        var handle_filtro_jefe = function () {
+            coreUyuni.tableFilter();
+            $('.filter_select_jefe').on('change',function(){
+                filer_select_jefe();
+            });
+        };
+
+        var handle_filtro_hoja = function () {
+            coreUyuni.tableFilter();
+            $('.filter_select_hoja').on('change',function(){
+                filer_select_hoja();
+            });
         };
 
         var url_filter = urlsys+'/list';
@@ -196,6 +247,27 @@
             table_list.ajax.url( url_filter+query ).load();
         };
 
+        var filer_select_entidad = function () {
+            var entidad = filter_entidad.val();
+            console.log("++++"+entidad)
+            var query = "?filter[oficina]="+entidad;
+            console.log("query "+query)
+            table_list.ajax.url( url_filter+query ).load();
+
+        };
+        var filer_select_jefe = function () {
+            var jefe = filter_jefe.val();
+            var query = "?filter[jefe]="+jefe;
+            table_list.ajax.url( url_filter+query ).load();
+
+        };
+        var filer_select_hoja = function () {
+            var hoja = filter_hoja.val();
+            var query = "?filter[hoja]="+hoja;
+            table_list.ajax.url( url_filter+query ).load();
+
+        };
+
         return {
             //main function to initiate the module
             init: function() {
@@ -203,6 +275,9 @@
                 handle_button_update();
                 handle_components();
                 handle_filtro();
+                handle_filtro_entidad();
+                handle_filtro_jefe();
+                handle_filtro_hoja();
             },
             update: function(id,type){
                 item_update(id,type);

@@ -114,21 +114,7 @@
                         targets: [2],
                         searchable: true,
                     },
-                    {
-                        targets: [3],
-                        searchable: false,
-                        width: '60px',
-                        render: function(data, type, full, meta) {
-                            var status = {
-                                'false': { 'state': 'metal'},
-                                'true': { 'state': 'success'}
-                            };
-                            if (typeof status[data] === 'undefined') {
-                                return data;
-                            }
-                            return '<div class="text-center"><i class="fa fa-check-double text-' + status[data].state + '"></i></div>';
-                        },
-                    },
+
                     {
                         targets: [-2,-3],
                         searchable: false,

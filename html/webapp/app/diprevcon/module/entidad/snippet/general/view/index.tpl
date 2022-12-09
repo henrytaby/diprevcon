@@ -41,8 +41,6 @@
                                name="item[sigla]" value="{$item.sigla|escape:"html"}"
                                required
                                data-fv-not-empty___message="{#glFieldRequired#}"
-                               minlength="3"
-                               data-fv-string-length___message="{#field_length_sigla#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-info"></i></span></div>
                     </div>
@@ -58,16 +56,6 @@
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
                     </div>
                     <span class="form-text text-muted">{#field_msg_direccion#}</span>
-                </div>
-
-                <div class="col-lg-4">
-                    <label>{#field_active#}:</label>
-                    <div class="input-group">
-                    <span class="switch switch-icon">
-                        <label><input type="checkbox" {if $item.active == 1}checked="checked"{/if} name="item[active]" value="1" ><span></span></label>
-                    </span>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_active#}</span>
                 </div>
 
             </div>

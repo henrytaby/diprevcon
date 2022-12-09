@@ -17,7 +17,6 @@ $grid_table_join = array();
 $grid_item[]=array("field"=> "nombre", "label"=> $smarty->config_vars["table_nombre"]);
 $grid_item[]=array("field"=> "sigla", "label"=> $smarty->config_vars["table_sigla"]);
 $grid_item[]=array("field"=> "direccion", "label"=>  $smarty->config_vars["table_direccion"]);
-$grid_item[]=array("field"=> "active", "label"=> $smarty->config_vars["table_active"]);
 
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
 $grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);

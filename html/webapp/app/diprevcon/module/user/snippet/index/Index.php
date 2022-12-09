@@ -34,30 +34,31 @@ class Index extends CoreResources {
             $data = $item["type"];
             $where = " g.type=".$data;
         }
-/*
-        if( isset($item["skin"]) and trim($item["skin"])!="no" ){
+
+        if( isset($item["oficina"]) and trim($item["oficina"])!="no" ){
             if($where != ""){
                 $where .= " and ";
             }
-            $data = $item["skin"]?"TRUE":"FALSE";
-            $where .= " g.skin=".$data;
+            $data = $item["oficina"];
+            $where .= " d.oficina_id=".$data;
+        }
+        if( isset($item["jefe"]) and trim($item["jefe"])!="no" ){
+            if($where != ""){
+                $where .= " and ";
+            }
+            $data = $item["jefe"]?"TRUE":"FALSE";
+            $where .= " d.jefe=".$data;
         }
 
-        if( isset($item["parts"]) and trim($item["parts"])!="no" ){
-            if($where != ""){
-                $where .= " and ";
-            }
-            $data = $item["parts"]?"TRUE":"FALSE";
-            $where .= " g.parts=".$data;
-        }
+                if( isset($item["hoja"]) and trim($item["hoja"])!="no" ){
+                    if($where != ""){
+                        $where .= " and ";
+                    }
+                    $data = $item["hoja"]?"TRUE":"FALSE";
+                    $where .= " d.ingreso_hoja=".$data;
+                }
 
-        if( isset($item["quota"]) and trim($item["quota"])!="no" ){
-            if($where != ""){
-                $where .= " and ";
-            }
-            $data = $item["quota"]?"TRUE":"FALSE";
-            $where .= " g.quota=".$data;
-        }
+        /*
 
         if( isset($item["life_animals"]) and trim($item["life_animals"])!="no" ){
             if($where != ""){
@@ -84,6 +85,7 @@ class Index extends CoreResources {
         $where = str_replace("g.","i.",$where);
 
         $extraWhere = $where;
+
 
         $groupBy = "";
         $having = "";

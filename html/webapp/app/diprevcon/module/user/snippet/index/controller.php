@@ -21,7 +21,12 @@ switch($action) {
          * catalog configuration
          */
         $cataobj["tipo"] = $catalogo=$objCatalog->getUserType();
+        $cataobj["oficina"] = $objCatalog->getOficinaOptions();
+        $cataobj["jefe"] = $objCatalog->getJefe();
+        $cataobj["hoja"] = $objCatalog->getHoja();
+
         $smarty->assign("cataobj", $cataobj);
+
 
         /**
          * Grid configuration
