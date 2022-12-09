@@ -28,7 +28,7 @@
                                name="item[nur]" value="{$item.nur|escape:"html"}"
                                required
                                data-fv-not-empty___message="{#glFieldRequired#}"
-                               minlength="3"  {$privFace.input}
+                               minlength="2"  {$privFace.input}
                                data-fv-string-length___message="{#nur_fieldLength#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-stream"></i></span></div>
@@ -37,13 +37,12 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{#cite_field#}<span class="text-danger bold">*</span> :</label>
+                    <label>{#cite_field#} :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[cite]" value="{$item.cite|escape:"html"}"
-                               required
                                data-fv-not-empty___message="{#glFieldRequired#}"
-                               minlength="3"  {$privFace.input}
+                               minlength="2"  {$privFace.input}
                                data-fv-string-length___message="{#cite_fieldLength#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-stream"></i></span></div>
@@ -59,7 +58,7 @@
                                name="item[procedencia]" value="{$item.procedencia|escape:"html"}"
                                required
                                data-fv-not-empty___message="{#glFieldRequired#}"
-                               minlength="3"  {$privFace.input}
+                               minlength="2"  {$privFace.input}
                                data-fv-string-length___message="{#field_length_procedencia#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-info"></i></span></div>
@@ -68,13 +67,13 @@
                 </div>
 
                 <div class="col-lg-12">
-                    <label>{#field_destinatario#}<span class="text-danger bold">*</span> :</label>
+                    <label>{#field_destinatario#} <span class="text-danger bold">*</span>:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[destinatario]" value="{$item.destinatario|escape:"html"}"
                                required
                                data-fv-not-empty___message="{#glFieldRequired#}"
-                               minlength="3"  {$privFace.input}
+                               minlength="2"  {$privFace.input}
                                data-fv-string-length___message="{#field_length_destinatario#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-info"></i></span></div>
@@ -83,23 +82,26 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <label>{#field_date#}:</label>
+                    <label>{#field_date#} <span class="text-danger bold">*</span>:</label>
                     <div class="input-group">
                         <input type="text" class="form-control date_general" id="valid_until"
                                name="item[fecha]" value="{$item.fecha|date_format:'%d/%m/%Y'}"  {$privFace.input}
-                                {*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                         <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol"></i></span></div>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_date#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_time#}:</label>
+                    <label>{#field_time#} <span class="text-danger bold">*</span>:</label>
                     <div class="input-group">
                         <input type='text' class="form-control m_timepicker_1" id="m_timepicker_1"
                                readonly placeholder="{#field_holder_time#}" type="text"
                                name="item[hora]"  {$privFace.input}
                                value="{$item.hora|escape:"html"}"
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
                         />
                         <div class="input-group-append"><span class="input-group-text calendar"><i class="la la-clock-o"></i></span></div>
                     </div>
@@ -109,7 +111,8 @@
                     <label>{#field_asunto#}<span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <textarea rows="2" class="form-control m-input mayus"
-                                  name="item[asunto]"  {$privFace.input}
+                                  name="item[asunto]"  {$privFace.input} required
+                                  data-fv-not-empty___message="{#glFieldRequired#}"
                         >{$item.asunto|escape:'html'}</textarea>
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
                     </div>
@@ -133,8 +136,8 @@
                         <select class="form-control m-select2 select2_general"
                                 name="item[tipo_correspondencia_id]" id="type_select_estado"
                                 data-placeholder="{#field_holder_tipo_correspondencia_id#}" {$privFace.input}
-{*                                required*}
-{*                                data-fv-not-empty___message="{#glFieldRequired#}"*}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
                             {html_options options=$cataobj.tipo_correspondencia selected=$item.tipo_correspondencia_id}
