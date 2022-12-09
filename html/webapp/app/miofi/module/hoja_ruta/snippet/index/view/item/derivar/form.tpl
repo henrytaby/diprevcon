@@ -11,7 +11,7 @@
             <div class="form-group row">
 
                 <div class="col-lg-12">
-                    <label>{#derivado_a_user_id_field#}: </label>
+                    <label>{#derivado_a_user_id_field#} <span class="text-danger bold">*</span>: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[derivado_a_user_id]" id="derivado_a_user_id" required
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <label>{#instruccion_id_field#}: </label>
+                    <label>{#instruccion_id_field#} <span class="text-danger bold">*</span>: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[instruccion_id]" id="instruccion_id" required
@@ -40,7 +40,9 @@
                     <span class="form-text text-black-50">{#instruccion_id_field_msg#}</span>
                 </div>
 
+
                 <div class="col-lg-6">
+                    {*
                     <label>{#actividad_id_field#}: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -53,12 +55,15 @@
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#actividad_id_field_msg#}</span>
+*}
                 </div>
 
                 <div class="col-lg-12">
-                    <label>{#proveido_field#}:</label>
+                    <label>{#proveido_field#}: <span class="text-danger bold">*</span></label>
                     <div class="input-group">
-                        <textarea rows="3" class="form-control" name="item[proveido]"  {$privFace.input}>{$item.proveido|escape:'html'}</textarea>
+                        <textarea rows="3" class="form-control" name="item[proveido]"
+                                required data-fv-not-empty___message="{#glFieldRequired#}"
+                                {$privFace.input}>{$item.proveido|escape:'html'}</textarea>
                     </div>
                     <span class="form-text text-muted">{#proveido_field_msg#}</span>
                 </div>

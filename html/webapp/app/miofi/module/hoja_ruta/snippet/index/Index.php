@@ -143,9 +143,13 @@ class Index extends CoreResources {
                 $dataResult["entidad_id"] = $persona["entidad_id"];
                 $dataResult["estado_id"] = 1;
 
+                /*
                 $proceso = $this->getProceso($dataResult["proceso_id"]);
                 $dataResult["proceso_dias"] = $proceso["dias"];
                 $dataResult["proceso_limite"] =  $proceso["limite"]?"TRUE":"FALSE";
+                */
+                $dataResult["proceso_dias"] = 0;
+                $dataResult["proceso_limite"] = "FALSE";
 
                 $hojaruta = $this->getItem($itemId);
                 $dataResult["nur"] =  $hojaruta["nur"];

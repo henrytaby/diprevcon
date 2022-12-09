@@ -41,7 +41,9 @@ class Catalog extends CoreResources{
             left join public.oficina as o on o.id = p.oficina_id
             where u.active = true
             and p.jefe = true
-            and p.entidad_id=".$_SESSION["uservAdd"]["entidad_id"];
+            and p.entidad_id=".$_SESSION["uservAdd"]["entidad_id"]." 
+            and p.oficina_id=".$_SESSION["uservAdd"]["oficina_id"]."
+            ";
         $item = $this->dbm->Execute($sql)->GetRows();
         $res = array();
         foreach ($item as $row){
