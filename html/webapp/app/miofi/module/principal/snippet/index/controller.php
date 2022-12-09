@@ -1,6 +1,6 @@
 <?PHP
-use App\Miofi\Module\Principal\Snippet\Index\Index;
-use App\Miofi\Module\Principal\Snippet\Index\Catalog;
+use App\Miofi\Principal\Index\Index;
+use App\Miofi\Principal\Index\Catalog;
 use Core\Core;
 
 

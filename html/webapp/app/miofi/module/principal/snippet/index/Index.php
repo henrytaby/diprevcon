@@ -1,6 +1,5 @@
 <?PHP
-
-namespace App\Miofi\Module\Principal\Snippet\Index;
+namespace App\Miofi\Principal\Index;
 
 use Core\CoreResources;
 
@@ -40,7 +39,7 @@ class Index extends CoreResources
         $item =  $item->fields;
         $data["recibido_derivado"] = $item["total"];
 
-        
+
         $data["archivado"]= $data["archivado"]??0;
         $data["norecibido"]= $data["norecibido"]??0;
         $data["recibido_pendiente"]= $data["recibido_pendiente"]??0;
