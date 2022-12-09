@@ -76,11 +76,11 @@ class Core{
         }
 
         $res =array();
-        $res["app"] = $app;
-        $res["module"] = $module;
-        $res["core_id"] = isset($core_id)?$core_id:"";
-        $res["route_action"] = $ruta_accion;
-        $res["vars"] = $variables;
+        $res["app"] = $app??"";
+        $res["module"] = $module??"";
+        $res["core_id"] = $core_id ?? "";
+        $res["route_action"] = $ruta_accion??"";
+        $res["vars"] = $variables?? "";
         return $res;
     }
 
