@@ -78,56 +78,57 @@
             html += `</div>`;
             return html;
         };
+
         var html_per = function (val){
             let html = '';
             html += `
-<div class="row">
-<div class="col-lg-6"">
-    <strong>Emisor:</strong> ${val.emisor_nombre}<br>
-    <strong>Emisor Cargo:</strong> ${val.emisor_cargo} <br>
-    <strong>Emisor Oficina:</strong> ${val.emisor_oficina}
-</div>
-<div class="col-lg-6">
-    <strong>Receptor:</strong> ${val.receptor_nombre}<br>
-    <strong>Receptor Cargo:</strong> ${val.receptor_cargo} <br>
-    <strong>Receptor Oficina:</strong> ${val.receptor_oficina}
-</div>
-</div>
+                    <div class="row">
+                    <div class="col-lg-6"">
+                        <strong>Emisor:</strong> ${val.emisor_nombre}<br>
+                        <strong>Emisor Cargo:</strong> ${val.emisor_cargo} <br>
+                        <strong>Emisor Oficina:</strong> ${val.emisor_oficina}
+                    </div>
+                    <div class="col-lg-6">
+                        <strong>Receptor:</strong> ${val.receptor_nombre}<br>
+                        <strong>Receptor Cargo:</strong> ${val.receptor_cargo} <br>
+                        <strong>Receptor Oficina:</strong> ${val.receptor_oficina}
+                    </div>
+                    </div>
             `;
             html += '';
             return html;
         };
+
         var html_Bottom = function(val){
-                let html = "";
-                html +=`<div class="separator separator-solid my-2"></div>
+            let html = "";
+            html +=`<div class="separator separator-solid my-2"></div>
                         <div class="d-flex align-items-center flex-wrap">`;
-                html += flex_item();
-                html += `<i class="fas fa-calendar-check icon-2x text-muted font-weight-bold"></i></span>
-                    <div class="d-flex flex-column text-dark-75">`;
-                html += bottom_item("Fecha Enviado", val.fecha_emision);
-                html += flex_item();
-                html += `<i class="fas fa-sun icon-2x text-muted font-weight-bold"></i></span>
-                    <div class="d-flex flex-column text-dark-75">`;
-                html += bottom_item("Días desde el Envio",val.recepcion_dias);
-                html += flex_item();
-                html += `<i class="fas fa-users icon-2x text-muted "></i></span>
-                    <div class="d-flex flex-column text-dark-75">`;
-                html += bottom_item("# Destinatarios",val.total_seguimiento);
-                html +='</div></div>';
-                return html;
+            html += iconos_abajo("Fecha Enviado",val.fecha_emision,"text-dark-75","fas fa-calendar-check","text-success font-weight-bold");
+            let tiempo = getTiempo(val.recepcion_dias,val.recepcion_horas,val.recepcion_minutos);
+            html += iconos_abajo("Tiempo de Recepción",tiempo,"text-dark-75","far fa-clock","text-success","control");
+            html += iconos_abajo("# Destinatarios",val.total_seguimiento,"text-dark-75","fas fa-users","text-muted");
+            html +='</div></div>';
+            return html;
         };
-        var bottom_item = function(label,valor){
-            let html =`<span class="font-weight-bolder font-size-sm">${label}</span>
-                        <span class="font-weight-bolder font-size-h5">${valor}</span>
+        var getTiempo = function (dias,horas,minutos){
+            let html = "" ;
+            if(dias>0) html += dias+" días,";
+            if(horas>0) html += horas+" horas,";
+            html += minutos+" minutos";
+            return html;
+        }
+        var iconos_abajo = function (label,valor,classTexto,icon,iconclass,divclass){
+            let html =`
+                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1 ${divclass}">
+                    <span class="mr-4"><i class="${icon} icon-2x ${iconclass}"></i></span>
+                    <div class="d-flex flex-column ${classTexto}">
+                        <span class="font-weight-bolder font-size-sm">${label}</span>
+                        <span class=" font-size-sm">${valor}</span>
                     </div>
                 </div>`;
             return html;
-        };
-        var flex_item = function(){
-            let html =`<div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
-                    <span class="mr-4">`;
-            return html;
-        };
+        }
+
 
         var urlsys = '{/literal}{$path_url}{literal}';
         var initTable = function() {

@@ -74,7 +74,11 @@ $grid_item[]=array("field" => "receptor_oficina","label"=> $smarty->config_vars[
 
 $grid_item[]=array("field" => "fecha_emision","label"=> $smarty->config_vars["table_fecha_emision"]);
 $grid_item[]=array("field" => "fecha_recepcion","label"=> $smarty->config_vars["table_fecha_recepcion"]);
+
 $grid_item[]=array("field" => "recepcion_dias","label"=> $smarty->config_vars["table_fecha_recepcion"]);
+$grid_item[]=array("field" => "recepcion_horas","label"=> $smarty->config_vars["table_estado"]);
+$grid_item[]=array("field" => "recepcion_minutos","label"=> $smarty->config_vars["table_estado"]);
+$grid_item[]=array("field" => "recepcion_minutos_total","label"=> $smarty->config_vars["table_estado"]);
 
 
 $grid_item[]=array("field" => "estado_id","label"=> $smarty->config_vars["table_estado"]);
@@ -93,7 +97,10 @@ $grid_item[]=array("field"=> "urgente", "label"=> $smarty->config_vars["table_ur
 $grid_item[]=array("field" => "proceso_id","label"=> $smarty->config_vars["table_estado"]);
 $grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_estado"]
 , "table_as"=> "pro", "as" => "proceso");
+
 $grid_item[]=array("field" => "proceso_dias","label"=> $smarty->config_vars["table_estado"]);
+
+
 $grid_item[]=array("field" => "proceso_fecha_fin","label"=> $smarty->config_vars["table_estado"]);
 $grid_item[]=array("field" => "proceso_dias_retraso","label"=> $smarty->config_vars["table_estado"]);
 $grid_item[]=array("field" => "proceso_limite","label"=> $smarty->config_vars["table_estado"]);

@@ -26,5 +26,11 @@
             content: "\f107";
             margin-right: 5px;
         }
+        .control{
+            background: #f6ffdf;
+            border: 1px solid #d1e4a2;
+            padding: 5px;
+            border-radius: 5px;
+        }
     </style>
 {/literal}

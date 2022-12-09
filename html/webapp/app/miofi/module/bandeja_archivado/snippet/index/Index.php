@@ -57,17 +57,24 @@ class Index extends CoreResources {
 
             if(isset($result['data'][$itemId]['created_at'])) $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
             if(isset($result['data'][$itemId]['updated_at'])) $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
-            /*
-            if(isset($result['data'][$itemId]['fecha_recepcion'])) {
-                $result['data'][$itemId]['accion_dias'] = $this->getDiasTranscurridos($result['data'][$itemId]['fecha_recepcion'],true);
-            }
-            */
+
             if(isset($result['data'][$itemId]['total_seguimiento']))   $result['data'][$itemId]['total_seguimiento'] = $this->getSeguimientoTotal($result['data'][$itemId]['hojaruta_id']);
 
-            if(isset($result['data'][$itemId]['fecha_emision'])) $result['data'][$itemId]['fecha_emision'] = $this->changeDataFormat($result['data'][$itemId]['fecha_emision'],"d/m/Y");
-            if(isset($result['data'][$itemId]['fecha_recepcion'])) $result['data'][$itemId]['fecha_recepcion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_recepcion'],"d/m/Y");
+
+            $column = "fecha_emision";
+            if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $this->changeDataFormat($result['data'][$itemId][$column],"d/m/Y H:i");
+            $column = "fecha_recepcion";
+            if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $this->changeDataFormat($result['data'][$itemId][$column],"d/m/Y H:i");
+
+            $column = "fecha";
+            if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $this->changeDataFormat($result['data'][$itemId][$column],"d/m/Y");
+            $column = "hora";
+            if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $this->changeDataFormat($result['data'][$itemId][$column],"H:i");
 
             if(isset($result['data'][$itemId]['nur'])) $result['data'][$itemId]['nur'] = htmlspecialchars($result['data'][$itemId]['nur'],ENT_QUOTES );
+
+            $column = "accion_fecha";
+            if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $this->changeDataFormat($result['data'][$itemId][$column],"d/m/Y H:i");
 
         }
         return $result;

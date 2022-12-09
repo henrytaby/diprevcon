@@ -833,4 +833,36 @@ class CoreResources
         return $res;
     }
 
+    /**
+     * Tiempo que transcurre entre dos fechas
+     *
+     * @param $fecha
+     * @param string $fechaActual
+     * @return array
+     */
+    public function getTimeElapsed($fecha,$fechaActual = ""){
+        if ($fechaActual=="")  $fechaActual = date("Y-m-d H:i");
+        $datetime1 = date_create($fecha);
+        $datetime2 = date_create($fechaActual);
+        $contador = date_diff($datetime1, $datetime2);
+        $minutos = ($contador->format('%a') *24*60 ) + ($contador->h * 60) + $contador->i;
+        $contador->minutos = $minutos;
+
+        $res = array();
+        $res["days"] = (int)$contador->format('%a');
+        $res["hours"] = $contador->h;
+        $res["minutes"] = $contador->i;
+        $res["total_minutes"] = $minutos;
+        return $res;
+    }
+
+    public function addMinutesToDate($fecha,$minutes,$format="Y-m-d H:i:s"){
+        $mod_date = strtotime($fecha."+ ".$minutes." minute");
+        return date($format,$mod_date);
+    }
+    public function addDaysToDate($fecha,$dias,$format="Y-m-d H:i:s"){
+        $mod_date = strtotime($fecha."+ ".$dias." days");
+        return date($format,$mod_date);
+    }
+
 }

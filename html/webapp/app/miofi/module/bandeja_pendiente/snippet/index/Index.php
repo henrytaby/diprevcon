@@ -59,16 +59,33 @@ class Index extends CoreResources {
             if(isset($result['data'][$itemId]['updated_at'])) $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
 
             if(isset($result['data'][$itemId]['fecha_recepcion'])) {
-                $result['data'][$itemId]['accion_dias'] = $this->getDiasTranscurridos($result['data'][$itemId]['fecha_recepcion'],true);
+                //$result['data'][$itemId]['recepcion_dias'] = $this->getDiasTranscurridos($result['data'][$itemId]['fecha_emision'],true);
+
+                $tiempo = $this->getTimeElapsed($result['data'][$itemId]['fecha_recepcion']);
+                $column = "accion_dias";if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $tiempo["days"];
+                $column = "accion_horas"; if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $tiempo["hours"];
+                $column = "accion_minutos"; if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $tiempo["minutes"];
+                $column = "accion_minutos_total"; if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $tiempo["total_minutes"];
+
             }
 
             if(isset($result['data'][$itemId]['total_seguimiento']))   $result['data'][$itemId]['total_seguimiento'] = $this->getSeguimientoTotal($result['data'][$itemId]['hojaruta_id']);
 
-            if(isset($result['data'][$itemId]['fecha_emision'])) $result['data'][$itemId]['fecha_emision'] = $this->changeDataFormat($result['data'][$itemId]['fecha_emision'],"d/m/Y");
-            if(isset($result['data'][$itemId]['fecha_recepcion'])) $result['data'][$itemId]['fecha_recepcion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_recepcion'],"d/m/Y");
+
+            $column = "fecha_emision";
+            if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $this->changeDataFormat($result['data'][$itemId][$column],"d/m/Y H:i");
+            $column = "fecha_recepcion";
+            if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $this->changeDataFormat($result['data'][$itemId][$column],"d/m/Y H:i");
+
+            $column = "fecha";
+            if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $this->changeDataFormat($result['data'][$itemId][$column],"d/m/Y");
+            $column = "hora";
+            if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $this->changeDataFormat($result['data'][$itemId][$column],"H:i");
 
             if(isset($result['data'][$itemId]['nur'])) $result['data'][$itemId]['nur'] = htmlspecialchars($result['data'][$itemId]['nur'],ENT_QUOTES );
 
+            $column = "accion_fecha";
+            if(isset($result['data'][$itemId][$column])) $result['data'][$itemId][$column] = $this->changeDataFormat($result['data'][$itemId][$column],"d/m/Y H:i");
         }
         return $result;
     }
@@ -80,26 +97,7 @@ class Index extends CoreResources {
         return $item["total"];
     }
 
-    public function getDiasTranscurridos($fecha,$modificar = false){
-        $fechaActual = date("Y-m-d");
-        //$hoy = date("Y-m-d H:i:s");
-        if($modificar){
-            $fechaEnvio = explode(" ",$fecha);
-            $fecha = $fechaEnvio[0];
-        }
 
-        $datetime1 = date_create($fecha);
-        $datetime2 = date_create($fechaActual);
-        $contador = date_diff($datetime1, $datetime2);
-        $differenceFormat = '%a';
-        //echo $contador->format($differenceFormat);
-        return $contador->format($differenceFormat);
-    }
-
-    public function sumarDiasFecha($fecha,$dias){
-        $mod_date = strtotime($fecha."+ ".$dias." days");
-        return date("Y-m-d",$mod_date);
-    }
     /**
      * Index::deleteData($id)
      *
@@ -115,7 +113,13 @@ class Index extends CoreResources {
             $rec = array();
             $rec["accion_fecha"]= date("Y-m-d H:i:s");
             $rec["estado_id"]= $estado_id;
-            $rec["accion_dias"] = $this->getDiasTranscurridos($item["fecha_recepcion"],true);
+
+            $tiempo = $this->getTimeElapsed($item['fecha_recepcion'],$rec["accion_fecha"]);
+            $rec["accion_dias"] = $tiempo["days"];
+            $rec["accion_horas"] = $tiempo["hours"];
+            $rec["accion_minutos"] = $tiempo["minutes"];
+            $rec["accion_minutos_total"] = $tiempo["total_minutes"];
+
             $where = "id=".$id;
             $resupdate = $this->dbm->AutoExecute($this->table[$this->objTable],$rec,"UPDATE",$where);
 
