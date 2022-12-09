@@ -10,7 +10,6 @@ define('APP',$app_vars["app"]);
 define('APP_MODULE',$app_vars["module"]);
 define('APP_CORE_ID',$app_vars["core_id"]);
 define('APP_ROUTE_ACTION',$app_vars["route_action"]);
-define('APP_ROUTE_ACTION',$app_vars["route_action"]);
 define('APP_VARS',$app_vars["vars"]);
 /**
  * Variable Accion por defecto

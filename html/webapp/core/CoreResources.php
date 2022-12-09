@@ -46,7 +46,7 @@ class CoreResources
         /**
          * Mapeo de tablas
          */
-        $this->table = $appVars["table"];
+        $this->table = isset($appVars["table"])?$appVars["table"]:array();
         $this->table_core = $tableCore;
         /**
          * Datos del usuario en session
