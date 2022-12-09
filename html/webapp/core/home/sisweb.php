@@ -33,7 +33,7 @@ $appAuth = 0;
 /**
  * Cargamos las librerias de la app
  */
-include_once(APP_PATH."inc/inc.php");
+if(is_file(APP_PATH."inc/inc.php")) include_once(APP_PATH."inc/inc.php");
 /**
  * Sacamos los datos del subsistema que estamos accediendo
  */
