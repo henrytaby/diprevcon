@@ -51,9 +51,9 @@ class CoreResources
         /**
          * Datos del usuario en session
          */
-        $this->userv = $_SESSION["userv"];
-        $this->userId = $_SESSION["userv"]["id"];
-        $this->usuario_id = $_SESSION["userv"]["id"];
+        $this->userv = $_SESSION["userv"]??array();
+        $this->userId = $_SESSION["userv"]["id"]??0;
+        $this->usuario_id = $_SESSION["userv"]["id"]??0;
         //$this->empresa_id = $_SESSION["empresa"]["itemId"];
         /**
          * Permisos de usuarios tanto para base de datos como interfaz

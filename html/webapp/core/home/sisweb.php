@@ -58,7 +58,7 @@ if($appOk==1){
     $getModule = "/".APP."/".APP_MODULE."/?";
     $smarty->assign("getModule", $getModule);
 
-    $smarty->assign("userInfo", $_SESSION["userv"]);
+    $smarty->assign("userInfo", $_SESSION["userv"]??"");
     /**
      * Sacamos los datos del Submódulo
      */
