@@ -64,7 +64,7 @@ class CoreResources
         /**
          * Configuramos y creamos las carpetas necesarias del módulo
          */
-        $this->directory = $appVars["directory"];
+        $this->directory = isset($appVars["directory"])?$appVars["directory"]:array();
         /**
          * configuración de la grilla
          */
@@ -282,7 +282,7 @@ class CoreResources
         for($i=0 ; $i<count($campos);$i++){
             $field = $campos[$i]["field"];
             $col_extra = $campos[$i];
-            if(trim($campos[$i]["table_as"])==""){
+            if(isset($campos[$i]["table_as"])  && trim($campos[$i]["table_as"])==""){
                 $col_extra["db"] = 'i.'.$field.'';
             }else{
                 $col_extra["db"] = ''.trim($campos[$i]["table_as"]).'.'.$field.'';
@@ -293,7 +293,7 @@ class CoreResources
                 $col_extra["dt"] = $campos[$i]["field"];
             }
 
-            if($campos[$i]["as"]==""){
+            if( isset($campos[$i]["as"]) && $campos[$i]["as"]==""){
                 unset($col_extra["as"]);
             }
             $col[]= $col_extra;
