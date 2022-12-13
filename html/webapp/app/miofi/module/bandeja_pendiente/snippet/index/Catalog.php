@@ -39,19 +39,9 @@ class Catalog extends CoreResources{
     }
 
     public function getPersona(){
-        $sql = "select u.id
-            , o.nombre as oficina
-            ,u.name, u.last_name
-            , p.cargo, p.jefe, p.oficina_id, p.entidad_id
-            from core.user as u 
-            left join personal.persona as p on p.id = u.id 
-            left join public.oficina as o on o.id = p.oficina_id
-            where u.active = true
-            and p.jefe = true
-            and p.entidad_id=".$_SESSION["uservAdd"]["entidad_id"];
-
-
-        $sql = "select u.id , o.nombre as oficina ,u.name, u.last_name, p.cargo, p.jefe, p.oficina_id, p.entidad_id
+        //print_struc($_SESSION["uservAdd"]);
+        if($_SESSION["uservAdd"]["jefe"]){
+            $sql = "select u.id , o.nombre as oficina ,u.name, u.last_name, p.cargo, p.jefe, p.oficina_id, p.entidad_id
             from core.user as u 
             left join personal.persona as p on p.id = u.id 
             left join public.oficina as o on o.id = p.oficina_id
@@ -68,22 +58,55 @@ class Catalog extends CoreResources{
 						order by o.nombre
 
 						";
+        }else{
+            $sql = "select u.id , o.nombre as oficina ,u.name, u.last_name, p.cargo, p.jefe, p.oficina_id, p.entidad_id
+            from core.user as u 
+            left join personal.persona as p on p.id = u.id 
+            left join public.oficina as o on o.id = p.oficina_id
+            where u.active = true
+            and p.entidad_id=".$_SESSION["uservAdd"]["entidad_id"]."
+						
+						and 
+						( p.oficina_id = ".$_SESSION["uservAdd"]["oficina_id"]." and u.id <>".$_SESSION["userv"]["id"]." ) 
+
+						order by o.nombre
+
+						";
+        }
+
         $item = $this->dbm->Execute($sql)->GetRows();
         $res = array();
         foreach ($item as $row){
-            $res[$row["id"]] = "Of: ".$row["oficina"]." | ".$row["name"]." ".$row["last_name"]." - ".$row["cargo"];
+            $persona = "";
+            if($row["jefe"]){
+                $persona .= "<span class='jefe'>".$row["name"]." ".$row["last_name"]."</span> - ".$row["cargo"];
+            }else{
+                $persona .= "<span class='persona'>".$row["name"]." ".$row["last_name"]."</span> - ".$row["cargo"];
+            }
+            $res[$row["id"]] = "<span class='oficina'>Of:</span> ".$row["oficina"]." | ".$persona;
         }
         return $res;
     }
 
     public function getActividad(){
-        $sql = "select * from proceso as p  where p.active=true;";
+        $sql = "select * from ".$this->table["proceso"]." as p  where p.active=true and p.oficina_id=".$_SESSION["uservAdd"]["oficina_id"];
         $item = $this->dbm->Execute($sql)->GetRows();
         $res = array();
         foreach ($item as $row){
             $res[$row["id"]] = $row["nombre"];
-            if($row["limite"] == true) $res[$row["id"]] .= " | Límite:  ".$row["dias"]." Dias ";
+
+            $limite = "";
+            if($row["dias"]<>0) $limite .= $row["dias"]." dias ";
+            if($row["horas"]<>0) $limite .= $row["horas"]." horas ";
+            if($row["minutos"]<>0) $limite .= $row["minutos"]." minutos ";
+
+            if($row["limite"] == true) $res[$row["id"]] .= " | <span class='limite-option'>Límite</span>: <span class='limite-dato'>".$limite."</span> ";
         }
         return $res;
+    }
+    public function getActividadArray(){
+        $sql = "select * from ".$this->table["proceso"]." as p  where p.active=true and p.oficina_id=".$_SESSION["uservAdd"]["oficina_id"];
+        $item = $this->dbm->Execute($sql)->GetRows();
+        return $item;
     }
 }

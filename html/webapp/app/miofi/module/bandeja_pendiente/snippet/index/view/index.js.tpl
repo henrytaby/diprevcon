@@ -9,7 +9,7 @@
             $("#mostrar_bandeja").html(html);
             let img;
             jQuery.each( datos, function( i, val ) {
-                html += `<div class="card card-custom gutter-b"><div class="card-body p-0">`;
+                html += `<div class="card card-custom gutter-b tarjeta"><div class="card-body p-0">`;
                 html += html_top(val);
                 html += html_per(val);
                 html += html_Bottom(val);

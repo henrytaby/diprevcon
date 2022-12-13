@@ -87,6 +87,7 @@ switch($action) {
         break;
 
     case 'get.form.derivar':
+        //print_struc($_SESSION["uservAdd"]);exit;
         $smarty->assign("item_id",$item_id);
         /**
          * Language settings, section
@@ -101,9 +102,8 @@ switch($action) {
         $cataobj = $objCatalog->getCatalogList();
         $cataobj["persona"] = $objCatalog->getPersona();
         $cataobj["actividad"] = $objCatalog->getActividad();
+        $cataobj["actividadArray"] = $objCatalog->getActividadArray();
         $smarty->assign("cataobj" , $cataobj);
-
-        //print_struc($cataobj);exit;
 
         $templateModule = $frontend["baseAjax"];
         $smarty->assign("subpage",$webm["sc_form"]);

@@ -32,5 +32,9 @@
             padding: 5px;
             border-radius: 5px;
         }
+        .tarjeta{
+            border-bottom: 0.5px solid #939eb4 !important;
+
+        }
     </style>
 {/literal}

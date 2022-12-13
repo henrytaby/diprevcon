@@ -172,7 +172,10 @@ class Index extends CoreResources {
                 /**
                  * Cambiamos el estado del seguimiento
                  */
-                $this->estado($itemId,3);
+                if($res["res"]==1){
+                    $this->estado($itemId,3);
+                }
+
             }else{
                 $res["res"] = 2;
                 $res["type"] = 10;
@@ -221,9 +224,9 @@ class Index extends CoreResources {
                 $dataResult["entidad_id"] = $persona["entidad_id"];
                 $dataResult["estado_id"] = 1;
 
-                $proceso = $this->getProceso($dataResult["proceso_id"]);
-                $dataResult["proceso_dias"] = $proceso["dias"];
-                $dataResult["proceso_limite"] =  $proceso["limite"]?"TRUE":"FALSE";
+                //$proceso = $this->getProceso($dataResult["proceso_id"]);
+                //$dataResult["proceso_dias"] = $proceso["dias"];
+                //$dataResult["proceso_limite"] =  $proceso["limite"]?"TRUE":"FALSE";
                 //$hojaruta = $this->getItem($itemId);
                 $dataResult["nur"] =  $seguimiento["nur"];
                 $dataResult["hojaruta_id"] = $seguimiento["hojaruta_id"];
@@ -240,6 +243,7 @@ class Index extends CoreResources {
     }
 
     public function getPersona($id){
+
         $sql = "select u.id
             , o.nombre as oficina
             ,u.name, u.last_name
@@ -248,7 +252,6 @@ class Index extends CoreResources {
             left join personal.persona as p on p.id = u.id 
             left join public.oficina as o on o.id = p.oficina_id
             where u.active = true
-            and p.jefe = true
             and p.entidad_id=".$_SESSION["uservAdd"]["entidad_id"]." and u.id=".$id;
         $item = $this->dbm->Execute($sql)->fields;
         return $item;

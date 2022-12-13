@@ -12,6 +12,13 @@ $field_item["instruccion_id"]=array("type"=>"text");
 $field_item["proceso_id"]=array("type"=>"text");
 $field_item["proveido"]=array("type"=>"text");
 
+$field_item["proceso_limite"]=array("type"=>"checkbox_02");
+$field_item["proceso_dias"]=array("type"=>"text");
+$field_item["proceso_horas"]=array("type"=>"text");
+$field_item["proceso_minutos"]=array("type"=>"text");
+
+$field_item["urgente"]=array("type"=>"checkbox_02");
+
 
 $group = "module";
 $fields[$group]= $field_item;
