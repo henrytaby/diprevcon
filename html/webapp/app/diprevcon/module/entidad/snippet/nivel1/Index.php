@@ -25,7 +25,7 @@ class Index extends CoreResources
         /**
          * Additional configuration
          */
-        $extraWhere = "i.entidad_id='".$item_id."' and i.parent = 0" ;
+        $extraWhere = "i.entidad_id='".$item_id."' and i.parent IS NULL" ;
         $groupBy = "";
         $having = "";
         /**

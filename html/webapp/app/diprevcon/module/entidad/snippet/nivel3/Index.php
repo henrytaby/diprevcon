@@ -30,7 +30,7 @@ class Index extends CoreResources
                                                     where o2.entidad_id= '".$item_id."'
                                                     and o2.parent in (select o1.id from oficina as o1
                                                     where o1.entidad_id= '".$item_id."'
-                                                    and o1.parent=0))" ;
+                                                    and o1.parent IS NULL))" ;
         $groupBy = "";
         $having = "";
         /**
