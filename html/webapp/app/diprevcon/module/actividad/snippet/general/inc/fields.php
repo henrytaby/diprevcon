@@ -16,6 +16,8 @@ $field_item = array();
 $field_item["nombre"]=array("type"=>"text");
 $field_item["limite"]=array("type"=>"checkbox_02");
 $field_item["dias"]=array("type"=>"text");
+$field_item["horas"]=array("type"=>"text");
+$field_item["minutos"]=array("type"=>"text");
 $field_item["descripcion"]=array("type"=>"text");
 $field_item["active"]=array("type"=>"checkbox_02");
 

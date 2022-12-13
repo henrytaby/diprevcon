@@ -102,11 +102,11 @@
                         },
                     },
                     {
-                        targets: [2],
+                        targets: [2,3,4],
                         searchable: false,
                         className:"text-center",
                         render: function(data,type,full,meta){
-                            if (data == null){ data = "";}
+                            if (data == 0){ data = "";}
                             return '<span style="color: #27780f;">' + data + ' </span>';
                         },
                     },
@@ -115,7 +115,7 @@
                         searchable: true,
                     },
                     {
-                        targets: [1, 4],
+                        targets: [1, 8],
                         searchable: false,
                         width: '60px',
                         render: function(data, type, full, meta) {
@@ -128,6 +128,10 @@
                             }
                             return '<div class="text-center"><i class="fa fa-check-double text-' + status[data].state + '"></i></div>';
                         },
+                    },
+                    {
+                        targets: [5, 6,7],
+                        className: "none",
                     },
                     {
                         targets: [-2,-3],

@@ -51,36 +51,58 @@
                     <span class="form-text text-black-50">{#field_msg_name#}</span>
                 </div>
                 <div class="col-lg-3">
-                    <label>{#field_limite#}:</label>
-                    <div class="input-group">
-                    <span class="switch switch-icon">
-                        <label><input type="checkbox" {if $item.limite == 1}checked="checked"{/if} name="item[limite]" value="1" ><span></span></label>
-                    </span>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_limite#}</span>
-                </div>
-
-                <div class="col-lg-6">
-                    <label>{#field_dias#}:</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control number_integer p-5" id="number_integer"
-                               name="item[dias]" value="{$item.dias|escape:"html"}"
-{*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
-                        >
-                        <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_dias#}</span>
-                </div>
-                <div class="col-lg-6">
                     <label>{#field_active#}:</label>
                     <div class="input-group">
                     <span class="switch switch-icon">
-                        <label><input type="checkbox" {if $item.limite == 1}checked="checked"{/if} name="item[active]" value="1" ><span></span></label>
+                        <label><input type="checkbox" {if $item.active == 1}checked="checked"{/if} name="item[active]" value="1" ><span></span></label>
                     </span>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_active#}</span>
                 </div>
+                <div class="col-lg-12">
+                    <label>{#field_limite#}:</label>
+                    <div class="input-group">
+                    <span class="switch switch-icon">
+                        <label><input id="limite" type="checkbox" {if $item.limite == 1}checked="checked"{/if} name="item[limite]" value="1" ><span></span></label>
+                    </span>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_limite#}</span>
+                </div>
+                </div>
 
+                <div class="form-group row {if $item.limite == false }d-none{/if} limite" id="limite_div">
+                    <div class="col-lg-4">
+                        <label>{#field_dias#}:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control number_integer p-5" id="number_integer"
+                                   name="item[dias]" value="{$item.dias|escape:"html"}"
+                            >
+                            <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
+                        </div>
+                        <span class="form-text text-black-50">{#field_msg_dias#}</span>
+                    </div>
+                    <div class="col-lg-4">
+                        <label>{#field_horas#}:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control number_integer p-5" id="number_integer"
+                                   name="item[horas]" value="{$item.horas|escape:"html"}"
+                            >
+                            <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
+                        </div>
+                        <span class="form-text text-black-50">{#field_msg_horas#}</span>
+                    </div>
+                    <div class="col-lg-4">
+                        <label>{#field_min#}:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control number_integer p-5" id="number_integer"
+                                   name="item[minutos]" value="{$item.minutos|escape:"html"}"
+                            >
+                            <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
+                        </div>
+                        <span class="form-text text-black-50">{#field_msg_min#}</span>
+                    </div>
+                </div>
+            <div class="form-group row">
                 <div class="col-lg-12">
                     <label>{#field_descripcion#}<span class="text-danger bold">*</span> :</label>
                     <div class="input-group">

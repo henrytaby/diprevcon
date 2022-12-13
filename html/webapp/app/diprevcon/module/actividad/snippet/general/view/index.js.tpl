@@ -79,6 +79,25 @@
             coreUyuni.setComponents();
         };
 
+        var handle_limite_select = function(){
+            $('#limite').on('change',function(){
+                handle_limite();
+            });
+        };
+
+        var limite_div= $('#limite_div');
+        var handle_limite = function(){
+            var id = $('#limite').prop('checked') ;
+            id = id==null? '': id.toString();
+            limite_div.addClass('d-none');
+            switch (id){
+                case 'true':
+                    limite_div.removeClass('d-none');
+                    break;
+            }
+        };
+
+
         var handle_type_select = function(){
             $('#type_select_category').on('change',function(){
                 handle_type();
@@ -122,6 +141,7 @@
                 handle_components();
                 handle_type_select();
                 handle_font_select();
+                handle_limite_select();
             }
         };
     }();

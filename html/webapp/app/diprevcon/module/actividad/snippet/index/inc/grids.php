@@ -9,18 +9,18 @@ $grid_table_join = array();
 /**
  * Configuración de tablas relacionales, (JOIN)
  */
-//$grid_table[] = array(
-//    "table" => $appVars["table"] ["programa_estado"] // Nombre de la tabla con la que hara la relación
-//,    "alias"=> "e" //Alias de la tabla para el join
-//,   "field_id"=>"id" //Id de la tabla que hara la relación
-//,   "relationship_id"=>"estado_id" //Campo de relación en la tabla principal
-//);
-//$grid_table[] = array(
-//    "table" => $appVars["table"] ["moneda"] // Nombre de la tabla con la que hara la relación
-//,    "alias"=> "m" //Alias de la tabla para el join
-//,   "field_id"=>"id" //Id de la tabla que hara la relación
-//,   "relationship_id"=>"moneda_id" //Campo de relación en la tabla principal
-//);
+$grid_table[] = array(
+    "table" => $appVars["table"] ["oficina"] // Nombre de la tabla con la que hara la relación
+,    "alias"=> "d" //Alias de la tabla para el join
+,   "field_id"=>"id" //Id de la tabla que hara la relación
+,   "relationship_id"=>"oficina_id" //Campo de relación en la tabla principal
+);
+$grid_table[] = array(
+    "table" => $appVars["table"] ["entidad"] // Nombre de la tabla con la que hara la relación
+,    "alias"=> "e" //Alias de la tabla para el join
+,   "field_id"=>"id" //Id de la tabla que hara la relación
+,   "relationship_id"=>"entidad_id" //Campo de relación en la tabla principal
+);
 /**
  * Configuración de los campos que mostraremos en la grilla
  */
@@ -28,6 +28,13 @@ $grid_table_join = array();
 $grid_item[]=array("field" => "nombre","label"=> $smarty->config_vars["table_nombre"]);
 $grid_item[]=array("field"=> "limite", "label"=> $smarty->config_vars["table_limite"]);
 $grid_item[]=array("field"=> "dias", "label"=> $smarty->config_vars["table_dias"]);
+$grid_item[]=array("field"=> "horas", "label"=> $smarty->config_vars["table_horas"]);
+$grid_item[]=array("field"=> "minutos", "label"=> $smarty->config_vars["table_min"]);
+
+$grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_entidad"]
+, "table_as"=> "e", "as" => "entidad");
+$grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_oficina"]
+, "table_as"=> "d", "as" => "oficina");
 $grid_item[]=array("field"=> "descripcion", "label"=> $smarty->config_vars["table_descripcion"]);
 $grid_item[]=array("field"=> "active", "label"=> $smarty->config_vars["table_activo"]);
 

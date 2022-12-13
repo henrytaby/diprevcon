@@ -57,12 +57,14 @@ class Index extends CoreResources
             case 'module':
                 $dataResult = $this->processFields($rec,$this->campos[$form],$action);
 
-
                 /**
                  * Additional processes when saving the data
                  */
-                if ($action=="new"){
-                    //$dataResult["active"] = 1;
+                if ($rec["limite"] == false){
+
+                    $dataResult["dias"] = 0;
+                    $dataResult["horas"] = 0;
+                    $dataResult["minutos"] = 0;
                 }
                 break;
         }
