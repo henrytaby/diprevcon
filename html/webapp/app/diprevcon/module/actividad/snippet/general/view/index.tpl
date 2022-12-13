@@ -20,6 +20,22 @@
 
         <div class="card-body">
             <div class="form-group row">
+
+                <div class="col-lg-12">
+                    <label>{#field_oficina#} <span class="text-danger bold">*</span>: </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[oficina_id]" id="select_oficina"
+                                data-placeholder="{#field_Holder_oficina#}" {$privFace.input}
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.oficina selected=$item.oficina_id}
+                        </select>
+                    </div>
+                    <span class="form-text text-muted">{#field_GroupMsg_oficina#}</span>
+                </div>
+
                 <div class="col-lg-9">
                     <label>{#field_name#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">

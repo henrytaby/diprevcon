@@ -40,7 +40,8 @@ switch($action){
 
         $objCatalog->confCatalog();
         $cataobj= $objCatalog->getCatalogList();
-        //print_struc($cataobj);exit;
+        $cataobj["oficina"] = $objCatalog->getOficinaOptions();
+        //print_struc($cataobj["oficina"]);
         $smarty->assign("cataobj", $cataobj);
 
         $smarty->assign("subpage",$webm["sc_index"]);

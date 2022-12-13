@@ -25,7 +25,6 @@ switch($action) {
         $objCatalog->confCatalog();
         $cataobj= $objCatalog->getCatalogList();
         $cataobj["activo"] = $catalogo=$objCatalog->getActiveOption();
-        //print_struc($cataobj);exit;
         $smarty->assign("cataobj", $cataobj);
         /**
          * Grid configuration
